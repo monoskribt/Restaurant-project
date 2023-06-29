@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sushi_shop_project/home/most_popular_body_function.dart';
-import 'package:sushi_shop_project/home/pasta_card_body_function.dart';
-import 'package:sushi_shop_project/home/sorting_scroll_dishes_function.dart';
-import 'package:sushi_shop_project/home/dish_page_body_function.dart';
+import 'function/dish_page_body_function.dart';
+import 'function/most_popular_body_function.dart';
+import 'function/pasta_card_body_function.dart';
+import 'function/salad_card_body_function.dart';
+import 'function/sorting_scroll_dishes_function.dart';
 
-import 'home/salad_card_body_function.dart';
 
 
 
