@@ -33,7 +33,7 @@ class _SortingScrollDishesState extends State<SortingScrollDishes> {
           final isSelected = category == widget.selectedCategory;
 
           return Padding(
-            padding: const EdgeInsets.only(left: 5.0),
+            padding: const EdgeInsets.only(right: 10.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: InkWell(

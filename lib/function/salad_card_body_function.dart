@@ -6,9 +6,30 @@ class SaladCardBody extends StatelessWidget {
   SaladCardBody({Key? key}) : super(key: key);
 
   final List saladCardList = [
-    ["Salad 1", 11.10, 4.1, "assets/images/salad_1.png"],
-    ["Salad 2", 12.20, 5.0, "assets/images/salad_1.png"],
-    ["Salad 3", 13.30, 4.7, "assets/images/salad_1.png"],
+    {
+      "name": "Salad 1",
+      "price": 11.40,
+      "rating": 4.1,
+      "image": "assets/images/salad_1.png",
+      "description": "You won't skip the most important meal of the day with this avocado toast recipe."
+          "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
+    },
+    {
+      "name": "Salad 2",
+      "price": 12.20,
+      "rating": 5.0,
+      "image": "assets/images/salad_1.png",
+      "description": "You won't skip the most important meal of the day with this avocado toast recipe."
+          "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
+    },
+    {
+      "name": "Salad 3",
+      "price": 13.30,
+      "rating": 4.7,
+      "image": "assets/images/salad_1.png",
+      "description": "You won't skip the most important meal of the day with this avocado toast recipe."
+          "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
+    },
   ];
 
   @override
@@ -19,11 +40,13 @@ class SaladCardBody extends StatelessWidget {
           itemCount: saladCardList.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
+            var dish = saladCardList[index];
             return SaladCard(
-              nameDish: saladCardList[index][0],
-              price: saladCardList[index][1],
-              rating: saladCardList[index][2],
-              imageMostPopular: saladCardList[index][3],
+              nameDish: dish["name"],
+              price: dish["price"],
+              rating: dish["rating"],
+              imageSaladCard: dish["image"],
+              description: dish["description"],
             );
           },
         )

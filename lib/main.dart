@@ -5,6 +5,7 @@ import 'function/most_popular_body_function.dart';
 import 'function/pasta_card_body_function.dart';
 import 'function/salad_card_body_function.dart';
 import 'function/sorting_scroll_dishes_function.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/view_a_dish.dart';
 
-import 'package:sushi_shop_project/screens/view_a_dish.dart';
 
 class MostPopularCard extends StatelessWidget {
   final String nameDish;
@@ -20,29 +20,38 @@ class MostPopularCard extends StatelessWidget {
   }) : super(key: key);
 
   void showViewADish(BuildContext context) {
-    showModalBottomSheet(
+    showModalBottomSheet<void>(
       enableDrag: false,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20),
+          top: Radius.circular(25),
         ),
       ),
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return FractionallySizedBox(
-          heightFactor: 7/8,
-          child: ViewADish(
-            imageDishView: imageMostPopular,
-            nameDishView: nameDish,
-            priceView: price,
-            descriptionView: description,
-            ratingView: rating,
+        return ClipRRect(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(25),
+          ),
+          child: Container(
+            color: Colors.grey[200],
+            child: FractionallySizedBox(
+              heightFactor: 7/8,
+              child: ViewADish(
+                imageDishView: imageMostPopular,
+                nameDishView: nameDish,
+                priceView: price,
+                descriptionView: description,
+                ratingView: rating,
+              ),
+            ),
           ),
         );
       },
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +60,7 @@ class MostPopularCard extends StatelessWidget {
         showViewADish(context);
       },
       child: Padding(
-        padding: const EdgeInsets.only(left: 5.0, top: 16, right: 12, bottom: 16),
+        padding: const EdgeInsets.only(top: 16, right: 20, bottom: 16),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Container(
