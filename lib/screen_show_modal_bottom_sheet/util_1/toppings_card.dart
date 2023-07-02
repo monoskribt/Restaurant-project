@@ -47,10 +47,10 @@ class _ToppingsCardState extends State<ToppingsCard> {
                   ),
                   child: isSelected
                       ? const Icon(
-                          Icons.check_outlined,
-                          size: 15,
-                          color: Color(0xFFFF7B2C),
-                        )
+                    Icons.check_outlined,
+                    size: 15,
+                    color: Color(0xFFFF7B2C),
+                  )
                       : const SizedBox(),
                 ),
                 const SizedBox(width: 8),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/view_a_dish.dart';
 
 
