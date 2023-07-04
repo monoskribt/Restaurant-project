@@ -43,18 +43,37 @@ class _SortingScrollDishesState extends State<SortingScrollDishes> {
                 child: Container(
                   height: 45,
                   width: 104,
-                  color: isSelected ? const Color(0xFFFFB01D) : Colors.grey[300],
+                  decoration: isSelected
+                      ? const BoxDecoration(
+                    color: Color(0xFFFFB01D),
+                  )
+                      : const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Color(0xFFFCFCFC),
+                        Color(0xFFF7F7F7),
+                        Color(0xFFF7F7F7),
+                        Color(0xFFF7F7F7),
+                        Color(0xFFFCFCFC),
+                      ],
+                      stops: [0, 0.1004, 0.5156, 0.8958, 1],
+                    ),
+                  ),
                   child: Center(
                     child: Text(
                       category,
                       style: TextStyle(
                         fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                        fontFamily: "Mulish-Regular",
                         color: isSelected ? Colors.white : const Color(0xFF8E8EA9),
                       ),
                     ),
                   ),
                 ),
+
               ),
             ),
           );

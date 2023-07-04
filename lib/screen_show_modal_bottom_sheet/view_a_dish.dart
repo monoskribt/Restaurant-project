@@ -89,7 +89,8 @@ class ViewADish extends StatelessWidget {
                             Text(
                               ratingView.toString(),
                               style: const TextStyle(
-                                fontSize: 15,
+                                fontSize: 14,
+                                fontFamily: "Mulish-Regular",
                                 fontWeight: FontWeight.w600,
                                 color: Color(0xFF8E8EA9),
                               ),
@@ -103,6 +104,7 @@ class ViewADish extends StatelessWidget {
                 const SizedBox(height: 30.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  textBaseline: TextBaseline.alphabetic,
                   children: [
                     Column(
                       children: [
@@ -111,8 +113,9 @@ class ViewADish extends StatelessWidget {
                           child: Text(
                             nameDishView,
                             style: const TextStyle(
-                              fontSize: 22.0,
+                              fontSize: 21.0,
                               fontWeight: FontWeight.w700,
+                              fontFamily: "Mulish-Regular",
                               color: Color(0xFF32324D),
                             ),
                           ),
@@ -127,6 +130,7 @@ class ViewADish extends StatelessWidget {
                             "\$",
                             style: TextStyle(
                               fontSize: 13,
+                              fontFamily: "Mulish-Regular",
                               fontWeight: FontWeight.w700,
                               color: Color(0xFFFFB080),
                             ),
@@ -135,7 +139,8 @@ class ViewADish extends StatelessWidget {
                         Text(
                           priceView.toStringAsFixed(2),
                           style: const TextStyle(
-                            fontSize: 22,
+                            fontSize: 24,
+                            fontFamily: "Mulish-Regular",
                             fontWeight: FontWeight.w800,
                             color: Color(0xFFFF7B2C),
                           ),
@@ -151,8 +156,9 @@ class ViewADish extends StatelessWidget {
                       child: Text(
                         descriptionView,
                         style: const TextStyle(
-                          fontSize: 15,
+                          fontSize: 14,
                           fontWeight: FontWeight.w500,
+                          fontFamily: "Mulish-Regular",
                           color: Color(0xFF8E8EA9),
                         ),
                       ),
@@ -169,6 +175,7 @@ class ViewADish extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
+                        fontFamily: "Mulish-Regular",
                         color: Color(0xFF666687),
                       ),
                     ),
@@ -183,6 +190,7 @@ class ViewADish extends StatelessWidget {
                       "Add toppings",
                       style: TextStyle(
                         fontSize: 16,
+                        fontFamily: "Mulish-Regular",
                         fontWeight: FontWeight.w600,
                         color: Color(0xFF666687),
                       ),
@@ -198,6 +206,7 @@ class ViewADish extends StatelessWidget {
                       "Recommended sides",
                       style: TextStyle(
                         fontSize: 16,
+                        fontFamily: "Mulish-Regular",
                         fontWeight: FontWeight.w600,
                         color: Color(0xFF666687),
                       ),
@@ -213,6 +222,7 @@ class ViewADish extends StatelessWidget {
                       "Add a request",
                       style: TextStyle(
                         fontSize: 16,
+                        fontFamily: "Mulish-Regular",
                         fontWeight: FontWeight.w600,
                         color: Color(0xFF666687),
                       ),

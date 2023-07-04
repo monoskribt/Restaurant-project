@@ -30,6 +30,7 @@ class IngredientsCard extends StatelessWidget {
                 title,
                 style: const TextStyle(
                   fontSize: 14,
+                  fontFamily: "Mulish-Regular",
                   fontWeight: FontWeight.w500,
                   color: Color(0xFf8E8EA9),
                 ),

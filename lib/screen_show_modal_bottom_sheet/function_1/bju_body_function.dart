@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/util_1/bju_card.dart';
 
 class BJUBody extends StatelessWidget {
-  BJUBody({super.key});
+  BJUBody({Key? key}) : super(key: key);
 
   final List<Map<String, dynamic>> bjucardList = [
     {

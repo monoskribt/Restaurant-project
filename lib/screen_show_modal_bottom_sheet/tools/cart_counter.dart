@@ -9,12 +9,13 @@ class CartCounter extends StatefulWidget {
 
 class _CartCounterState extends State<CartCounter> {
   int numOfItems = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        buildElevatedButton(
+        buildButton(
           icon: Icons.remove,
           backgroundColor: const Color(0xFFEAEAEF),
           press: () {
@@ -29,11 +30,12 @@ class _CartCounterState extends State<CartCounter> {
         Text(
           numOfItems.toString(),
           style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF666687)),
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF666687),
+          ),
         ),
-        buildElevatedButton(
+        buildButton(
           icon: Icons.add,
           backgroundColor: const Color(0xFFFFF2EA),
           press: () {
@@ -42,12 +44,12 @@ class _CartCounterState extends State<CartCounter> {
             });
           },
           iconColor: const Color(0xFFFF7B2C),
-        )
+        ),
       ],
     );
   }
 
-  SizedBox buildElevatedButton({
+  SizedBox buildButton({
     required IconData icon,
     required VoidCallback press,
     required Color iconColor,
@@ -57,16 +59,17 @@ class _CartCounterState extends State<CartCounter> {
       width: 45,
       height: 45,
       child: FittedBox(
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
+        child: TextButton(
+          style: TextButton.styleFrom(
             shape: const CircleBorder(),
             backgroundColor: backgroundColor,
             padding: EdgeInsets.zero,
+            elevation: 0,
           ),
           onPressed: press,
           child: Icon(
             icon,
-            size: 35,
+            size: 30,
             color: iconColor,
           ),
         ),

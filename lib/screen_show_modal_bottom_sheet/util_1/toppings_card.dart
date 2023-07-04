@@ -57,6 +57,7 @@ class _ToppingsCardState extends State<ToppingsCard> {
                 Text(
                   widget.nameToppings,
                   style: const TextStyle(
+                    fontFamily: "Mulish-Regular",
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF666687),
@@ -71,6 +72,7 @@ class _ToppingsCardState extends State<ToppingsCard> {
                         "\$",
                         style: TextStyle(
                           fontSize: 10,
+                          fontFamily: "Mulish-Regular",
                           fontWeight: FontWeight.w700,
                           color: Color(0xFFFFB080),
                         ),
@@ -81,6 +83,7 @@ class _ToppingsCardState extends State<ToppingsCard> {
                       widget.priceToppings.toStringAsFixed(2),
                       style: const TextStyle(
                         fontSize: 14,
+                        fontFamily: "Mulish-Regular",
                         fontWeight: FontWeight.w700,
                         color: Color(0xFFFF7B2C),
                       ),

@@ -53,6 +53,7 @@ class RecommendedSidesCard extends StatelessWidget {
                                 nameRecommended,
                                 style: const TextStyle(
                                   fontSize: 14,
+                                  fontFamily: "Mulish-Regular",
                                   fontWeight: FontWeight.w600,
                                   color: Color(0xFF32324D),
                                 ),
@@ -76,6 +77,7 @@ class RecommendedSidesCard extends StatelessWidget {
                                 ratingRecommended.toString(),
                                 style: const TextStyle(
                                   fontSize: 14,
+                                  fontFamily: "Mulish-Regular",
                                   fontWeight: FontWeight.w600,
                                   color: Color(0xFF8E8EA9),
                                 ),
@@ -85,6 +87,7 @@ class RecommendedSidesCard extends StatelessWidget {
                               '(${reviewRecommended.toString()} reviews)',
                               style: const TextStyle(
                                 fontSize: 14,
+                                fontFamily: "Mulish-Regular",
                                 fontWeight: FontWeight.w600,
                                 color: Color(0xFFC0C0CF),
                               ),
@@ -101,6 +104,7 @@ class RecommendedSidesCard extends StatelessWidget {
                             "\$",
                             style: TextStyle(
                               fontSize: 8,
+                              fontFamily: "Mulish-Regular",
                               fontWeight: FontWeight.w700,
                               color: Color(0xFFFFB080),
                             ),
@@ -111,6 +115,7 @@ class RecommendedSidesCard extends StatelessWidget {
                           priceRecommended.toStringAsFixed(2),
                           style: const TextStyle(
                             fontSize: 15,
+                            fontFamily: "Mulish-Regular",
                             fontWeight: FontWeight.w700,
                             color: Color(0xFFFF7B2C),
                           ),

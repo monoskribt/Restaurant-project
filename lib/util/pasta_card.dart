@@ -20,7 +20,7 @@ class PastaCard extends StatelessWidget {
 
   void showViewADish(BuildContext context) {
     showModalBottomSheet<void>(
-      enableDrag: false,
+      enableDrag: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(25),
@@ -33,17 +33,14 @@ class PastaCard extends StatelessWidget {
           borderRadius: const BorderRadius.vertical(
             top: Radius.circular(25),
           ),
-          child: Container(
-            color: Colors.grey[200],
-            child: FractionallySizedBox(
-              heightFactor: 7/8,
-              child: ViewADish(
-                imageDishView: imagePastaCard,
-                nameDishView: nameDish,
-                priceView: price,
-                descriptionView: description,
-                ratingView: rating,
-              ),
+          child: FractionallySizedBox(
+            heightFactor: 7/8,
+            child: ViewADish(
+              imageDishView: imagePastaCard,
+              nameDishView: nameDish,
+              priceView: price,
+              descriptionView: description,
+              ratingView: rating,
             ),
           ),
         );
@@ -82,8 +79,9 @@ class PastaCard extends StatelessWidget {
                     Text(
                       nameDish,
                       style: const TextStyle(
-                        fontSize: 15,
+                        fontSize: 14,
                         fontWeight: FontWeight.w600,
+                        fontFamily: "Mulish",
                         color: Color(0xFF32324D),
                       ),
                     ),
@@ -105,8 +103,9 @@ class PastaCard extends StatelessWidget {
                         Text(
                           price.toStringAsFixed(2),
                           style: const TextStyle(
-                            fontSize: 15,
+                            fontSize: 14,
                             fontWeight: FontWeight.w700,
+                            fontFamily: "Mulish",
                             color: Color(0xFFFF7B2C),
                           ),
                         ),
@@ -132,15 +131,16 @@ class PastaCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(
-                            child:
-                            Image.asset("assets/images/star.png")
+                          child: Image.asset("assets/images/star.png",
+                            color: const Color(0xFFFFB01D),
+                          ),
                         ),
                         Text(
                           rating.toString(),
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF32324D),
+                            color: Color(0xFF8E8EA9),
                           ),
                         ),
                       ],

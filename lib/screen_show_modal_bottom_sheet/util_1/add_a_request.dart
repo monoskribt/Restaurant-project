@@ -39,12 +39,14 @@ class _RequestInputState extends State<RequestInput> {
       child: TextField(
         controller: _textEditingController,
         maxLength: maxLength,
+        maxLines: null,
         onChanged: (_) => updateCurrentLength(),
         decoration: InputDecoration(
           hintText: 'Ex: Don’t add onion',
           hintStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
+            fontSize: 14,
+            fontFamily: "Mulish-Regular",
+            fontWeight: FontWeight.w600,
             color: Color(0xFF8E8EA9),
           ),
           enabledBorder: OutlineInputBorder(
@@ -62,8 +64,9 @@ class _RequestInputState extends State<RequestInput> {
             contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           counterText: '$length/$maxLength',
           counterStyle: const TextStyle(
-            fontSize: 14,
+            fontSize: 13,
             color: Color(0xFFC0C0CF),
+            fontFamily: "Mulish-Regular",
             fontWeight: FontWeight.w400,
           )
         ),

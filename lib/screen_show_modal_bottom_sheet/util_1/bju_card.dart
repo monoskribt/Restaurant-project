@@ -37,6 +37,7 @@ class BJUCard extends StatelessWidget {
                       kcal.toString(),
                       style: const TextStyle(
                         fontSize: 14,
+                          fontFamily: "Mulish-Regular",
                         fontWeight: FontWeight.w600,
                         color: Color(0xFF3A2D78)
                       ),
@@ -45,6 +46,7 @@ class BJUCard extends StatelessWidget {
                       "kcal",
                       style: TextStyle(
                         fontSize: 12,
+                        fontFamily: "Mulish-Regular",
                         fontWeight: FontWeight.w600,
                         color: Color(0xFF8E8EA9),
                       ),
@@ -66,6 +68,7 @@ class BJUCard extends StatelessWidget {
                       "grams",
                       style: TextStyle(
                         fontSize: 12,
+                        fontFamily: "Mulish-Regular",
                         fontWeight: FontWeight.w600,
                         color: Color(0xFF8E8EA9),
                       ),
@@ -79,6 +82,7 @@ class BJUCard extends StatelessWidget {
                       proteins.toString(),
                       style: const TextStyle(
                           fontSize: 14,
+                          fontFamily: "Mulish-Regular",
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF3A2D78)
                       ),
@@ -87,6 +91,7 @@ class BJUCard extends StatelessWidget {
                       "proteins",
                       style: TextStyle(
                         fontSize: 12,
+                        fontFamily: "Mulish-Regular",
                         fontWeight: FontWeight.w600,
                         color: Color(0xFF8E8EA9),
                       ),
@@ -100,6 +105,7 @@ class BJUCard extends StatelessWidget {
                       carbs.toString(),
                       style: const TextStyle(
                           fontSize: 14,
+                          fontFamily: "Mulish-Regular",
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF3A2D78)
                       ),
@@ -108,6 +114,7 @@ class BJUCard extends StatelessWidget {
                       "carbs",
                       style: TextStyle(
                         fontSize: 12,
+                        fontFamily: "Mulish-Regular",
                         fontWeight: FontWeight.w600,
                         color: Color(0xFF8E8EA9),
                       ),
@@ -121,6 +128,7 @@ class BJUCard extends StatelessWidget {
                       fats.toString(),
                       style: const TextStyle(
                           fontSize: 14,
+                          fontFamily: "Mulish-Regular",
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF3A2D78)
                       ),
@@ -129,6 +137,7 @@ class BJUCard extends StatelessWidget {
                       "fats",
                       style: TextStyle(
                         fontSize: 12,
+                        fontFamily: "Mulish-Regular",
                         fontWeight: FontWeight.w600,
                         color: Color(0xFF8E8EA9),
                       ),
