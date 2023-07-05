@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/util/most_popular_card.dart';
+import 'package:sushi_shop_project/full_menu_widget/util/most_popular_card.dart';
 class MostPopularBody extends StatelessWidget {
   MostPopularBody({Key? key}) : super(key: key);
 

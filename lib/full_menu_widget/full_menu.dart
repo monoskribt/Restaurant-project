@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sushi_shop_project/screeen_show_bottom_sheet_2/tools/filters_screen.dart';
+import 'package:sushi_shop_project/filters_widget/tools/filters_screen.dart';
+
 import 'function/dish_page_body_function.dart';
 import 'function/most_popular_body_function.dart';
 import 'function/pasta_card_body_function.dart';
 import 'function/salad_card_body_function.dart';
-import 'function/sorting_scroll_dishes_function.dart';
+import 'function/sorting_scroll_dishes_body_function.dart';
 
 void main() => runApp(const FullMenu());
 

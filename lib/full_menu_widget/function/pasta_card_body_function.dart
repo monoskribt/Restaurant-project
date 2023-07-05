@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/util/pasta_card.dart';
+import 'package:sushi_shop_project/full_menu_widget/util/pasta_card.dart';
 
 class PastaCardBody extends StatelessWidget {
   PastaCardBody({Key? key}) : super(key: key);

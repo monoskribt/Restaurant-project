@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/util_1/toppings_card.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/util/toppings_card.dart';
+
 
 
 class ToppingsBody extends StatelessWidget {

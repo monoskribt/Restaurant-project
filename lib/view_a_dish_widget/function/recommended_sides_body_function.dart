@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/util_1/recommended_sides_card.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/util/recommended_sides_card.dart';
+
 
 class RecommendedSidesBody extends StatelessWidget {
   RecommendedSidesBody({Key? key,}) : super(key: key);

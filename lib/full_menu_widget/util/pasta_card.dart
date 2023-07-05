@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/view_a_dish.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/view_a_dish.dart';
 
 
-class MostPopularCard extends StatelessWidget {
+class PastaCard extends StatelessWidget {
   final String nameDish;
   final double price;
   final double rating;
-  final String imageMostPopular;
+  final String imagePastaCard;
   final String description;
 
-  const MostPopularCard({
+  const PastaCard({
     Key? key,
     required this.nameDish,
     required this.price,
     required this.rating,
-    required this.imageMostPopular,
+    required this.imagePastaCard,
     required this.description,
-  }) : super(key: key);
+}) : super(key : key);
 
   void showViewADish(BuildContext context) {
     showModalBottomSheet<void>(
@@ -36,7 +36,7 @@ class MostPopularCard extends StatelessWidget {
           child: FractionallySizedBox(
             heightFactor: 7/8,
             child: ViewADish(
-              imageDishView: imageMostPopular,
+              imageDishView: imagePastaCard,
               nameDishView: nameDish,
               priceView: price,
               descriptionView: description,
@@ -47,7 +47,6 @@ class MostPopularCard extends StatelessWidget {
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +59,6 @@ class MostPopularCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Container(
-            height: 190,
             width: 142,
             color: Colors.white,
             child: Stack(
@@ -73,9 +71,8 @@ class MostPopularCard extends StatelessWidget {
                       width: 110,
                       child: Center(
                         child: Image.asset(
-                          imageMostPopular,
-                          width: 110,
-                          height: 110,
+                          imagePastaCard,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -84,7 +81,7 @@ class MostPopularCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        fontFamily: "Mulish-Regular",
+                        fontFamily: "Mulish",
                         color: Color(0xFF32324D),
                       ),
                     ),
@@ -98,7 +95,6 @@ class MostPopularCard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 8,
                               fontWeight: FontWeight.w700,
-                              fontFamily: "Mulish-Regular",
                               color: Color(0xFFFFB080),
                             ),
                           ),
@@ -109,7 +105,7 @@ class MostPopularCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
-                            fontFamily: "Mulish-Regular",
+                            fontFamily: "Mulish",
                             color: Color(0xFFFF7B2C),
                           ),
                         ),
@@ -136,7 +132,7 @@ class MostPopularCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           child: Image.asset("assets/images/star.png",
-                          color: const Color(0xFFFFB01D),
+                            color: const Color(0xFFFFB01D),
                           ),
                         ),
                         Text(
@@ -144,7 +140,6 @@ class MostPopularCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
-                            fontFamily: "Mulish-Regular",
                             color: Color(0xFF8E8EA9),
                           ),
                         ),

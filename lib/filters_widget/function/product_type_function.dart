@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screeen_show_bottom_sheet_2/util_2/product_type_card.dart';
+import 'package:sushi_shop_project/filters_widget/util/product_type_card.dart';
 
 class ProductTypeBody extends StatelessWidget {
   ProductTypeBody({Key? key}) : super(key: key);
@@ -31,9 +31,9 @@ class ProductTypeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      height: 115,
       child: Wrap(
-        spacing: 6.0,
+        spacing: 4.0,
         runSpacing: 15.0,
         children: productTypeList.map((type) {
           return ProductTypeCard(

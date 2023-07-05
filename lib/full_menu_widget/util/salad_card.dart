@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/view_a_dish.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/view_a_dish.dart';
 
 
-class PastaCard extends StatelessWidget {
+class SaladCard extends StatelessWidget {
   final String nameDish;
   final double price;
   final double rating;
-  final String imagePastaCard;
+  final String imageSaladCard;
   final String description;
 
-  const PastaCard({
+  const SaladCard({
     Key? key,
     required this.nameDish,
     required this.price,
     required this.rating,
-    required this.imagePastaCard,
+    required this.imageSaladCard,
     required this.description,
-}) : super(key : key);
+}) : super (key : key);
 
   void showViewADish(BuildContext context) {
     showModalBottomSheet<void>(
@@ -36,7 +36,7 @@ class PastaCard extends StatelessWidget {
           child: FractionallySizedBox(
             heightFactor: 7/8,
             child: ViewADish(
-              imageDishView: imagePastaCard,
+              imageDishView: imageSaladCard,
               nameDishView: nameDish,
               priceView: price,
               descriptionView: description,
@@ -71,7 +71,7 @@ class PastaCard extends StatelessWidget {
                       width: 110,
                       child: Center(
                         child: Image.asset(
-                          imagePastaCard,
+                          imageSaladCard,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -131,9 +131,10 @@ class PastaCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(
-                          child: Image.asset("assets/images/star.png",
-                            color: const Color(0xFFFFB01D),
-                          ),
+                            child:
+                            Image.asset("assets/images/star.png",
+                              color: const Color(0xFFFFB01D),
+                            )
                         ),
                         Text(
                           rating.toString(),

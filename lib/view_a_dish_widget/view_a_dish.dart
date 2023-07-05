@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/function_1/bju_body_function.dart';
-import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/function_1/ingredients_body_function.dart';
-import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/function_1/toppings_body.dart';
-import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/util_1/add_a_request.dart';
-import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/function_1/recommended_sides_body_function.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/function/bju_body_function.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/function/ingredients_body_function.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/function/recommended_sides_body_function.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/function/toppings_body.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/util/add_a_request.dart';
+
+
+
 
 import 'tools/custom_navigation_bar.dart';
 

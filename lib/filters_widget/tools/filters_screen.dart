@@ -37,7 +37,7 @@ class FiltersScreen extends StatelessWidget {
             top: Radius.circular(25),
           ),
           child: FractionallySizedBox(
-            heightFactor: 7 / 8,
+            heightFactor: 12 / 13,
             child: Filters(),
           ),
         );

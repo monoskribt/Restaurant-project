@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screeen_show_bottom_sheet_2/util_2/categories_card.dart';
+import 'package:sushi_shop_project/filters_widget/util/categories_card.dart';
 
 class CategoriesBody extends StatelessWidget {
   CategoriesBody({Key? key}) : super(key: key);

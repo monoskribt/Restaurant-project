@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/util_1/bju_card.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/util/bju_card.dart';
+
+
 
 class BJUBody extends StatelessWidget {
   BJUBody({Key? key}) : super(key: key);

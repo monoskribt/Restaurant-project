@@ -27,7 +27,7 @@ class _ProductTypeCardState extends State<ProductTypeCard> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
             decoration: BoxDecoration(
               color: isSelected ? const Color(0xFFFFB01D) : const Color(0xFFFFFFFF),
               border: Border.all(

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screen_show_modal_bottom_sheet/view_a_dish.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/view_a_dish.dart';
 
 
-class SaladCard extends StatelessWidget {
+class MostPopularCard extends StatelessWidget {
   final String nameDish;
   final double price;
   final double rating;
-  final String imageSaladCard;
+  final String imageMostPopular;
   final String description;
 
-  const SaladCard({
+  const MostPopularCard({
     Key? key,
     required this.nameDish,
     required this.price,
     required this.rating,
-    required this.imageSaladCard,
+    required this.imageMostPopular,
     required this.description,
-}) : super (key : key);
+  }) : super(key: key);
 
   void showViewADish(BuildContext context) {
     showModalBottomSheet<void>(
@@ -36,7 +36,7 @@ class SaladCard extends StatelessWidget {
           child: FractionallySizedBox(
             heightFactor: 7/8,
             child: ViewADish(
-              imageDishView: imageSaladCard,
+              imageDishView: imageMostPopular,
               nameDishView: nameDish,
               priceView: price,
               descriptionView: description,
@@ -47,6 +47,7 @@ class SaladCard extends StatelessWidget {
       },
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,7 @@ class SaladCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Container(
+            height: 190,
             width: 142,
             color: Colors.white,
             child: Stack(
@@ -71,8 +73,9 @@ class SaladCard extends StatelessWidget {
                       width: 110,
                       child: Center(
                         child: Image.asset(
-                          imageSaladCard,
-                          fit: BoxFit.cover,
+                          imageMostPopular,
+                          width: 110,
+                          height: 110,
                         ),
                       ),
                     ),
@@ -81,7 +84,7 @@ class SaladCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        fontFamily: "Mulish",
+                        fontFamily: "Mulish-Regular",
                         color: Color(0xFF32324D),
                       ),
                     ),
@@ -95,6 +98,7 @@ class SaladCard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 8,
                               fontWeight: FontWeight.w700,
+                              fontFamily: "Mulish-Regular",
                               color: Color(0xFFFFB080),
                             ),
                           ),
@@ -105,7 +109,7 @@ class SaladCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
-                            fontFamily: "Mulish",
+                            fontFamily: "Mulish-Regular",
                             color: Color(0xFFFF7B2C),
                           ),
                         ),
@@ -131,16 +135,16 @@ class SaladCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(
-                            child:
-                            Image.asset("assets/images/star.png",
-                              color: const Color(0xFFFFB01D),
-                            )
+                          child: Image.asset("assets/images/star.png",
+                          color: const Color(0xFFFFB01D),
+                          ),
                         ),
                         Text(
                           rating.toString(),
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
+                            fontFamily: "Mulish-Regular",
                             color: Color(0xFF8E8EA9),
                           ),
                         ),
