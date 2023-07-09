@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sushi_shop_project/filters_widget/filters.dart';
 import 'full_menu_widget/full_menu.dart';
 
 void main() => runApp(const MyApp());
@@ -8,8 +9,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: FullMenu(),
+    return MaterialApp(
+      home: const FullMenu(),
+      initialRoute: '/',
+      routes: {
+
+      },
     );
   }
 }

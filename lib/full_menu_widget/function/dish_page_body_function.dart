@@ -2,9 +2,14 @@ import 'package:flutter/cupertino.dart';
 
 import '../util/product_day_card.dart';
 
-class DishPageBody  extends StatelessWidget {
-   DishPageBody ({Key? key}) : super(key: key);
+class DishPageBody extends StatefulWidget {
+  DishPageBody({Key? key}) : super(key: key);
 
+  @override
+  State<DishPageBody> createState() => _DishPageBodyState();
+}
+
+class _DishPageBodyState extends State<DishPageBody> {
   final List productCard = [
     {
       "name": "Avocado Chicken",
@@ -35,13 +40,15 @@ class DishPageBody  extends StatelessWidget {
     },
   ];
 
+  PageController pageController = PageController(viewportFraction: 1);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 145,
       width: 380,
-      child: ListView.builder(
+      child: PageView.builder(
+        controller: pageController,
         itemCount: productCard.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {

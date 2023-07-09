@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sushi_shop_project/filters_widget/tools/filters_screen.dart';
+import 'package:sushi_shop_project/order_widget/order_menu.dart';
 
 import 'function/dish_page_body_function.dart';
 import 'function/most_popular_body_function.dart';
@@ -73,7 +74,12 @@ class _FullMenuState extends State<FullMenu> {
                             height: 24,
                             width: 24,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const OrderMenu())
+                            );
+                          },
                         )
                       ],
                     ),

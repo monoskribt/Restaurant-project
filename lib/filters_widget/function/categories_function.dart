@@ -22,13 +22,13 @@ class CategoriesBody extends StatelessWidget {
     return SizedBox(
       height: 50,
       child: ListView.builder(
-        itemCount: categoriesList.length,
+          itemCount: categoriesList.length,
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
           itemBuilder: (context, index) {
-          var categories = categoriesList[index];
+            var categories = categoriesList[index];
             return CategoriesCard(
-            titleCategories: categories["title"],
+              titleCategories: categories["title"],
             );
           }
       ),

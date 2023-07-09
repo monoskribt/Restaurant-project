@@ -28,6 +28,7 @@ class MostPopularBody extends StatelessWidget {
     },
   ];
 
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

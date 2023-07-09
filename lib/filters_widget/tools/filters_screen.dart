@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -32,8 +31,8 @@ class FiltersScreen extends StatelessWidget {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return const ClipRRect(
-          borderRadius: BorderRadius.vertical(
+        return ClipRRect(
+          borderRadius: const BorderRadius.vertical(
             top: Radius.circular(25),
           ),
           child: FractionallySizedBox(

@@ -17,6 +17,7 @@ dependencies:
   syncfusion_flutter_core: ^22.1.37
   syncfusion_flutter_sliders: ^22.1.37
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
