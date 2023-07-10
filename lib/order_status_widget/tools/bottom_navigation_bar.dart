@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/order_status_widget/order_status.dart';
 
-class BottomBar extends StatelessWidget {
-  const BottomBar({Key? key}) : super(key: key);
+class BottomBarOrder extends StatelessWidget {
+  BottomBarOrder({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
+
+
     return Container(
       height: 100,
       decoration: const BoxDecoration(
@@ -31,10 +34,7 @@ class BottomBar extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const OrderStatus(orderTime: 10)),
-          );
+
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +50,7 @@ class BottomBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Send order",
+                    "Pay",
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: "Mulish-Regular",
@@ -59,9 +59,14 @@ class BottomBar extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 5),
-                  Icon(
-                    Icons.arrow_forward_rounded,
-                    color: Colors.white,
+                  Text(
+                    "\$53.80",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Mulish-Regular",
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
                   ),
                 ],
               ),

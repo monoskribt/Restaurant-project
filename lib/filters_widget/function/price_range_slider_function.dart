@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/filters_widget/tools/labels_utils.dart';
-
 class RangeSliderBody extends StatefulWidget {
   const RangeSliderBody({Key? key}) : super(key: key);
 
