@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sushi_shop_project/order_status_widget/tools/bottom_navigation_bar.dart';
+import 'package:sushi_shop_project/order_status_widget/util/order_dropdown.dart';
 import 'package:sushi_shop_project/order_status_widget/util/order_status_first.dart';
 import 'package:sushi_shop_project/order_widget/order_menu.dart';
 
 class OrderStatus extends StatefulWidget {
   final double orderTime;
 
+
   const OrderStatus({
     Key? key,
     required this.orderTime,
+
   }) : super(key: key);
 
   @override
@@ -19,10 +22,25 @@ class OrderStatus extends StatefulWidget {
 class _OrderStatusState extends State<OrderStatus> {
   final orderTimeEnd = 12;
 
+
+  // bool isBottomBarVisible = false;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   checkBottombar();
+  // }
+
+  // void checkBottombar() {
+  //   setState(() {
+  //     isBottomBarVisible = widget.orderTime >= orderTimeEnd + 1;
+  //   });
+  // }
+
+
+
   @override
   Widget build(BuildContext context) {
-    bool showBottomBar = widget.orderTime > orderTimeEnd;
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -83,7 +101,6 @@ class _OrderStatusState extends State<OrderStatus> {
                             ),
                           ),
                         ),
-
                         const Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,47 +150,14 @@ class _OrderStatusState extends State<OrderStatus> {
                 ),
               ),
               const SizedBox(height: 15),
-              OrderStatusFirst(orderTime: widget.orderTime),
+              OrderStatusFirst(orderTime: 10),
               const SizedBox(height: 15),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                width: 355,
-                height: 75,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0x3232470A),
-                      offset: Offset(0, 4),
-                      blurRadius: 20,
-                      spreadRadius: -2,
-                    ),
-                    BoxShadow(
-                      color: Color(0x0C1A4B08),
-                      offset: Offset(0, 0),
-                      blurRadius: 1,
-                      spreadRadius: 0,
-                    ),
-                  ],
-                ),
-                child: const ExpansionTile(
-                  title: Text(
-                    "Order list and prices",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontFamily: "Mulish-Regular",
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF8E8EA9),
-                    ),
-                  ),
-                ),
-              ),
+              const OrderDropdown(),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: showBottomBar ? BottomBarOrder() : null,
+      bottomNavigationBar: BottomBarOrder(),
     );
   }
 }

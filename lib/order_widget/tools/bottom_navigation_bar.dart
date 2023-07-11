@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sushi_shop_project/order_status_widget/order_status.dart';
 
 class BottomBar extends StatelessWidget {
-  const BottomBar({Key? key}) : super(key: key);
+  const BottomBar({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class BottomBar extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const OrderStatus(orderTime: 10)),
+            MaterialPageRoute(builder: (context) => OrderStatus(orderTime: 10)),
           );
         },
         child: Row(

@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 
-class BottomBarOrder extends StatelessWidget {
-  BottomBarOrder({Key? key}) : super(key: key);
+class BottomBarOrder extends StatefulWidget {
 
+  BottomBarOrder({
+    Key? key,
 
+  }) : super(key: key);
 
   @override
+  State<BottomBarOrder> createState() => _BottomBarOrderState();
+}
+
+class _BottomBarOrderState extends State<BottomBarOrder> {
+  @override
   Widget build(BuildContext context) {
+
 
 
     return Container(
@@ -60,7 +68,7 @@ class BottomBarOrder extends StatelessWidget {
                   ),
                   SizedBox(width: 5),
                   Text(
-                    "\$53.80",
+                    "\$55",
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: "Mulish-Regular",
