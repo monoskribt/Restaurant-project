@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/order_status_widget/tools/order_total_provider.dart';
 import 'package:sushi_shop_project/order_status_widget/util/order_list_card.dart';
 
 class OrderListBody extends StatefulWidget {
-  final void Function(double) onItemsTotalChanged;
+
 
   const OrderListBody({
     Key? key,
-    required this.onItemsTotalChanged,
+
   }) : super(key: key);
 
   @override
@@ -67,6 +69,7 @@ class _OrderListBodyState extends State<OrderListBody> {
       final total = quantity * price;
       itemsTotal += total;
     }
-    widget.onItemsTotalChanged(itemsTotal);
+    final orderItemsTotalProvider = Provider.of<OrderTotalProvider>(context, listen: false);
+    orderItemsTotalProvider.updateItemsTotal(itemsTotal);
   }
 }

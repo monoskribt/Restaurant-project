@@ -81,37 +81,40 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
               ],
             ),
           ),
-          Container(
-            width: 200,
-            height: 60,
-            padding: const EdgeInsets.only(top: 16, bottom: 16, left: 24, right: 24),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: const Color(0xFF615793),
-            ),
-            child: Center(
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    const TextSpan(
-                      text: 'Add to order ',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: "Mulish-Regular",
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              width: 200,
+              height: 60,
+              padding: const EdgeInsets.only(top: 16, bottom: 16, left: 24, right: 24),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: const Color(0xFF615793),
+              ),
+              child: Center(
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      const TextSpan(
+                        text: 'Add to order ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: "Mulish-Regular",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                    ),
-                    TextSpan(
-                      text: '\$${totalPrice.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontFamily: "Mulish-Regular",
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                      TextSpan(
+                        text: '\$${totalPrice.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: "Mulish-Regular",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

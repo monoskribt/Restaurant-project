@@ -1,42 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sushi_shop_project/order_status_widget/tools/bottom_navigation_bar.dart';
-import 'package:sushi_shop_project/order_status_widget/util/order_dropdown.dart';
-import 'package:sushi_shop_project/order_status_widget/util/order_status_first.dart';
-import 'package:sushi_shop_project/order_widget/order_menu.dart';
+import 'package:sushi_shop_project/order_status_widget/order_status.dart';
+import 'package:sushi_shop_project/payment_widget/util/add_new_card.dart';
+import 'package:sushi_shop_project/payment_widget/util/info_about_order.dart';
 
-class OrderStatus extends StatefulWidget {
-  final double orderTime;
-
-
-  const OrderStatus({
-    Key? key,
-    required this.orderTime,
-
-  }) : super(key: key);
+class Payment extends StatefulWidget {
+  const Payment({Key? key}) : super(key: key);
 
   @override
-  State<OrderStatus> createState() => _OrderStatusState();
+  State<Payment> createState() => _PaymentState();
 }
 
-class _OrderStatusState extends State<OrderStatus> {
-  final orderTimeEnd = 12;
-
-
-  // bool isBottomBarVisible = false;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   checkBottombar();
-  // }
-
-  // void checkBottombar() {
-  //   setState(() {
-  //     isBottomBarVisible = widget.orderTime >= orderTimeEnd + 1;
-  //   });
-  // }
-
+class _PaymentState extends State<Payment> {
+  bool isTextEmpty = true;
 
 
   @override
@@ -89,13 +65,14 @@ class _OrderStatusState extends State<OrderStatus> {
                               ],
                             ),
                             child: IconButton(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 12),
                               icon: const Icon(Icons.arrow_back, size: 22),
                               color: const Color(0xFF666687),
                               onPressed: () {
                                 Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const OrderMenu()),
+                                    context,
+                                  MaterialPageRoute(builder: (context) => const OrderStatus(orderTime: 10,)),
                                 );
                               },
                             ),
@@ -124,7 +101,7 @@ class _OrderStatusState extends State<OrderStatus> {
                             Row(
                               children: [
                                 Text(
-                                  "Your order status",
+                                  "Checkout",
                                   style: TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.w600,
@@ -149,15 +126,14 @@ class _OrderStatusState extends State<OrderStatus> {
                   ],
                 ),
               ),
+              const SizedBox(height: 20),
+              const AddNewCard(),
               const SizedBox(height: 15),
-              const OrderStatusFirst(orderTime: 10),
-              const SizedBox(height: 15),
-              const OrderDropdown(),
+              InfoAboutOrder(),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: const BottomBarOrder(),
     );
   }
 }
