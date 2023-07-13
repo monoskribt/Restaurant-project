@@ -191,6 +191,7 @@ class _InfoAboutOrderState extends State<InfoAboutOrder> {
                   ),
                   child: TextField(
                     controller: _tipsEditingController,
+                    keyboardType: TextInputType.number,
                     onChanged: (value) {
                       final double tips = double.tryParse(value) ?? 0;
                       Provider.of<OrderTotalProvider>(context, listen: false).updateTips(tips);

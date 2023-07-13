@@ -1,9 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:sushi_shop_project/payment_widget/new_card_bottom_sheet/new_card.dart';
 
 import '../../full_menu_widget/full_menu.dart';
 
 class AddNewCard extends StatelessWidget {
   const AddNewCard({Key? key}) : super(key: key);
+
+  void showViewACard(BuildContext context) {
+    showModalBottomSheet<void>(
+      enableDrag: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25),
+        ),
+      ),
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return ClipRRect(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(25),
+          ),
+          child: FractionallySizedBox(
+            heightFactor: 1/2,
+            child: NewCard(),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,12 +97,9 @@ class AddNewCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 40),
-            InkWell(
+            GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const FullMenu()),
-                );
+                showViewACard(context);
               },
               child: const Center(
                 child: Row(
