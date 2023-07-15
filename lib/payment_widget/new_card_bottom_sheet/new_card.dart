@@ -1,17 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/payment_widget/tools/card_details_provider.dart';
 import 'package:sushi_shop_project/payment_widget/tools/input_formatters.dart';
 
-class NewCard extends StatelessWidget {
+class NewCard extends StatefulWidget {
   NewCard({Key? key}) : super(key: key);
 
+  @override
+  State<NewCard> createState() => _NewCardState();
+}
+
+class _NewCardState extends State<NewCard> {
   final TextEditingController _cardNumberController = TextEditingController();
+
   final TextEditingController _cardholderNameController = TextEditingController();
+
   final TextEditingController _expireDateController = TextEditingController();
+
   final TextEditingController _cvvController = TextEditingController();
+
+  bool showCardBanking = false;
 
   @override
   Widget build(BuildContext context) {
+    final cardDetailsProvider = Provider.of<CardDetailsProvider>(context);
+    final cardDetails = cardDetailsProvider.cardDetails;
+
+    final isCardInfoFinish = cardDetails.cardNumber.isNotEmpty &&
+    cardDetails.cardholderName.isNotEmpty &&
+    cardDetails.expireDate.isNotEmpty &&
+    cardDetails.cvv.isNotEmpty;
+
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -47,6 +68,9 @@ class NewCard extends StatelessWidget {
                     children: [
                       Flexible(
                         child: TextField(
+                          onChanged: (value) {
+                            cardDetailsProvider.updateCardNumber(value);
+                          },
                           keyboardType: TextInputType.number,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
@@ -72,6 +96,8 @@ class NewCard extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
+                          textInputAction: TextInputAction.next,
+                          onSubmitted: (value) {},
                         ),
                       ),
                       Padding(
@@ -101,6 +127,9 @@ class NewCard extends StatelessWidget {
                     children: [
                       Flexible(
                         child: TextField(
+                          onChanged: (value) {
+                            cardDetailsProvider.updateCardholderName(value);
+                          },
                           controller: _cardholderNameController,
                           decoration: const InputDecoration(
                             hintText: 'Cardholder name',
@@ -120,6 +149,8 @@ class NewCard extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
+                          textInputAction: TextInputAction.next,
+                          onSubmitted: (value) {},
                         ),
                       ),
                     ],
@@ -144,6 +175,9 @@ class NewCard extends StatelessWidget {
                           children: [
                             Flexible(
                               child: TextField(
+                                onChanged: (value) {
+                                  cardDetailsProvider.updateExpireDate(value);
+                                },
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [
                                   FilteringTextInputFormatter.digitsOnly,
@@ -169,6 +203,8 @@ class NewCard extends StatelessWidget {
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
+                                textInputAction: TextInputAction.next,
+                                onSubmitted: (value) {},
                               ),
                             ),
                           ],
@@ -192,6 +228,9 @@ class NewCard extends StatelessWidget {
                           children: [
                             Flexible(
                               child: TextField(
+                                onChanged: (value) {
+                                  cardDetailsProvider.updateCVV(value);
+                                },
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [
                                   LengthLimitingTextInputFormatter(3),
@@ -225,22 +264,27 @@ class NewCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 36),
-                Container(
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF615793),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Add card", style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: "Mulish-Regular",
-                        color: Colors.white,
-                      ),)
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    isCardInfoFinish ? cardDetailsProvider.setShowCardBanking(true) : null;
+                  },
+                  child: Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF615793),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Add card", style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: "Mulish-Regular",
+                          color: Colors.white,
+                        ),)
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -254,6 +298,7 @@ class NewCard extends StatelessWidget {
 
     );
   }
+
   void showViewACard(BuildContext context) {
     showModalBottomSheet<void>(
         context: context,
