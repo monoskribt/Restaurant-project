@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sushi_shop_project/payment_widget/new_card_bottom_sheet/new_card.dart';
 
-import '../../full_menu_widget/full_menu.dart';
 
 class AddNewCard extends StatelessWidget {
   const AddNewCard({Key? key}) : super(key: key);

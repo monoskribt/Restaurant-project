@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_shop_project/order_status_widget/order_status.dart';
+import 'package:sushi_shop_project/order_status_widget/util/bottom_navigation_bar.dart';
 import 'package:sushi_shop_project/payment_widget/tools/bottom_sheet_helper.dart';
 import 'package:sushi_shop_project/payment_widget/util/add_new_card.dart';
+import 'package:sushi_shop_project/payment_widget/util/bottom_navigation_bar.dart';
 import 'package:sushi_shop_project/payment_widget/util/card_banking.dart';
 import 'package:sushi_shop_project/payment_widget/util/info_about_order.dart';
 import 'package:sushi_shop_project/payment_widget/tools/card_details_provider.dart';
@@ -78,9 +80,7 @@ class Payment extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const OrderStatus(
-                                            orderTime: 10,
-                                          )),
+                                      builder: (context) => const OrderStatus()),
                                 );
                               },
                             ),
@@ -176,7 +176,7 @@ class Payment extends StatelessWidget {
                   : const SizedBox.shrink(),
               const SizedBox(height: 20),
               cardDetailsProvider.showCardBanking
-                  ? CardBanking(cardDetails: cardDetails)
+                  ? CardBanking(cardList: cardDetailsProvider.cardList)
                   : const AddNewCard(),
               const SizedBox(height: 15),
               InfoAboutOrder(),
@@ -184,6 +184,7 @@ class Payment extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: cardDetailsProvider.showCardBanking ? const BottomBarPayment() : null,
     );
   }
   void showViewACard(BuildContext context) {

@@ -1,50 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/order_status_widget/tools/order_time_provider.dart';
 
 class OrderStatusFirst extends StatefulWidget {
-
-  final double orderTime;
-
   const OrderStatusFirst({
     Key? key,
     required this.orderTime,
   }) : super(key: key);
 
-
+  final double orderTime;
 
   @override
-  _OrderStatusFirstState createState() => _OrderStatusFirstState();
+  State<OrderStatusFirst> createState() => _OrderStatusFirstState();
 }
 
 class _OrderStatusFirstState extends State<OrderStatusFirst> {
-  String imageAsset = "assets/images/order_status_1.png";
-
-
-  final double orderTimeEnd = 12;
-
-  @override
-  void initState() {
-    super.initState();
-    updateImage();
-  }
-
-  void updateImage() {
-    if (widget.orderTime >= orderTimeEnd && widget.orderTime < orderTimeEnd + 1) {
-      setState(() {
-        imageAsset = "assets/images/order_status_2.png";
-      });
-    } else if (widget.orderTime >= orderTimeEnd + 1) {
-      setState(() {
-        imageAsset = "assets/images/order_status_3.png";
-      });
-    } else {
-      setState(() {
-        imageAsset = "assets/images/order_status_1.png";
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final orderTimeProvider = Provider.of<OrderTimeProvider>(context);
+    orderTimeProvider.orderTime = widget.orderTime;
+
     return Container(
       width: 357,
       height: 430,
@@ -69,14 +44,15 @@ class _OrderStatusFirstState extends State<OrderStatusFirst> {
       child: Column(
         children: [
           const SizedBox(height: 40),
-          if (widget.orderTime >= orderTimeEnd && widget.orderTime < orderTimeEnd + 1)
+          if (widget.orderTime >= orderTimeProvider.orderTimeEnd &&
+              widget.orderTime < orderTimeProvider.orderTimeEnd + 1)
             Column(
               children: [
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Your order is ",
+                      "Your order is",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -104,14 +80,14 @@ class _OrderStatusFirstState extends State<OrderStatusFirst> {
                 const SizedBox(height: 40),
                 SizedBox(
                   child: Image.asset(
-                    imageAsset,
+                    orderTimeProvider.imageAsset,
                     width: 327,
                     height: 277,
                   ),
                 ),
               ],
             )
-          else if (widget.orderTime >= orderTimeEnd + 1)
+          else if (widget.orderTime >= orderTimeProvider.orderTimeEnd + 1)
             Column(
               children: [
                 const Row(
@@ -146,12 +122,11 @@ class _OrderStatusFirstState extends State<OrderStatusFirst> {
                 const SizedBox(height: 40),
                 SizedBox(
                   child: Image.asset(
-                    imageAsset,
+                    orderTimeProvider.imageAsset,
                     width: 327,
                     height: 277,
                   ),
                 ),
-
               ],
             )
           else
@@ -161,7 +136,7 @@ class _OrderStatusFirstState extends State<OrderStatusFirst> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Your order will be ready in ",
+                      "Your order will be ready in  ",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -189,7 +164,7 @@ class _OrderStatusFirstState extends State<OrderStatusFirst> {
                 const SizedBox(height: 40),
                 SizedBox(
                   child: Image.asset(
-                    imageAsset,
+                    orderTimeProvider.imageAsset,
                     width: 327,
                     height: 277,
                   ),

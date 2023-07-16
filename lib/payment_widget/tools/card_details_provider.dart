@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:sushi_shop_project/payment_widget/tools/card_details.dart';
 
 class CardDetailsProvider with ChangeNotifier {
-  CardDetails _cardDetails = CardDetails();
+  final CardDetails _cardDetails = CardDetails();
   CardDetails get cardDetails => _cardDetails;
+
+  final List<CardDetails> _cardList = [];
+  List<CardDetails> get cardList => _cardList;
 
   bool get isCardInfoFinish =>
       _cardDetails.cardNumber.isNotEmpty &&
@@ -36,6 +39,10 @@ class CardDetailsProvider with ChangeNotifier {
 
   void updateCVV(String value) {
     _cardDetails.cvv = value;
+    notifyListeners();
+  }
+  void addCard(CardDetails card) {
+    _cardList.add(card);
     notifyListeners();
   }
 }

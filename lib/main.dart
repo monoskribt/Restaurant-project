@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/order_status_widget/tools/order_time_provider.dart';
 import 'package:sushi_shop_project/order_status_widget/tools/order_total_provider.dart';
 import 'full_menu_widget/full_menu.dart';
 import 'payment_widget/tools/card_details_provider.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => OrderTotalProvider()),
         ChangeNotifierProvider(create: (context) => CardDetailsProvider()),
+        ChangeNotifierProvider(create: (context) => OrderTimeProvider()),
       ],
       child: const MaterialApp(
         home: FullMenu(),

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sushi_shop_project/order_status_widget/tools/bottom_navigation_bar.dart';
+import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/order_status_widget/tools/order_time_provider.dart';
+import 'package:sushi_shop_project/order_status_widget/util/bottom_navigation_bar.dart';
 import 'package:sushi_shop_project/order_status_widget/util/order_dropdown.dart';
 import 'package:sushi_shop_project/order_status_widget/util/order_status_first.dart';
 import 'package:sushi_shop_project/order_widget/order_menu.dart';
 
 class OrderStatus extends StatefulWidget {
-  final double orderTime;
+
 
 
   const OrderStatus({
     Key? key,
-    required this.orderTime,
+
 
   }) : super(key: key);
 
@@ -22,25 +24,10 @@ class OrderStatus extends StatefulWidget {
 class _OrderStatusState extends State<OrderStatus> {
   final orderTimeEnd = 12;
 
-
-  // bool isBottomBarVisible = false;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   checkBottombar();
-  // }
-
-  // void checkBottombar() {
-  //   setState(() {
-  //     isBottomBarVisible = widget.orderTime >= orderTimeEnd + 1;
-  //   });
-  // }
-
-
-
   @override
   Widget build(BuildContext context) {
+    final orderTimeProvider = Provider.of<OrderTimeProvider>(context);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -150,14 +137,16 @@ class _OrderStatusState extends State<OrderStatus> {
                 ),
               ),
               const SizedBox(height: 15),
-              const OrderStatusFirst(orderTime: 10),
+              //Здесь можно меня значение orderTime и будет меняться статус заказа
+              const OrderStatusFirst(orderTime: 20),
               const SizedBox(height: 15),
               const OrderDropdown(),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: const BottomBarOrder(),
+      // Будет только при выполнении 3 условия, то есть когда заказ выполнен
+      bottomNavigationBar: orderTimeProvider.isShowBottomBar ? const BottomBarOrder() : null,
     );
   }
 }

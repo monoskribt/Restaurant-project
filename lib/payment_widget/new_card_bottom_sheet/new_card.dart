@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/payment_widget/tools/card_details.dart';
 import 'package:sushi_shop_project/payment_widget/tools/card_details_provider.dart';
 import 'package:sushi_shop_project/payment_widget/tools/input_formatters.dart';
 
@@ -266,6 +267,20 @@ class _NewCardState extends State<NewCard> {
                 const SizedBox(height: 36),
                 GestureDetector(
                   onTap: () {
+                    if (isCardInfoFinish) {
+                      CardDetails newCard = CardDetails();
+                      newCard.cardNumber = _cardNumberController.text;
+                      newCard.cardholderName = _cardholderNameController.text;
+                      newCard.expireDate = _expireDateController.text;
+                      newCard.cvv = _cvvController.text;
+
+                      cardDetailsProvider.addCard(newCard);
+
+                      _cardNumberController.clear();
+                      _cardholderNameController.clear();
+                      _expireDateController.clear();
+                      _cvvController.clear();
+                    }
                     isCardInfoFinish ? cardDetailsProvider.setShowCardBanking(true) : null;
                   },
                   child: Container(

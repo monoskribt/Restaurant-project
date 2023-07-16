@@ -35,7 +35,7 @@ class BottomBar extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const OrderStatus(orderTime: 10)),
+            MaterialPageRoute(builder: (context) => const OrderStatus()),
           );
         },
         child: Row(

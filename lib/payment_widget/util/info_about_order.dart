@@ -49,6 +49,8 @@ class _InfoAboutOrderState extends State<InfoAboutOrder> {
           final itemsTotal = orderTotalProvider.itemsTotal;
           final tax = orderTotalProvider.tax;
           final total = orderTotalProvider.total;
+          final subTotal = orderTotalProvider.subTotal;
+          newSubTotal();
 
           return Padding(
             padding: const EdgeInsets.all(15.0),
@@ -249,48 +251,52 @@ class _InfoAboutOrderState extends State<InfoAboutOrder> {
                   Container(
                       width: 320, height: 2, color: const Color(0xFFEAEAEF)),
                   const SizedBox(height: 15),
+
+
                   cardDetailsProvider.showCardBanking
                       ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              "Subtotal",
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Subtotal",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: "Mulish-Regular",
+                          color: Color(0xFF666687),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          const Padding(
+                            padding:
+                            EdgeInsets.only(bottom: 4.0, right: 2.0),
+                            child: Text(
+                              "\$",
                               style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
+                                fontSize: 8,
+                                fontWeight: FontWeight.w700,
                                 fontFamily: "Mulish-Regular",
-                                color: Color(0xFF666687),
+                                color: Color(0xFF8E8EA9),
                               ),
                             ),
-                            Row(
-                              children: [
-                                const Padding(
-                                  padding:
-                                      EdgeInsets.only(bottom: 4.0, right: 2.0),
-                                  child: Text(
-                                    "\$",
-                                    style: TextStyle(
-                                      fontSize: 8,
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "Mulish-Regular",
-                                      color: Color(0xFF8E8EA9),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  total.toStringAsFixed(2),
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: "Mulish-Regular",
-                                    color: Color(0xFF4A4A6A),
-                                  ),
-                                ),
-                              ],
+                          ),
+                          Text(
+                            subTotal.toStringAsFixed(2),
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "Mulish-Regular",
+                              color: Color(0xFF4A4A6A),
                             ),
-                          ],
-                        )
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
                       : const SizedBox.shrink(),
+
+
                   const SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -343,5 +349,12 @@ class _InfoAboutOrderState extends State<InfoAboutOrder> {
 
   void updateTotal() {
     Provider.of<OrderTotalProvider>(context, listen: false).newTotalPlusTips();
+  }
+  void newSubTotal() {
+    Provider.of<OrderTotalProvider>(context, listen: false).newSubTotal();
+    final orderTotalProvider = Provider.of<OrderTotalProvider>(context, listen: false);
+    final itemsTotal = orderTotalProvider.itemsTotal;
+    final tax = orderTotalProvider.tax;
+    final subTotal = itemsTotal + tax;
   }
 }

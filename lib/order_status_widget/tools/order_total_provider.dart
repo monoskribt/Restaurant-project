@@ -5,6 +5,7 @@ class OrderTotalProvider extends ChangeNotifier {
   double _tax = 0.0;
   double _itemsTotal = 0.0;
   double _tips = 0.0;
+  double _subTotal = 0.0;
 
   double get total => _total;
 
@@ -13,6 +14,8 @@ class OrderTotalProvider extends ChangeNotifier {
   double get itemsTotal => _itemsTotal;
 
   double get tips => _tips;
+
+  double get subTotal => _subTotal;
 
   void updateTotal(double newTotal) {
     _total = itemsTotal + tax;
@@ -36,6 +39,11 @@ class OrderTotalProvider extends ChangeNotifier {
 
   void newTotalPlusTips() {
     _total = itemsTotal + tax + tips;
+    notifyListeners();
+  }
+
+  void newSubTotal() {
+    _subTotal = itemsTotal + tax;
     notifyListeners();
   }
 }
