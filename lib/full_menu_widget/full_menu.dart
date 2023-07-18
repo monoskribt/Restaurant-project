@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sushi_shop_project/drawer_widget/drawer_header.dart';
 import 'package:sushi_shop_project/filters_widget/tools/filters_screen.dart';
 import 'package:sushi_shop_project/order_widget/order_menu.dart';
 
+import '../drawer_widget/main_drawer.dart';
 import 'function/dish_page_body_function.dart';
 import 'function/most_popular_body_function.dart';
 import 'function/pasta_card_body_function.dart';
@@ -25,6 +27,7 @@ class _FullMenuState extends State<FullMenu> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        endDrawer: const MainDrawer(),
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -42,7 +45,8 @@ class _FullMenuState extends State<FullMenu> {
           ),
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.only(top: 24, left: 25, right: 25, bottom: 0),
+              padding: const EdgeInsets.only(
+                  top: 24, left: 25, right: 25, bottom: 0),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,19 +72,18 @@ class _FullMenuState extends State<FullMenu> {
                           ),
                         ),
                         const Spacer(),
-                        IconButton(
-                          icon: SvgPicture.asset(
-                            "assets/images/menu.svg",
-                            height: 24,
-                            width: 24,
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const OrderMenu())
-                            );
-                          },
-                        )
+                        Builder(builder: (context) {
+                          return IconButton(
+                            icon: SvgPicture.asset(
+                              "assets/images/menu.svg",
+                              height: 24,
+                              width: 24,
+                            ),
+                            onPressed: () {
+                              Scaffold.of(context).openEndDrawer();
+                            },
+                          );
+                        })
                       ],
                     ),
                     const SizedBox(height: 17),
@@ -100,13 +103,15 @@ class _FullMenuState extends State<FullMenu> {
                         height: 60,
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          border: Border.all(width: 1, color: Colors.grey[200]!),
+                          border:
+                              Border.all(width: 1, color: Colors.grey[200]!),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12.0),
                               child: SvgPicture.asset(
                                 "assets/images/search.svg",
                                 height: 20,
@@ -234,7 +239,7 @@ class _FullMenuState extends State<FullMenu> {
                         ],
                       ),
                       SaladCardBody(),
-                    ] else if(selectedCategory == "Pasta") ...[
+                    ] else if (selectedCategory == "Pasta") ...[
                       SortingScrollDishes(
                         selectedCategory: selectedCategory,
                         onCategorySelected: (category) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sushi_shop_project/drawer_widget/main_drawer.dart';
 import 'package:sushi_shop_project/full_menu_widget/full_menu.dart';
 import 'package:sushi_shop_project/order_widget/function/order_body_function.dart';
 import 'package:sushi_shop_project/order_widget/tools/bottom_navigation_bar.dart';
@@ -10,6 +11,7 @@ class OrderMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const MainDrawer(),
       body: SingleChildScrollView(
         child: Container(
           decoration: const BoxDecoration(
@@ -107,14 +109,18 @@ class OrderMenu extends StatelessWidget {
                         ),
                       ],
                     ),
-                    IconButton(
-                      icon: SvgPicture.asset(
-                        "assets/images/menu.svg",
-                        height: 24,
-                        width: 24,
-                      ),
-                      onPressed: () {},
-                    )
+                    Builder(builder: (context) {
+                      return IconButton(
+                        icon: SvgPicture.asset(
+                          "assets/images/menu.svg",
+                          height: 24,
+                          width: 24,
+                        ),
+                        onPressed: () {
+                          Scaffold.of(context).openEndDrawer();
+                        },
+                      );
+                    })
                   ],
                 ),
               ),
@@ -161,3 +167,4 @@ class OrderMenu extends StatelessWidget {
     );
   }
 }
+

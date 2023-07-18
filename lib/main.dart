@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CardDetailsProvider()),
         ChangeNotifierProvider(create: (context) => OrderTimeProvider()),
       ],
-      child: const MaterialApp(
-        home: FullMenu(),
-      ),
+      child: MaterialApp(
+        home: const FullMenu(),
+      )
     );
   }
 }
