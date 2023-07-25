@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/PROVIDER/dish_provider.dart';
+import 'package:sushi_shop_project/order_widget/tools/order_model.dart';
+
 
 class CustomBottomBar extends StatefulWidget {
   final double priceView;
+  final String imageDishView;
+  final String nameDishView;
+  final double ratingView;
+
   const CustomBottomBar({
     Key? key,
     required this.priceView,
+    required this.imageDishView,
+    required this.nameDishView,
+    required this.ratingView,
   }) : super(key: key);
 
   @override
@@ -82,7 +93,25 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              if (quantity > 0) {
+                final orderProvider = Provider.of<OrderProvider>(context, listen: false);
+                OrderModel orderModel = OrderModel(
+                  image: widget.imageDishView,
+                  name: widget.nameDishView,
+                  rating: widget.ratingView,
+                  review: 0,
+                  price: widget.priceView,
+                  quantity: quantity,
+                );
+                orderProvider.addToOrder(orderModel);
+
+                setState(() {
+                  quantity = 0;
+                  totalPrice = 0;
+                });
+              }
+            },
             child: Container(
               width: 200,
               height: 60,

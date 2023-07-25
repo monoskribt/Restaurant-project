@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/contacts_widget.dart';
+import 'package:sushi_shop_project/contacts_widget/contacts_widget.dart';
 import 'package:sushi_shop_project/drawer_widget/drawer_header.dart';
 import 'package:sushi_shop_project/full_menu_widget/full_menu.dart';
 import 'package:sushi_shop_project/order_widget/order_menu.dart';
@@ -81,7 +81,7 @@ class _MainDrawerState extends State<MainDrawer> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const OrderMenu()),
+                      MaterialPageRoute(builder: (context) => OrderMenu()),
                     );
                   },
                 ),

@@ -82,7 +82,7 @@ class _OrderStatusState extends State<OrderStatus> {
                               onPressed: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => const OrderMenu()),
+                                  MaterialPageRoute(builder: (context) => OrderMenu()),
                                 );
                               },
                             ),

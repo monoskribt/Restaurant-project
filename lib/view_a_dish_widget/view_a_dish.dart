@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sushi_shop_project/view_a_dish_widget/function/bju_body_function.dart';
 import 'package:sushi_shop_project/view_a_dish_widget/function/ingredients_body_function.dart';
 import 'package:sushi_shop_project/view_a_dish_widget/function/recommended_sides_body_function.dart';
 import 'package:sushi_shop_project/view_a_dish_widget/function/toppings_body.dart';
 import 'package:sushi_shop_project/view_a_dish_widget/util/add_a_request.dart';
-
-
-
-
+import '../PROVIDER/dish_provider.dart';
 import 'tools/custom_navigation_bar.dart';
 
 class ViewADish extends StatelessWidget {
@@ -240,7 +238,12 @@ class ViewADish extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomBar(priceView: priceView),
+      bottomNavigationBar: CustomBottomBar(
+        imageDishView: imageDishView,
+        nameDishView: nameDishView,
+        ratingView: ratingView,
+        priceView: priceView,
+      ),
     );
   }
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sushi_shop_project/drawer_widget/main_drawer.dart';
 
-import 'full_menu_widget/full_menu.dart';
+import '../full_menu_widget/full_menu.dart';
 
 class Contacts extends StatelessWidget {
   const Contacts({Key? key}) : super(key: key);

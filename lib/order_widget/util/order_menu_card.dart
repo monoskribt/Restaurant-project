@@ -140,7 +140,7 @@ class OrderCard extends StatelessWidget {
                 ],
               ),
             ),
-            const CartCounterOrder(),
+             CartCounterOrder(),
           ],
         ),
       ),
