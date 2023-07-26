@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sushi_shop_project/order_status_widget/order_status.dart';
 
-class BottomBar extends StatelessWidget {
-  const BottomBar({
+class OrderBottomBar extends StatelessWidget {
+  const OrderBottomBar({
     Key? key,
   }) : super(key: key);
 

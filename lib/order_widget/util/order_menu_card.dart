@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/PROVIDER/dish_provider.dart';
 import 'package:sushi_shop_project/order_widget/tools/cart_counter_order.dart';
 
 class OrderCard extends StatelessWidget {
@@ -8,15 +10,17 @@ class OrderCard extends StatelessWidget {
   final double ratingOrder;
   final dynamic reviewOrder;
   final double priceOrder;
+  int quantityOrder;
 
 
-  const OrderCard({
+  OrderCard({
     Key? key,
     required this.imageOrder,
     required this.nameOrder,
     required this.ratingOrder,
     required this.reviewOrder,
-    required this.priceOrder
+    required this.priceOrder,
+    required this.quantityOrder,
   }) : super(key: key);
 
   @override
@@ -140,7 +144,14 @@ class OrderCard extends StatelessWidget {
                 ],
               ),
             ),
-             CartCounterOrder(),
+            CartCounterOrder(
+              quantity: quantityOrder,
+              onChanged: (newQuantity) {
+                final orderProvider =
+                Provider.of<OrderProvider>(context, listen: false);
+                orderProvider.updateQuantity(nameOrder, newQuantity);
+              },
+            ),
           ],
         ),
       ),

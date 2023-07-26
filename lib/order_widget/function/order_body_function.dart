@@ -2,27 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_shop_project/order_widget/tools/dismiss.dart';
 import 'package:sushi_shop_project/order_widget/util/order_menu_card.dart';
-
 import '../../PROVIDER/dish_provider.dart';
 
 class OrderBody extends StatelessWidget {
   OrderBody({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
-    final orderList = Provider.of<OrderProvider>(context).orderList;
-
+    final orderMap = Provider.of<OrderProvider>(context).orderMap;
 
     return SizedBox(
       width: 360,
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: orderList.length,
+        itemCount: orderMap.length,
         itemBuilder: (context, index) {
-          var order = orderList[index];
+          final order = orderMap.values.toList()[index];
           return Padding(
             padding: const EdgeInsets.only(bottom: 25, left: 0),
             child: SizedBox(
@@ -40,8 +36,9 @@ class OrderBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                   ),
                   onDismissed: (direction) {
-                    final orderProvider = Provider.of<OrderProvider>(context, listen: false);
-                    orderProvider.removeFromOrder(index);
+                    final orderProvider =
+                    Provider.of<OrderProvider>(context, listen: false);
+                    orderProvider.removeFromOrder(order.name);
                   },
                   child: Container(
                     decoration: const BoxDecoration(
@@ -57,6 +54,7 @@ class OrderBody extends StatelessWidget {
                       ratingOrder: order.rating,
                       reviewOrder: order.review,
                       priceOrder: order.price,
+                      quantityOrder: order.quantity,
                     ),
                   ),
                 ),

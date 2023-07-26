@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_shop_project/order_status_widget/tools/order_time_provider.dart';
-import 'package:sushi_shop_project/order_status_widget/util/bottom_navigation_bar.dart';
+import 'package:sushi_shop_project/order_status_widget/util/order_status_bottom_bar.dart';
 import 'package:sushi_shop_project/order_status_widget/util/order_dropdown.dart';
 import 'package:sushi_shop_project/order_status_widget/util/order_status_first.dart';
 import 'package:sushi_shop_project/order_widget/order_menu.dart';
@@ -146,7 +146,7 @@ class _OrderStatusState extends State<OrderStatus> {
         ),
       ),
       // Будет только при выполнении 3 условия, то есть когда заказ выполнен
-      bottomNavigationBar: orderTimeProvider.isShowBottomBar ? const BottomBarOrder() : null,
+      bottomNavigationBar: orderTimeProvider.isShowBottomBar ? const OrderStatusBottomBar() : null,
     );
   }
 }

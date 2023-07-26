@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../tools/toppings_provider.dart';
+import '../../PROVIDER/quantity_provider.dart';
 
 class ToppingsCard extends StatefulWidget {
   final String nameToppings;
@@ -15,17 +19,28 @@ class ToppingsCard extends StatefulWidget {
 }
 
 class _ToppingsCardState extends State<ToppingsCard> {
-  bool isSelected = false;
-
   @override
   Widget build(BuildContext context) {
+    final toppingsProvider = Provider.of<ToppingsProvider>(context, listen: false);
+    final quantityProvider = Provider.of<QuantityProvider>(context, listen: false);
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 15.0),
       child: InkWell(
         onTap: () {
-          setState(() {
-            isSelected = !isSelected;
-          });
+          final currentQuantity = quantityProvider.quantity;
+
+          if (currentQuantity > 0) {
+            setState(() {
+              final isSelected = toppingsProvider.isSelected(widget.nameToppings);
+
+              if (isSelected) {
+                toppingsProvider.removeToppings(widget.nameToppings);
+              } else {
+                toppingsProvider.addToppings(widget.nameToppings, widget.priceToppings);
+              }
+            });
+          }
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
@@ -45,7 +60,7 @@ class _ToppingsCardState extends State<ToppingsCard> {
                       color: const Color(0xFFC0C0CF),
                     ),
                   ),
-                  child: isSelected
+                  child: toppingsProvider.isSelected(widget.nameToppings)
                       ? const Icon(
                     Icons.check_outlined,
                     size: 15,

@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sushi_shop_project/drawer_widget/main_drawer.dart';
 import 'package:sushi_shop_project/full_menu_widget/full_menu.dart';
 import 'package:sushi_shop_project/order_widget/function/order_body_function.dart';
-import 'package:sushi_shop_project/order_widget/tools/bottom_navigation_bar.dart';
+import 'package:sushi_shop_project/order_widget/util/order_bottom_bar.dart';
 
 class OrderMenu extends StatelessWidget {
   const OrderMenu({Key? key}) : super(key: key);
@@ -163,7 +163,7 @@ class OrderMenu extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomBar(),
+      bottomNavigationBar: const OrderBottomBar(),
     );
   }
 }

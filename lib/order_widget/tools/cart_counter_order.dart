@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
+
 class CartCounterOrder extends StatefulWidget {
-  const CartCounterOrder({Key? key}) : super(key: key);
+  final int quantity;
+  final ValueChanged<int> onChanged;
+
+  const CartCounterOrder({
+    Key? key,
+    required this.quantity,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   State<CartCounterOrder> createState() => _CartCounterOrderState();
 }
 
 class _CartCounterOrderState extends State<CartCounterOrder> {
-  int numOfItems = 0;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,16 +25,14 @@ class _CartCounterOrderState extends State<CartCounterOrder> {
           icon: Icons.remove,
           backgroundColor: const Color(0xFFFFF2EA),
           press: () {
-            if (numOfItems > 0) {
-              setState(() {
-                numOfItems--;
-              });
+            if (widget.quantity > 1) {
+              widget.onChanged(widget.quantity - 1);
             }
           },
           iconColor: const Color(0xFFFF7B2C),
         ),
         Text(
-          numOfItems.toString(),
+          widget.quantity.toString(),
           style: const TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w600,
@@ -39,9 +43,7 @@ class _CartCounterOrderState extends State<CartCounterOrder> {
           icon: Icons.add,
           backgroundColor: const Color(0xFFFFF2EA),
           press: () {
-            setState(() {
-              numOfItems++;
-            });
+            widget.onChanged(widget.quantity + 1);
           },
           iconColor: const Color(0xFFFF7B2C),
         ),

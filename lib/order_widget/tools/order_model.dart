@@ -12,6 +12,6 @@ class OrderModel {
     required this.rating,
     required this.review,
     required this.price,
-    required this.quantity,
+    this.quantity = 0,
   });
 }

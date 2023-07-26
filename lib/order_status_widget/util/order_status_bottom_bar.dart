@@ -3,16 +3,16 @@ import 'package:provider/provider.dart';
 import 'package:sushi_shop_project/order_status_widget/tools/order_total_provider.dart';
 import 'package:sushi_shop_project/payment_widget/payment.dart';
 
-class BottomBarOrder extends StatefulWidget {
-  const BottomBarOrder({
+class OrderStatusBottomBar extends StatefulWidget {
+  const OrderStatusBottomBar({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<BottomBarOrder> createState() => _BottomBarOrderState();
+  State<OrderStatusBottomBar> createState() => _OrderStatusBottomBarState();
 }
 
-class _BottomBarOrderState extends State<BottomBarOrder> {
+class _OrderStatusBottomBarState extends State<OrderStatusBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Consumer<OrderTotalProvider>(
