@@ -7,8 +7,6 @@ class OrderCard extends StatelessWidget {
 
   final String imageOrder;
   final String nameOrder;
-  final double ratingOrder;
-  final dynamic reviewOrder;
   final double priceOrder;
   int quantityOrder;
 
@@ -17,8 +15,6 @@ class OrderCard extends StatelessWidget {
     Key? key,
     required this.imageOrder,
     required this.nameOrder,
-    required this.ratingOrder,
-    required this.reviewOrder,
     required this.priceOrder,
     required this.quantityOrder,
   }) : super(key: key);
@@ -79,39 +75,6 @@ class OrderCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 5.0),
-                            child: SizedBox(
-                              width: 15,
-                              height: 15,
-                              child: Image.asset("assets/images/star_1.2.png"),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 5.0),
-                            child: Text(
-                              ratingOrder.toString(),
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontFamily: "Mulish-Regular",
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF8E8EA9),
-                              ),
-                            ),
-                          ),
-                          Text(
-                            '(${reviewOrder.toString()} reviews)',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontFamily: "Mulish-Regular",
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFFC0C0CF),
-                            ),
-                          ),
-                        ],
                       ),
                     ],
                   ),

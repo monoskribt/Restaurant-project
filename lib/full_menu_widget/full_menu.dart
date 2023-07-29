@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sushi_shop_project/filters_widget/tools/filters_screen.dart';
+import 'package:sushi_shop_project/full_menu_widget/tools/dish_data.dart';
+import 'package:sushi_shop_project/full_menu_widget/tools/dish_model_for_search.dart';
 import '../drawer_widget/main_drawer.dart';
+import '../view_a_dish_widget/tools/view_a_dish_helper.dart';
+import '../view_a_dish_widget/view_a_dish.dart';
 import 'function/dish_page_body_function.dart';
 import 'function/most_popular_body_function.dart';
 import 'function/pasta_card_body_function.dart';
@@ -19,6 +23,40 @@ class FullMenu extends StatefulWidget {
 
 class _FullMenuState extends State<FullMenu> {
   String selectedCategory = "All Dishes";
+  bool isSearchOpen = false;
+  List<DishSearchModel> displayList = List.from(DishData.mainDishList);
+  final TextEditingController _searchController = TextEditingController();
+
+  void updateList(String value) {
+    if (value.isEmpty) {
+      setState(() {
+        isSearchOpen = false;
+      });
+    } else {
+      setState(() {
+        isSearchOpen = true;
+        displayList = DishData.mainDishList
+            .where((element) => element.dishTitle!
+            .toLowerCase()
+            .contains(value.toLowerCase()))
+            .toList();
+      });
+    }
+  }
+
+  void _closeSearch() {
+    setState(() {
+      isSearchOpen = false;
+      _searchController.clear();
+    });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -101,14 +139,14 @@ class _FullMenuState extends State<FullMenu> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           border:
-                              Border.all(width: 1, color: Colors.grey[200]!),
+                          Border.all(width: 1, color: Colors.grey[200]!),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Row(
                           children: [
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 12.0),
+                              const EdgeInsets.symmetric(horizontal: 12.0),
                               child: SvgPicture.asset(
                                 "assets/images/search.svg",
                                 height: 20,
@@ -116,9 +154,11 @@ class _FullMenuState extends State<FullMenu> {
                                 color: const Color(0xFFC0C0CF),
                               ),
                             ),
-                            const Expanded(
+                            Expanded(
                               child: TextField(
-                                decoration: InputDecoration(
+                                onChanged: (value) => updateList(value),
+                                controller: _searchController,
+                                decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Search",
                                   hintStyle: TextStyle(
@@ -135,6 +175,86 @@ class _FullMenuState extends State<FullMenu> {
                         ),
                       ),
                     ),
+
+                    if (isSearchOpen) ...[
+                      const SizedBox(height: 20),
+                      GestureDetector(
+                        onTap: _closeSearch, // Закрываем поиск при касании
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height,
+                          child: ListView.builder(
+                            itemCount: displayList.length,
+                            itemBuilder: (context, index) => GestureDetector(
+                              onTap: () {
+                                _closeSearch(); // Закрываем поиск при нажатии на блюдо
+                                ViewADishHelper.showViewADish(
+                                    context,
+                                    displayList[index].dishImage!,
+                                    displayList[index].dishTitle!,
+                                    displayList[index].dishPrice!,
+                                    displayList[index].description!
+                                );
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    width: 80,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(width: 1, color: Colors.grey[200]!),
+                                    ),
+                                    child: Image.asset(
+                                      displayList[index].dishImage!,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Expanded(
+                                    child: Text(
+                                      displayList[index].dishTitle!,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: "Mulish-Regular",
+                                        color: Color(0xFF666687),
+                                      ),
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.only(bottom: 3.0),
+                                        child: Text(
+                                          "\$",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w700,
+                                            color: Color(0xFFFFB080),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        displayList[index].dishPrice!.toStringAsFixed(2),
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          fontFamily: "Mulish",
+                                          color: Color(0xFFFF7B2C),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+
                     const SizedBox(height: 20),
                     DishPageBody(),
                     const SizedBox(height: 20),

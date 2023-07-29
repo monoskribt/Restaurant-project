@@ -7,7 +7,6 @@ class MostPopularBody extends StatelessWidget {
     {
       "name": "Egg Toast",
       "price": 10.40,
-      "rating": 4.0,
       "image": "assets/images/most_popular_1.png",
       "description": "You won't skip the most important meal of the day with this avocado toast recipe."
           "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
@@ -15,14 +14,12 @@ class MostPopularBody extends StatelessWidget {
     {
       "name": "Power Bowl",
       "price": 14.10,
-      "rating": 5.0,
       "image": "assets/images/most_popular_2.png",
       "description": "A nutritious power bowl packed with healthy ingredients.",
     },
     {
       "name": "Power Bowl",
       "price": 11.10,
-      "rating": 4.2,
       "image": "assets/images/most_popular_2.png",
       "description": "A nutritious power bowl packed with healthy ingredients.",
     },
@@ -41,7 +38,6 @@ class MostPopularBody extends StatelessWidget {
           return MostPopularCard(
             nameDish: dish["name"],
             price: dish["price"],
-            rating: dish["rating"],
             imageMostPopular: dish["image"],
             description: dish["description"],
           );

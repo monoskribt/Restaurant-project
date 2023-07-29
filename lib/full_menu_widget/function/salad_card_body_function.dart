@@ -9,7 +9,6 @@ class SaladCardBody extends StatelessWidget {
     {
       "name": "Salad 1",
       "price": 11.40,
-      "rating": 4.1,
       "image": "assets/images/salad_1.png",
       "description": "You won't skip the most important meal of the day with this avocado toast recipe."
           "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
@@ -17,7 +16,6 @@ class SaladCardBody extends StatelessWidget {
     {
       "name": "Salad 2",
       "price": 12.20,
-      "rating": 5.0,
       "image": "assets/images/salad_1.png",
       "description": "You won't skip the most important meal of the day with this avocado toast recipe."
           "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
@@ -25,7 +23,6 @@ class SaladCardBody extends StatelessWidget {
     {
       "name": "Salad 3",
       "price": 13.30,
-      "rating": 4.7,
       "image": "assets/images/salad_1.png",
       "description": "You won't skip the most important meal of the day with this avocado toast recipe."
           "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
@@ -44,7 +41,6 @@ class SaladCardBody extends StatelessWidget {
             return SaladCard(
               nameDish: dish["name"],
               price: dish["price"],
-              rating: dish["rating"],
               imageSaladCard: dish["image"],
               description: dish["description"],
             );

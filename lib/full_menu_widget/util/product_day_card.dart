@@ -6,7 +6,6 @@ class ProductDayCard extends StatelessWidget {
   final String typeDishOfDay;
   final String imageDishOfDay;
   final double priceDishOfDay;
-  final double ratingDishOfDay;
   final String descriptionDishOfDay;
 
   const ProductDayCard({
@@ -15,7 +14,6 @@ class ProductDayCard extends StatelessWidget {
     required this.typeDishOfDay,
     required this.priceDishOfDay,
     required this.imageDishOfDay,
-    required this.ratingDishOfDay,
     required this.descriptionDishOfDay,
   }) : super(key: key);
 
@@ -41,7 +39,6 @@ class ProductDayCard extends StatelessWidget {
               nameDishView: nameDishOfDay,
               priceView: priceDishOfDay,
               descriptionView: descriptionDishOfDay,
-              ratingView: ratingDishOfDay,
             ),
           ),
         );

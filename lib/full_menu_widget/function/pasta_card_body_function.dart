@@ -43,7 +43,6 @@ class PastaCardBody extends StatelessWidget {
           return PastaCard(
             nameDish: dish["name"],
             price: dish["price"],
-            rating: dish["rating"],
             imagePastaCard: dish["image"],
             description: dish["description"],
           );

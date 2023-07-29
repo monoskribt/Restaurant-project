@@ -10,14 +10,12 @@ class ViewBottomBar extends StatefulWidget {
   final double priceView;
   final String imageDishView;
   final String nameDishView;
-  final double ratingView;
 
   const ViewBottomBar({
     Key? key,
     required this.priceView,
     required this.imageDishView,
     required this.nameDishView,
-    required this.ratingView,
   }) : super(key: key);
 
   @override
@@ -93,8 +91,6 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
                     OrderModel orderModel = OrderModel(
                       image: widget.imageDishView,
                       name: widget.nameDishView,
-                      rating: widget.ratingView,
-                      review: 0,
                       price: widget.priceView,
                       quantity: quantityProvider.quantity,
                     );

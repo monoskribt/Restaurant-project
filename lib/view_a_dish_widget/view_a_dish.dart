@@ -14,7 +14,6 @@ class ViewADish extends StatelessWidget {
   final String nameDishView;
   final double priceView;
   final String descriptionView;
-  final double ratingView;
 
   const ViewADish({
     Key? key,
@@ -22,7 +21,6 @@ class ViewADish extends StatelessWidget {
     required this.nameDishView,
     required this.priceView,
     required this.descriptionView,
-    required this.ratingView,
   }) : super(key: key);
 
   @override
@@ -51,59 +49,17 @@ class ViewADish extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  Stack(
-                    children: [
-                      SizedBox(
-                        width: 400,
+                  SizedBox(
+                    width: 400,
+                    height: 200,
+                    child: Center(
+                      child: Image.asset(
+                        imageDishView,
+                        width: 200,
                         height: 200,
-                        child: Center(
-                          child: Image.asset(
-                            imageDishView,
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                        fit: BoxFit.cover,
                       ),
-                      Positioned(
-                        top: 20,
-                        right: 40,
-                        child: Container(
-                          width: 55,
-                          height: 24,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(14.0),
-                            border: Border.all(
-                              color: Colors.grey.withOpacity(0.1),
-                              width: 1.0,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(
-                                width: 15,
-                                height: 15,
-                                child: Image.asset(
-                                  "assets/images/star.png",
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Text(
-                                ratingView.toString(),
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: "Mulish-Regular",
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFF8E8EA9),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                   const SizedBox(height: 30.0),
                   Row(
@@ -247,7 +203,6 @@ class ViewADish extends StatelessWidget {
             return ViewBottomBar(
               imageDishView: imageDishView,
               nameDishView: nameDishView,
-              ratingView: ratingView,
               priceView: totalPrice,
             );
           },
@@ -256,16 +211,15 @@ class ViewADish extends StatelessWidget {
     );
   }
 
-  void showViewADish(BuildContext context) {
+  void showViewADish(BuildContext context, String image, String name, double price, String description) {
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
         return ViewADish(
-          imageDishView: imageDishView,
-          nameDishView: nameDishView,
-          priceView: priceView,
-          descriptionView: descriptionView,
-          ratingView: ratingView,
+          imageDishView: image,
+          nameDishView: name,
+          priceView: price,
+          descriptionView: description,
         );
       },
     );

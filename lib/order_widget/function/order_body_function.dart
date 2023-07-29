@@ -51,8 +51,6 @@ class OrderBody extends StatelessWidget {
                     child: OrderCard(
                       imageOrder: order.image,
                       nameOrder: order.name,
-                      ratingOrder: order.rating,
-                      reviewOrder: order.review,
                       priceOrder: order.price,
                       quantityOrder: order.quantity,
                     ),

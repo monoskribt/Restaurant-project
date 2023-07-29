@@ -15,7 +15,6 @@ class _DishPageBodyState extends State<DishPageBody> {
       "name": "Avocado Chicken",
       "type": "Salad",
       "price": 10.40,
-      "rating": 5.0,
       "image": "assets/images/dish_of_day_1.png",
       "description": "You won't skip the most important meal of the day with this avocado toast recipe."
           "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
@@ -24,7 +23,6 @@ class _DishPageBodyState extends State<DishPageBody> {
       "name": "Avocado Chicken",
       "type": "Salad",
       "price": 10.40,
-      "rating": 5.0,
       "image": "assets/images/dish_of_day_1.png",
       "description": "You won't skip the most important meal of the day with this avocado toast recipe."
           "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
@@ -33,7 +31,6 @@ class _DishPageBodyState extends State<DishPageBody> {
       "name": "Avocado Chicken",
       "type": "Salad",
       "price": 10.40,
-      "rating": 5.0,
       "image": "assets/images/dish_of_day_1.png",
       "description": "You won't skip the most important meal of the day with this avocado toast recipe."
           "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
@@ -57,7 +54,6 @@ class _DishPageBodyState extends State<DishPageBody> {
             nameDishOfDay: dish["name"],
             typeDishOfDay: dish["type"],
             priceDishOfDay: dish["price"],
-            ratingDishOfDay: dish["rating"],
             imageDishOfDay: dish["image"],
             descriptionDishOfDay: dish["description"],
           );
