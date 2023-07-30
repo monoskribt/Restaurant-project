@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_shop_project/order_status_widget/tools/order_time_provider.dart';
 import 'package:sushi_shop_project/order_status_widget/tools/order_total_provider.dart';
 import 'package:sushi_shop_project/view_a_dish_widget/tools/toppings_provider.dart';
 import 'PROVIDER/dish_provider.dart';
 import 'PROVIDER/quantity_provider.dart';
-import 'filters_widget/provider/filter_provider.dart';
 import 'full_menu_widget/full_menu.dart';
 import 'payment_widget/tools/card_details_provider.dart';
 
@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => OrderProvider()),
         ChangeNotifierProvider(create: (context) => ToppingsProvider()),
         ChangeNotifierProvider(create: (context) => QuantityProvider()),
-        ChangeNotifierProvider(create: (context) => FilterProvider()),
       ],
       child: const MaterialApp(
         home: FullMenu(),

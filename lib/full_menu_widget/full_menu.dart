@@ -5,7 +5,6 @@ import 'package:sushi_shop_project/full_menu_widget/tools/dish_data.dart';
 import 'package:sushi_shop_project/full_menu_widget/tools/dish_model_for_search.dart';
 import '../drawer_widget/main_drawer.dart';
 import '../view_a_dish_widget/tools/view_a_dish_helper.dart';
-import '../view_a_dish_widget/view_a_dish.dart';
 import 'function/dish_page_body_function.dart';
 import 'function/most_popular_body_function.dart';
 import 'function/pasta_card_body_function.dart';
@@ -49,6 +48,10 @@ class _FullMenuState extends State<FullMenu> {
       isSearchOpen = false;
       _searchController.clear();
     });
+  }
+
+  void _closeKeyboard() {
+    FocusScope.of(context).unfocus();
   }
 
   @override
@@ -156,6 +159,9 @@ class _FullMenuState extends State<FullMenu> {
                             ),
                             Expanded(
                               child: TextField(
+                                onSubmitted: (value) {
+                                  _closeKeyboard();
+                                },
                                 onChanged: (value) => updateList(value),
                                 controller: _searchController,
                                 decoration: const InputDecoration(
@@ -179,14 +185,14 @@ class _FullMenuState extends State<FullMenu> {
                     if (isSearchOpen) ...[
                       const SizedBox(height: 20),
                       GestureDetector(
-                        onTap: _closeSearch, // Закрываем поиск при касании
+                        onTap: _closeSearch,
                         child: SizedBox(
                           height: MediaQuery.of(context).size.height,
                           child: ListView.builder(
                             itemCount: displayList.length,
                             itemBuilder: (context, index) => GestureDetector(
                               onTap: () {
-                                _closeSearch(); // Закрываем поиск при нажатии на блюдо
+                                _closeSearch();
                                 ViewADishHelper.showViewADish(
                                     context,
                                     displayList[index].dishImage!,

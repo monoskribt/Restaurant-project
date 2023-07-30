@@ -31,8 +31,8 @@ class FiltersScreen extends StatelessWidget {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return ClipRRect(
-          borderRadius: const BorderRadius.vertical(
+        return const ClipRRect(
+          borderRadius: BorderRadius.vertical(
             top: Radius.circular(25),
           ),
           child: FractionallySizedBox(
