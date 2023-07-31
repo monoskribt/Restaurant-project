@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sushi_shop_project/filters_widget/tools/filters_screen.dart';
 import 'package:sushi_shop_project/full_menu_widget/tools/dish_data.dart';
 import 'package:sushi_shop_project/full_menu_widget/tools/dish_model_for_search.dart';
+import 'package:sushi_shop_project/full_menu_widget/util_2/most_popular_text.dart';
+import 'package:sushi_shop_project/full_menu_widget/util_2/pasta_text.dart';
+import 'package:sushi_shop_project/full_menu_widget/util_2/salad_text.dart';
+import '../cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
 import '../drawer_widget/main_drawer.dart';
 import '../view_a_dish_widget/tools/view_a_dish_helper.dart';
 import 'function/dish_page_body_function.dart';
@@ -264,128 +269,49 @@ class _FullMenuState extends State<FullMenu> {
                     const SizedBox(height: 20),
                     DishPageBody(),
                     const SizedBox(height: 20),
-                    if (selectedCategory == "All Dishes") ...[
-                      SortingScrollDishes(
-                        selectedCategory: selectedCategory,
-                        onCategorySelected: (category) {
-                          setState(() {
-                            selectedCategory = category;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      const Row(
-                        children: [
-                          Text(
-                            "Most Popular",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "Mulish-Regular",
-                              color: Color(0xFF666687),
-                            ),
-                          ),
-                        ],
-                      ),
-                      MostPopularBody(),
-                      const Row(
-                        children: [
-                          Text(
-                            "Salad",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: "Mulish-Regular",
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF666687),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SaladCardBody(),
-                      const Row(
-                        children: [
-                          Text(
-                            "Pasta",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: "Mulish-Regular",
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF666687),
-                            ),
-                          ),
-                        ],
-                      ),
-                      PastaCardBody(),
-                    ] else if (selectedCategory == "Most Popular") ...[
-                      SortingScrollDishes(
-                        selectedCategory: selectedCategory,
-                        onCategorySelected: (category) {
-                          setState(() {
-                            selectedCategory = category;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      const Row(
-                        children: [
-                          Text(
-                            "Most Popular",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF666687),
-                            ),
-                          ),
-                        ],
-                      ),
-                      MostPopularBody(),
-                    ] else if (selectedCategory == "Salad") ...[
-                      SortingScrollDishes(
-                        selectedCategory: selectedCategory,
-                        onCategorySelected: (category) {
-                          setState(() {
-                            selectedCategory = category;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      const Row(
-                        children: [
-                          Text(
-                            "Salad",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF666687),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SaladCardBody(),
-                    ] else if (selectedCategory == "Pasta") ...[
-                      SortingScrollDishes(
-                        selectedCategory: selectedCategory,
-                        onCategorySelected: (category) {
-                          setState(() {
-                            selectedCategory = category;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      const Row(
-                        children: [
-                          Text(
-                            "Pasta",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF666687),
-                            ),
-                          ),
-                        ],
-                      ),
-                      PastaCardBody(),
-                    ]
+                    const SortingScrollDishes(),
+                    BlocBuilder<SortingDishesCubit, SortingDishesState>(
+                      builder: (context, state) {
+                        if (state == SortingDishesState.allDishes) {
+                          return Column(
+                            children: [
+                              const SizedBox(height: 20),
+                              const MostPopularText(),
+                              MostPopularBody(),
+                              const SaladText(),
+                              SaladCardBody(),
+                              const PastaText(),
+                              PastaCardBody(),
+                            ],
+                          );
+                        } else if (state == SortingDishesState.mostPopular) {
+                          return Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              const MostPopularText(),
+                              MostPopularBody(),
+                            ],
+                          );
+                        } else if (state == SortingDishesState.salad) {
+                          return Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              const SaladText(),
+                              SaladCardBody(),
+                            ],
+                          );
+                        } else if (state == SortingDishesState.pasta) {
+                          return Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              const PastaText(),
+                              PastaCardBody(),
+                            ],
+                          );
+                        }
+                        return Container();
+                      },
+                    ),
                   ],
                 ),
               ),

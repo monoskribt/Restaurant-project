@@ -5,11 +5,11 @@ class SortingDishes extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  const SortingDishes({
+  const SortingDishes({Key? key,
     required this.nameSorting,
     required this.isSelected,
     required this.onTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../cubit/cubit_for_filter/filter_cubit.dart';
 
 class ProductTypeCard extends StatefulWidget {
   final String titleProductType;
+
   const ProductTypeCard({
     Key? key,
     required this.titleProductType,
@@ -16,10 +19,15 @@ class _ProductTypeCardState extends State<ProductTypeCard> {
 
   @override
   Widget build(BuildContext context) {
+    final filtersCubit = context.read<FiltersCubit>();
+    final state = filtersCubit.state;
+    isSelected = state.selectedCategory == widget.titleProductType;
+
     return Padding(
       padding: const EdgeInsets.only(right: 10.0),
       child: GestureDetector(
         onTap: () {
+          filtersCubit.updateSelectedCategory(widget.titleProductType);
           setState(() {
             isSelected = !isSelected;
           });
@@ -51,4 +59,3 @@ class _ProductTypeCardState extends State<ProductTypeCard> {
     );
   }
 }
-

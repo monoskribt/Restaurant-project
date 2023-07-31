@@ -5,9 +5,9 @@ class DishSearchModel {
   String? description;
 
   DishSearchModel(
-      this.dishTitle,
-      this.dishPrice,
-      this.dishImage,
-      this.description,
-      );
+    this.dishTitle,
+    this.dishPrice,
+    this.dishImage,
+    this.description,
+  );
 }

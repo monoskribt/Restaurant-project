@@ -4,28 +4,14 @@ import 'package:sushi_shop_project/filters_widget/util/product_type_card.dart';
 class ProductTypeBody extends StatelessWidget {
   ProductTypeBody({Key? key}) : super(key: key);
 
-  final List productTypeList = [
-    {
-      "title": "Pizza",
-    },
-    {
-      "title": "Burger",
-    },
-    {
-      "title": "Salad",
-    },
-    {
-      "title": "Soup",
-    },
-    {
-      "title": "Chicken",
-    },
-    {
-      "title": "Grill",
-    },
-    {
-      "title": "Breakfast",
-    },
+  final List<Map<String, String>> productTypeList = [
+    {"title": "Pizza"},
+    {"title": "Burger"},
+    {"title": "Salad"},
+    {"title": "Soup"},
+    {"title": "Chicken"},
+    {"title": "Grill"},
+    {"title": "Breakfast"},
   ];
 
   @override
@@ -33,11 +19,12 @@ class ProductTypeBody extends StatelessWidget {
     return SizedBox(
       height: 115,
       child: Wrap(
-        spacing: 4.0,
         runSpacing: 15.0,
-        children: productTypeList.map((type) {
+        spacing: 4.0,
+        children: productTypeList.map((productType) {
+          final titleProductType = productType['title']!;
           return ProductTypeCard(
-            titleProductType: type["title"],
+            titleProductType: titleProductType,
           );
         }).toList(),
       ),
