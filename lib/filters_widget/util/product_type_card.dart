@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../cubit/cubit_for_filter/filter_cubit.dart';
 
-class ProductTypeCard extends StatefulWidget {
+import '../../BLOC/filter_bloc.dart';
+
+class ProductTypeCard extends StatelessWidget {
   final String titleProductType;
 
   const ProductTypeCard({
@@ -11,51 +12,51 @@ class ProductTypeCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ProductTypeCard> createState() => _ProductTypeCardState();
-}
-
-class _ProductTypeCardState extends State<ProductTypeCard> {
-  bool isSelected = false;
-
-  @override
   Widget build(BuildContext context) {
-    final filtersCubit = context.read<FiltersCubit>();
-    final state = filtersCubit.state;
-    isSelected = state.selectedCategory == widget.titleProductType;
+    return BlocBuilder<FilterBloc, FilterState>(
+      builder: (context, state) {
+        bool isSelected = state.selectedCategory.contains(titleProductType);
 
-    return Padding(
-      padding: const EdgeInsets.only(right: 10.0),
-      child: GestureDetector(
-        onTap: () {
-          filtersCubit.updateSelectedCategory(widget.titleProductType);
-          setState(() {
-            isSelected = !isSelected;
-          });
-        },
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
-            decoration: BoxDecoration(
-              color: isSelected ? const Color(0xFFFFB01D) : const Color(0xFFFFFFFF),
-              border: Border.all(
-                color: isSelected ? const Color(0xFFFFB01D) : const Color(0xFFDCDCE4),
-                width: 1,
-              ),
+        void _makeAChoice(bool isSelected) {
+          if (isSelected) {
+            context.read<FilterBloc>().add(AddCategoryEvent(titleProductType));
+          } else {
+            context.read<FilterBloc>().add(RemoveCategoryEvent(titleProductType));
+          }
+        }
+
+        return Padding(
+          padding: const EdgeInsets.only(right: 10.0),
+          child: GestureDetector(
+            onTap: () {
+              _makeAChoice(!isSelected);
+            },
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
-            ),
-            child: Text(
-              widget.titleProductType,
-              style: TextStyle(
-                fontSize: 16,
-                fontFamily: "Mulish-Regular",
-                color: isSelected ? Colors.white : const Color(0xFFA5A5BA),
-                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+                decoration: BoxDecoration(
+                  color: isSelected ? const Color(0xFFFFB01D) : const Color(0xFFFFFFFF),
+                  border: Border.all(
+                    color: isSelected ? const Color(0xFFFFB01D) : const Color(0xFFDCDCE4),
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Text(
+                  titleProductType,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Mulish-Regular",
+                    color: isSelected ? Colors.white : const Color(0xFFA5A5BA),
+                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

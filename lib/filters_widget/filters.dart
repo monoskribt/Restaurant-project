@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sushi_shop_project/filters_widget/function/price_range_slider_function.dart';
 import 'package:sushi_shop_project/filters_widget/function/product_type_function.dart';
-import '../cubit/cubit_for_filter/filter_cubit.dart';
+import '../BLOC/filter_bloc.dart';
 import 'function/categories_function.dart';
 
 class Filters extends StatefulWidget {
@@ -15,10 +15,8 @@ class Filters extends StatefulWidget {
 class _FiltersState extends State<Filters> {
   @override
   Widget build(BuildContext context) {
-
-    return BlocBuilder<FiltersCubit, FiltersState>(
+    return BlocBuilder<FilterBloc, FilterState>(
       builder: (context, state) {
-        final selectedCategory = state.selectedCategory;
         return Scaffold(
           body: Container(
               decoration: const BoxDecoration(
@@ -105,10 +103,7 @@ class _FiltersState extends State<Filters> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Expanded(
-                          child: BlocProvider(
-                            create: (context) => FiltersCubit(),
-                            child: ProductTypeBody(),
-                          ),
+                          child: ProductTypeBody(),
                         ),
                       ],
                     ),
@@ -144,7 +139,9 @@ class _FiltersState extends State<Filters> {
                             Expanded(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pop(context, selectedCategory);
+                                  final filterBloc = BlocProvider.of<FilterBloc>(context);
+                                  filterBloc.add(ApplyFilterEvent(filterBloc.state.selectedCategory));
+                                  Navigator.pop(context);
                                 },
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(

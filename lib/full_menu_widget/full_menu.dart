@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sushi_shop_project/filters_widget/filters.dart';
 import 'package:sushi_shop_project/filters_widget/tools/filters_screen.dart';
 import 'package:sushi_shop_project/full_menu_widget/tools/dish_data.dart';
 import 'package:sushi_shop_project/full_menu_widget/tools/dish_model_for_search.dart';
 import 'package:sushi_shop_project/full_menu_widget/util_2/most_popular_text.dart';
 import 'package:sushi_shop_project/full_menu_widget/util_2/pasta_text.dart';
+import 'package:sushi_shop_project/full_menu_widget/util_2/pizza_text.dart';
 import 'package:sushi_shop_project/full_menu_widget/util_2/salad_text.dart';
 import '../cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
 import '../drawer_widget/main_drawer.dart';
@@ -26,6 +28,32 @@ class FullMenu extends StatefulWidget {
 }
 
 class _FullMenuState extends State<FullMenu> {
+
+  void showFilterScreen(BuildContext context) {
+    showModalBottomSheet<void>(
+      enableDrag: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25),
+        ),
+      ),
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return const ClipRRect(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(25),
+          ),
+          child: FractionallySizedBox(
+            heightFactor: 12 / 13,
+            child: Filters(),
+          ),
+        );
+      },
+    );
+  }
+
+
   String selectedCategory = "All Dishes";
   bool isSearchOpen = false;
   List<DishSearchModel> displayList = List.from(DishData.mainDishList);
@@ -64,6 +92,7 @@ class _FullMenuState extends State<FullMenu> {
     _searchController.dispose();
     super.dispose();
   }
+
 
 
   @override
@@ -181,7 +210,16 @@ class _FullMenuState extends State<FullMenu> {
                               ),
                             ),
                             //Экран ФИЛЬРОВ
-                            const FiltersScreen(),
+                      IconButton(
+                        onPressed: () {
+                          showFilterScreen(context);
+                        },
+                        icon: SvgPicture.asset(
+                          "assets/images/filter.svg",
+                          height: 25,
+                          width: 25,
+                        ),
+                      ),
                           ],
                         ),
                       ),
@@ -275,7 +313,7 @@ class _FullMenuState extends State<FullMenu> {
                         if (state == SortingDishesState.allDishes) {
                           return Column(
                             children: [
-                              const SizedBox(height: 20),
+                              const SizedBox(height: 15),
                               const MostPopularText(),
                               MostPopularBody(),
                               const SaladText(),
