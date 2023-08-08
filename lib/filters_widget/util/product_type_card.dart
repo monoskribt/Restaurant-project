@@ -1,61 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sushi_shop_project/filters_widget/tools/category_filter.dart';
+import '../../bloc/filter_bloc.dart';
+import '../../bloc/filter_state.dart';
 
-import '../../BLOC/filter_bloc.dart';
-
-class ProductTypeCard extends StatelessWidget {
-  final String titleProductType;
-
-  const ProductTypeCard({
+class ProductTypeBody extends StatefulWidget {
+  const ProductTypeBody({
     Key? key,
-    required this.titleProductType,
   }) : super(key: key);
 
   @override
+  State<ProductTypeBody> createState() => _ProductTypeBodyState();
+}
+
+class _ProductTypeBodyState extends State<ProductTypeBody> {
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FilterBloc, FilterState>(
+    return BlocBuilder<FilterBloc, FiltersState>(
       builder: (context, state) {
-        bool isSelected = state.selectedCategory.contains(titleProductType);
-
-        void _makeAChoice(bool isSelected) {
-          if (isSelected) {
-            context.read<FilterBloc>().add(AddCategoryEvent(titleProductType));
-          } else {
-            context.read<FilterBloc>().add(RemoveCategoryEvent(titleProductType));
-          }
+        if (state is FilterLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
+        if (state is FilterLoaded) {
+          return SizedBox(
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: state.filter.categoryFilters.length,
+              itemBuilder: (context, index) {
+                final categoryFilter = state.filter.categoryFilters[index];
+                bool isSelected = categoryFilter.value;
 
-        return Padding(
-          padding: const EdgeInsets.only(right: 10.0),
-          child: GestureDetector(
-            onTap: () {
-              _makeAChoice(!isSelected);
-            },
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
-                decoration: BoxDecoration(
-                  color: isSelected ? const Color(0xFFFFB01D) : const Color(0xFFFFFFFF),
-                  border: Border.all(
-                    color: isSelected ? const Color(0xFFFFB01D) : const Color(0xFFDCDCE4),
-                    width: 1,
+                return Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      context.read<FilterBloc>().add(
+                        CategoryFilterUpdated(categoryFilter: categoryFilter.copyWith(value: !categoryFilter.value)),
+                      );
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+                        decoration: BoxDecoration(
+                          color: isSelected ? const Color(0xFFFFB01D) : Colors.white,
+                          border: Border.all(
+                            color: isSelected ? const Color(0xFFFFB01D) : const Color(0xFFDCDCE4),
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Text(
+                          categoryFilter.category.titleProduct,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Mulish-Regular",
+                            color: isSelected ? Colors.white : const Color(0xFFA5A5BA),
+                            fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Text(
-                  titleProductType,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: "Mulish-Regular",
-                    color: isSelected ? Colors.white : const Color(0xFFA5A5BA),
-                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                  ),
-                ),
-              ),
+                );
+              },
             ),
-          ),
-        );
+          );
+        } else {
+          return const Text("Error");
+        }
       },
     );
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sushi_shop_project/filters_widget/function/price_range_slider_function.dart';
-import 'package:sushi_shop_project/filters_widget/function/product_type_function.dart';
-import '../BLOC/filter_bloc.dart';
+import 'package:sushi_shop_project/filters_widget/tools/category_filter.dart';
+import 'package:sushi_shop_project/filters_widget/util/product_type_card.dart';
 import 'function/categories_function.dart';
+import 'models/category_filter_model.dart';
 
 class Filters extends StatefulWidget {
   const Filters({Key? key}) : super(key: key);
@@ -15,9 +15,8 @@ class Filters extends StatefulWidget {
 class _FiltersState extends State<Filters> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FilterBloc, FilterState>(
-      builder: (context, state) {
-        return Scaffold(
+
+    return Scaffold(
           body: Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
@@ -97,8 +96,8 @@ class _FiltersState extends State<Filters> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 24.0),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 24.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -139,9 +138,6 @@ class _FiltersState extends State<Filters> {
                             Expanded(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  final filterBloc = BlocProvider.of<FilterBloc>(context);
-                                  filterBloc.add(ApplyFilterEvent(filterBloc.state.selectedCategory));
-                                  Navigator.pop(context);
                                 },
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
@@ -170,7 +166,5 @@ class _FiltersState extends State<Filters> {
                 ],
               )),
         );
-      },
-    );
   }
 }
