@@ -269,30 +269,33 @@ class _FullMenuState extends State<FullMenu> {
                                       ),
                                     ),
                                   ),
-                                  Row(
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(bottom: 3.0),
-                                        child: Text(
-                                          "\$",
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w700,
-                                            color: Color(0xFFFFB080),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 25.0),
+                                    child: Row(
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.only(bottom: 3.0),
+                                          child: Text(
+                                            "\$",
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w700,
+                                              color: Color(0xFFFFB080),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(width: 4),
-                                      Text(
-                                        displayList[index].dishPrice!.toStringAsFixed(2),
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "Mulish",
-                                          color: Color(0xFFFF7B2C),
+                                        const SizedBox(width: 4),
+                                        Text(
+                                          displayList[index].dishPrice!.toStringAsFixed(2),
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                            fontFamily: "Mulish",
+                                            color: Color(0xFFFF7B2C),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),

@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:sushi_shop_project/full_menu_widget/util/most_popular_card.dart';
+
 class MostPopularBody extends StatelessWidget {
   MostPopularBody({Key? key}) : super(key: key);
 
   final List mostPopular = [
     {
-      "name": "Egg Toast",
-      "price": 10.40,
+      "name": "Суп-локшина на наваристому курячому бульоні",
+      "price": 61.00,
       "image": "assets/images/most_popular_1.png",
-      "description": "You won't skip the most important meal of the day with this avocado toast recipe."
-          "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
+      "description": "Подається з куркою, домашньою локшиною, та сухариками.",
     },
     {
-      "name": "Power Bowl",
-      "price": 14.10,
+      "name": "Ніжка кролика тушкована у вершковому соусі",
+      "price": 254.00,
       "image": "assets/images/most_popular_2.png",
-      "description": "A nutritious power bowl packed with healthy ingredients.",
+      "description": "Подається з диким рисом.",
     },
     {
-      "name": "Power Bowl",
-      "price": 11.10,
+      "name": "Фірмове сало від 'Корчми' - сало домашнє",
+      "price": 49.00,
       "image": "assets/images/most_popular_2.png",
-      "description": "A nutritious power bowl packed with healthy ingredients.",
+      "description":
+          "'Фірмове сало від 'Корчми' - це ніжне домашнє сало, яке стало візитною карткою ресторану 'Корчма'. Воно приготовлено з найкращих шматочків свинини, вручну підготовлених та нарізаних експертами свого ремесла. Це сало відображає найкращі традиції гастрономічної майстерності і дух гостинності, який завжди присутній у ресторані 'Корчма'. Додайте аутентичний смак до свого столу з цим вишуканим домашнім салом, який надає вам можливість насолоджуватися смачними моментами в стилі 'Корчма' у затишному домашньому оточенні.",
     },
   ];
-
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 220,
+      height: 230,
       child: ListView.builder(
         itemCount: mostPopular.length,
         scrollDirection: Axis.horizontal,
@@ -46,4 +46,3 @@ class MostPopularBody extends StatelessWidget {
     );
   }
 }
-

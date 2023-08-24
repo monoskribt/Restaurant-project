@@ -34,4 +34,11 @@ class OrderTimeProvider with ChangeNotifier {
   void updateShowBottomBar() {
     _isShowBottomBar = _orderTime >= _orderTimeEnd + 1;
   }
+
+  void setOrderTime(double newOrderTime) {
+    _orderTime = newOrderTime;
+    updateImage();
+    updateShowBottomBar();
+    notifyListeners();
+  }
 }

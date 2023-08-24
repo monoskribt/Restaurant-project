@@ -108,32 +108,37 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
                     color: const Color(0xFF615793),
                   ),
                   child: Center(
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          const TextSpan(
-                            text: 'Add to order ',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Mulish-Regular",
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.center,
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            const TextSpan(
+                              text: 'Add to order ',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Mulish-Regular",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
-                          ),
-                          TextSpan(
-                            text: '\$${totalPrice.toStringAsFixed(2)}',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Mulish-Regular",
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
+                            TextSpan(
+                              text: '\$${totalPrice.toStringAsFixed(2)}',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Mulish-Regular",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
+
               ),
             ],
           );

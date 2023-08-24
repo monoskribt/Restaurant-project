@@ -57,7 +57,6 @@ class MostPopularCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Container(
-            height: 190,
             width: 142,
             color: Colors.white,
             child: Column(
@@ -82,7 +81,10 @@ class MostPopularCard extends StatelessWidget {
                     fontFamily: "Mulish-Regular",
                     color: Color(0xFF32324D),
                   ),
+                  textAlign: TextAlign.center,
+                  softWrap: true,
                 ),
+                const SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -110,6 +112,7 @@ class MostPopularCard extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(height: 10),
               ],
             ),
           ),

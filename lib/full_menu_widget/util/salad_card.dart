@@ -67,7 +67,8 @@ class SaladCard extends StatelessWidget {
                   child: Center(
                     child: Image.asset(
                       imageSaladCard,
-                      fit: BoxFit.cover,
+                      width: 110,
+                      height: 110,
                     ),
                   ),
                 ),
@@ -79,7 +80,10 @@ class SaladCard extends StatelessWidget {
                     fontFamily: "Mulish",
                     color: Color(0xFF32324D),
                   ),
+                  textAlign: TextAlign.center,
+                  softWrap: true,
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

@@ -17,19 +17,18 @@ class OrderTotalProvider extends ChangeNotifier {
 
   double get subTotal => _subTotal;
 
-  void updateTotal(double newTotal) {
-    _total = itemsTotal + tax;
-    notifyListeners();
-  }
+  double get totalWithTips => itemsTotal + tax + tips;
 
+  void updateTotal() {
+    _total = itemsTotal + tax;
+
+  }
   void updateTax(double newTax) {
     _tax = newTax;
-    notifyListeners();
   }
 
   void updateItemsTotal(double newItemsTotal) {
     _itemsTotal = newItemsTotal;
-    notifyListeners();
   }
 
   void updateTips(double newTips) {
@@ -39,11 +38,9 @@ class OrderTotalProvider extends ChangeNotifier {
 
   void newTotalPlusTips() {
     _total = itemsTotal + tax + tips;
-    notifyListeners();
   }
 
   void newSubTotal() {
     _subTotal = itemsTotal + tax;
-    notifyListeners();
   }
 }

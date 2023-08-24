@@ -3,7 +3,6 @@ import 'package:sushi_shop_project/view_a_dish_widget/view_a_dish.dart';
 
 class ProductDayCard extends StatelessWidget {
   final String nameDishOfDay;
-  final String typeDishOfDay;
   final String imageDishOfDay;
   final double priceDishOfDay;
   final String descriptionDishOfDay;
@@ -11,7 +10,6 @@ class ProductDayCard extends StatelessWidget {
   const ProductDayCard({
     Key? key,
     required this.nameDishOfDay,
-    required this.typeDishOfDay,
     required this.priceDishOfDay,
     required this.imageDishOfDay,
     required this.descriptionDishOfDay,
@@ -80,22 +78,16 @@ class ProductDayCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text(
-                        nameDishOfDay,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: "Mulish-Regular",
-                        ),
-                      ),
-                      Text(
-                        typeDishOfDay,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: "Mulish-Regular",
+                      Container(
+                        width: 150,
+                        child: Text(
+                          nameDishOfDay,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: "Mulish-Regular",
+                          ),
                         ),
                       ),
                       Padding(

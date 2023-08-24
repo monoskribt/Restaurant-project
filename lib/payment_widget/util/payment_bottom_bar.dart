@@ -12,12 +12,13 @@ class PaymentBottomBar extends StatefulWidget {
   State<PaymentBottomBar> createState() => _PaymentBottomBarState();
 }
 
+
 class _PaymentBottomBarState extends State<PaymentBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Consumer<OrderTotalProvider>(
       builder: (context, orderTotalProvider, _) {
-        final total = orderTotalProvider.total;
+        final totalWithTips = orderTotalProvider.totalWithTips;
 
         return Container(
           height: 100,
@@ -28,18 +29,7 @@ class _PaymentBottomBarState extends State<PaymentBottomBar> {
               topRight: Radius.circular(26),
             ),
             boxShadow: [
-              BoxShadow(
-                color: Color(0xFFDCDCE4),
-                offset: Offset(0, -10),
-                blurRadius: 20,
-                spreadRadius: 0,
-              ),
-              BoxShadow(
-                color: Color(0x0C1A4B05),
-                offset: Offset(0, 0),
-                blurRadius: 5,
-                spreadRadius: 0,
-              ),
+              // ...
             ],
           ),
           child: InkWell(
@@ -73,7 +63,7 @@ class _PaymentBottomBarState extends State<PaymentBottomBar> {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        "\$${total.toStringAsFixed(2)}",
+                        "\$${totalWithTips.toStringAsFixed(2)}",
                         style: const TextStyle(
                           color: Colors.white,
                           fontFamily: "Mulish-Regular",

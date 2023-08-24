@@ -79,6 +79,8 @@ class PastaCard extends StatelessWidget {
                     fontFamily: "Mulish",
                     color: Color(0xFF32324D),
                   ),
+                  textAlign: TextAlign.center,
+                  softWrap: true,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -7,6 +7,7 @@ import 'package:sushi_shop_project/view_a_dish_widget/tools/toppings_provider.da
 import 'PROVIDER/dish_provider.dart';
 import 'PROVIDER/quantity_provider.dart';
 import 'bloc/filter_bloc.dart';
+import 'cubit/cubit_for_filters/filters_cubit.dart';
 import 'cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
 import 'full_menu_widget/full_menu.dart';
 import 'payment_widget/tools/card_details_provider.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ToppingsProvider()),
         ChangeNotifierProvider(create: (context) => QuantityProvider()),
         BlocProvider<SortingDishesCubit>(create: (context) => SortingDishesCubit()),
+        BlocProvider<FiltersCubit>(create: (context) => FiltersCubit()),
         BlocProvider<FilterBloc>(create: (context) => FilterBloc()..add(FilterLoad())),
       ],
       child: const MaterialApp(

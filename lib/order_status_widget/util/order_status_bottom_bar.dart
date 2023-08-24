@@ -14,11 +14,17 @@ class OrderStatusBottomBar extends StatefulWidget {
 
 class _OrderStatusBottomBarState extends State<OrderStatusBottomBar> {
   @override
+  void initState() {
+    super.initState();
+    final orderTotalProvider = Provider.of<OrderTotalProvider>(context, listen: false);
+    orderTotalProvider.updateTotal;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Consumer<OrderTotalProvider>(
       builder: (context, orderTotalProvider, _) {
         final total = orderTotalProvider.total;
-
         return Container(
           height: 100,
           decoration: const BoxDecoration(

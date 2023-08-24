@@ -7,25 +7,22 @@ class SaladCardBody extends StatelessWidget {
 
   final List saladCardList = [
     {
-      "name": "Salad 1",
-      "price": 11.40,
+      "name": "Салат улюблений з дитинства Олів'є",
+      "price": 59.00,
       "image": "assets/images/salad_1.png",
-      "description": "You won't skip the most important meal of the day with this avocado toast recipe."
-          "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
+      "description": "З куркою або з ковбасою. Заправляється домашнім майонезом.",
     },
     {
-      "name": "Salad 2",
-      "price": 12.20,
+      "name": "Салат із запеченим гарбузом",
+      "price": 72.00,
       "image": "assets/images/salad_1.png",
-      "description": "You won't skip the most important meal of the day with this avocado toast recipe."
-          "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
+      "description": "Руккола,коріандр, помідори чері з запеченим гарбузом, заправляється ягідним соусом.",
     },
     {
-      "name": "Salad 3",
+      "name": "Салат Оселедець під шубою",
       "price": 13.30,
       "image": "assets/images/salad_1.png",
-      "description": "You won't skip the most important meal of the day with this avocado toast recipe."
-          "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
+      "description": "Традиційний салат з оселедця, з запеченими овочами та майонезом.",
     },
   ];
 

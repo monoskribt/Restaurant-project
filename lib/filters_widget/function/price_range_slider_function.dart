@@ -7,8 +7,8 @@ class RangeSliderBody extends StatefulWidget {
 }
 
 class _RangeSliderBodyState extends State<RangeSliderBody> {
-  RangeValues values = RangeValues(1, 4);
-  RangeValues valuesBottom = RangeValues(1, 5);
+  RangeValues values = const RangeValues(1, 4);
+  RangeValues valuesBottom = const RangeValues(1, 5);
 
   @override
   Widget build(BuildContext context) {

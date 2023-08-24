@@ -280,6 +280,8 @@ class _NewCardState extends State<NewCard> {
                       _cardholderNameController.clear();
                       _expireDateController.clear();
                       _cvvController.clear();
+
+                      Navigator.pop(context);
                     }
                     isCardInfoFinish ? cardDetailsProvider.setShowCardBanking(true) : null;
                   },

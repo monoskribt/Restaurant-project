@@ -7,11 +7,11 @@ class Filter extends Equatable {
 
   const Filter({
     this.categoryFilters = const <CategoryFilter>[],
-});
+  });
 
   Filter copyWith ({
     List<CategoryFilter>? categoryFilters,
-}) {
+  }) {
     return Filter(categoryFilters: categoryFilters ?? this.categoryFilters);
   }
 

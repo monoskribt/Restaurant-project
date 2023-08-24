@@ -60,21 +60,15 @@ class OrderCard extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 1.0, bottom: 10.0, top: 10.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              nameOrder,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontFamily: "Mulish-Regular",
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF32324D),
-                              ),
-                            ),
-                          ],
+                      Text(
+                        nameOrder,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontFamily: "Mulish-Regular",
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF32324D),
                         ),
+                        softWrap: true,
                       ),
                     ],
                   ),

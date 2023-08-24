@@ -12,28 +12,22 @@ class DishPageBody extends StatefulWidget {
 class _DishPageBodyState extends State<DishPageBody> {
   final List productCard = [
     {
-      "name": "Avocado Chicken",
-      "type": "Salad",
-      "price": 10.40,
+      "name": "Борщ пісний з копченою грушею",
+      "price": 55.00,
       "image": "assets/images/dish_of_day_1.png",
-      "description": "You won't skip the most important meal of the day with this avocado toast recipe."
-          "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
+      "description": "Подається зі сметаною.",
     },
     {
-      "name": "Avocado Chicken",
-      "type": "Salad",
-      "price": 10.40,
+      "name": "Фірмова свинина 'Корчма'",
+      "price": 166.00,
       "image": "assets/images/dish_of_day_1.png",
-      "description": "You won't skip the most important meal of the day with this avocado toast recipe."
-          "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
+      "description": "Запечена до рум'яної скоринки з цибулею, під вершковим соусом та сиром.",
     },
     {
-      "name": "Avocado Chicken",
-      "type": "Salad",
-      "price": 10.40,
+      "name": "Язик у вершковому соусі",
+      "price": 153.00,
       "image": "assets/images/dish_of_day_1.png",
-      "description": "You won't skip the most important meal of the day with this avocado toast recipe."
-          "Crispy, lacy eggs and creamy avocado top hot buttered toast. .",
+      "description": "Шматочки яловичого язика, обсмажені на вершковому маслі та доведені до смаку у соусі з вершків, глив та шпинату.",
     },
   ];
 
@@ -52,7 +46,6 @@ class _DishPageBodyState extends State<DishPageBody> {
           var dish = productCard[index];
           return ProductDayCard(
             nameDishOfDay: dish["name"],
-            typeDishOfDay: dish["type"],
             priceDishOfDay: dish["price"],
             imageDishOfDay: dish["image"],
             descriptionDishOfDay: dish["description"],

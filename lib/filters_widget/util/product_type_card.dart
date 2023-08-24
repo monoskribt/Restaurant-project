@@ -16,7 +16,7 @@ class ProductTypeBody extends StatefulWidget {
 class _ProductTypeBodyState extends State<ProductTypeBody> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FilterBloc, FiltersState>(
+    return BlocBuilder<FilterBloc, FiltersCategoryState>(
       builder: (context, state) {
         if (state is FilterLoading) {
           return const Center(

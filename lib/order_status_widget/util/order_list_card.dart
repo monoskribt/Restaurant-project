@@ -25,23 +25,27 @@ class OrderListCard extends StatelessWidget {
           Row(
             children: [
               SizedBox(
-                width: 40,
-                height: 40,
+                width: 65,
+                height: 65,
                 child: Image.asset(imageOrderList),
               ),
               const SizedBox(width: 10),
-              Text(
-                titleOrderList,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF32324D),
-                  fontFamily: "Mulish-Regular",
+              SizedBox(
+                width: 150,
+                child: Text(
+                  titleOrderList,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF32324D),
+                    fontFamily: "Mulish-Regular",
+                  ),
                 ),
               ),
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 "${quantity.toInt()}",

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sushi_shop_project/full_menu_widget/full_menu.dart';
 import 'package:sushi_shop_project/order_status_widget/order_status.dart';
+import 'package:sushi_shop_project/order_widget/order_menu.dart';
+import 'package:sushi_shop_project/payment_widget/payment.dart';
 
 class AfterPayment extends StatelessWidget {
   const AfterPayment({Key? key}) : super(key: key);
@@ -65,7 +67,7 @@ class AfterPayment extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const OrderStatus(),
+                                  builder: (context) => Payment(),
                                 ),
                               );
                             },

@@ -14,16 +14,23 @@ class _InfoAboutOrderState extends State<InfoAboutOrder> {
 
   bool showCardBanking = false;
 
+  double total = 0.0;
+
   @override
   void dispose() {
     _textEditingController.dispose();
     super.dispose();
   }
+  void updateTotal() {
+    Provider.of<OrderTotalProvider>(context, listen: false).newTotalPlusTips();
+  }
+  void newSubTotal() {
+    Provider.of<OrderTotalProvider>(context, listen: false).newSubTotal();
+  }
 
   @override
   Widget build(BuildContext context) {
     final cardDetailsProvider = Provider.of<CardDetailsProvider>(context);
-
     return Container(
       width: 357,
       decoration: BoxDecoration(
@@ -48,10 +55,10 @@ class _InfoAboutOrderState extends State<InfoAboutOrder> {
         builder: (context, orderTotalProvider, _) {
           final itemsTotal = orderTotalProvider.itemsTotal;
           final tax = orderTotalProvider.tax;
-          final total = orderTotalProvider.total;
-          final subTotal = orderTotalProvider.subTotal;
           newSubTotal();
-
+          final subTotal = orderTotalProvider.subTotal;
+          total = itemsTotal + tax + (double.tryParse(_tipsEditingController.text) ?? 0.0);
+          final totalWithTips = orderTotalProvider.totalWithTips;
           return Padding(
             padding: const EdgeInsets.all(15.0),
             child: SingleChildScrollView(
@@ -206,9 +213,10 @@ class _InfoAboutOrderState extends State<InfoAboutOrder> {
                       controller: _tipsEditingController,
                       keyboardType: TextInputType.number,
                       onChanged: (value) {
-                        final double tips = double.tryParse(value) ?? 0;
-                        Provider.of<OrderTotalProvider>(context, listen: false)
-                            .updateTips(tips);
+                        setState(() {
+                          total = itemsTotal + tax + (double.tryParse(value) ?? 0.0);
+                        });
+                        Provider.of<OrderTotalProvider>(context, listen: false).updateTips(double.tryParse(value) ?? 0.0);
                         updateTotal();
                       },
                       decoration: InputDecoration(
@@ -325,7 +333,7 @@ class _InfoAboutOrderState extends State<InfoAboutOrder> {
                             ),
                           ),
                           Text(
-                            total.toStringAsFixed(2),
+                            totalWithTips.toStringAsFixed(2),
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w800,
@@ -345,16 +353,5 @@ class _InfoAboutOrderState extends State<InfoAboutOrder> {
         },
       ),
     );
-  }
-
-  void updateTotal() {
-    Provider.of<OrderTotalProvider>(context, listen: false).newTotalPlusTips();
-  }
-  void newSubTotal() {
-    Provider.of<OrderTotalProvider>(context, listen: false).newSubTotal();
-    final orderTotalProvider = Provider.of<OrderTotalProvider>(context, listen: false);
-    final itemsTotal = orderTotalProvider.itemsTotal;
-    final tax = orderTotalProvider.tax;
-    final subTotal = itemsTotal + tax;
   }
 }

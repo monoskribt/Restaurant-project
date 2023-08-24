@@ -4,16 +4,16 @@ import 'package:equatable/equatable.dart';
 
 import '../filters_widget/models/filter_model.dart';
 
-abstract class FiltersState extends Equatable {
-  const FiltersState();
+abstract class FiltersCategoryState extends Equatable {
+  const FiltersCategoryState();
 
   @override
   List<Object> get props => [];
 }
 
-class FilterLoading extends FiltersState {}
+class FilterLoading extends FiltersCategoryState {}
 
-class FilterLoaded extends FiltersState {
+class FilterLoaded extends FiltersCategoryState {
   final Filter filter;
 
   FilterLoaded({

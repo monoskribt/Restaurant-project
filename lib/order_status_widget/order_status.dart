@@ -138,7 +138,7 @@ class _OrderStatusState extends State<OrderStatus> {
               ),
               const SizedBox(height: 15),
               //Здесь можно меня значение orderTime и будет меняться статус заказа
-              const OrderStatusFirst(orderTime: 20),
+              const OrderStatusFirst(orderTime: 15),
               const SizedBox(height: 15),
               const OrderDropdown(),
             ],

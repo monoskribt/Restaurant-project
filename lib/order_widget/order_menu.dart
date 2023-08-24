@@ -127,35 +127,38 @@ class OrderMenu extends StatelessWidget {
               const SizedBox(height: 15),
               OrderBody(),
               const SizedBox(height: 20),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const FullMenu())
-                  );
-                },
-                child: const Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 8.0),
-                        child: Icon(
-                          Icons.add,
-                          size: 25,
-                          color: Color(0xFFFFB01D),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const FullMenu())
+                    );
+                  },
+                  child: const Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 8.0),
+                          child: Icon(
+                            Icons.add,
+                            size: 25,
+                            color: Color(0xFFFFB01D),
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Add more food to order",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFFFFB01D),
-                          fontFamily: "Mulish-Regular",
+                        Text(
+                          "Add more food to order",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFFFFB01D),
+                            fontFamily: "Mulish-Regular",
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
