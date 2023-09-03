@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/PROVIDER/dish_provider.dart';
+import 'package:sushi_shop_project/PROVIDER/order_provider.dart';
 import 'package:sushi_shop_project/order_widget/tools/order_model.dart';
-
-import '../../PROVIDER/quantity_provider.dart';
+import '../tools/request_provider.dart';
 import '../tools/toppings_provider.dart';
 
 class ViewBottomBar extends StatefulWidget {
@@ -26,9 +25,8 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
   @override
   Widget build(BuildContext context) {
     final orderProvider = Provider.of<OrderProvider>(context);
-    final orderItem = orderProvider.orderMap[widget.nameDishView];
-    final quantityProvider = Provider.of<QuantityProvider>(context);
-
+    final quantityProvider = Provider.of<ToppingsProvider>(context);
+    final requestProvider = Provider.of<RequestProvider>(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       decoration: const BoxDecoration(
@@ -41,7 +39,6 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
       child: Consumer<ToppingsProvider>(
         builder: (context, toppingsProvider, _) {
           double basePrice = widget.priceView * quantityProvider.quantity;
-          double totalPrice = toppingsProvider.getTotalPrice(basePrice);
 
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -49,7 +46,8 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
             children: [
               Container(
                 height: 55,
-                padding: const EdgeInsets.only(top: 17, bottom: 17, left: 15, right: 15),
+                padding: const EdgeInsets.only(
+                    top: 17, bottom: 17, left: 15, right: 15),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   color: const Color(0xFFF6F6F9),
@@ -59,7 +57,8 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
                     GestureDetector(
                       onTap: () {
                         if (quantityProvider.quantity > 0) {
-                          quantityProvider.updateQuantity(quantityProvider.quantity - 1);
+                          quantityProvider
+                              .updateQuantity(quantityProvider.quantity - 1);
                         }
                       },
                       child: const Icon(
@@ -70,12 +69,14 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
                     const SizedBox(width: 20),
                     Text(
                       quantityProvider.quantity.toString(),
-                      style: const TextStyle(color: Color(0xFFA5A5BA), fontSize: 17),
+                      style: const TextStyle(
+                          color: Color(0xFFA5A5BA), fontSize: 17),
                     ),
                     const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
-                        quantityProvider.updateQuantity(quantityProvider.quantity + 1);
+                        quantityProvider
+                            .updateQuantity(quantityProvider.quantity + 1);
                       },
                       child: const Icon(
                         Icons.add,
@@ -93,6 +94,7 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
                       name: widget.nameDishView,
                       price: widget.priceView,
                       quantity: quantityProvider.quantity,
+                      comment: requestProvider.request,
                     );
                     orderProvider.addToOrder(orderModel);
                     quantityProvider.updateQuantity(0);
@@ -102,7 +104,8 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
                 child: Container(
                   width: 200,
                   height: 60,
-                  padding: const EdgeInsets.only(top: 16, bottom: 16, left: 24, right: 24),
+                  padding: const EdgeInsets.only(
+                      top: 16, bottom: 16, left: 24, right: 24),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     color: const Color(0xFF615793),
@@ -124,7 +127,7 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
                               ),
                             ),
                             TextSpan(
-                              text: '\$${totalPrice.toStringAsFixed(2)}',
+                              text: '\$${basePrice.toStringAsFixed(2)}',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Mulish-Regular",
@@ -138,7 +141,6 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
                     ),
                   ),
                 ),
-
               ),
             ],
           );

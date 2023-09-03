@@ -16,7 +16,7 @@ class FilterLoading extends FiltersCategoryState {}
 class FilterLoaded extends FiltersCategoryState {
   final Filter filter;
 
-  FilterLoaded({
+  const FilterLoaded({
     this.filter = const Filter(),
   });
 

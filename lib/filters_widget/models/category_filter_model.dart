@@ -1,45 +1,29 @@
 import 'package:equatable/equatable.dart';
 
 class Category extends Equatable {
+  final String titleCategories;
   final int id;
-  final String titleProduct;
 
   const Category({
-    required this.titleProduct,
+    required this.titleCategories,
     required this.id,
-  });
+});
 
   @override
-  List<Object?> get props => [titleProduct];
+  List<Object?> get props => [titleCategories];
 
   static List<Category> categories = const [
     Category(
+      titleCategories: "Food",
       id: 1,
-      titleProduct: 'Pizza',
     ),
     Category(
+      titleCategories: "Drink",
       id: 2,
-      titleProduct: 'Burger',
     ),
     Category(
-      id: 3,
-      titleProduct: 'Salad',
-    ),
-    Category(
-      id: 4,
-      titleProduct: 'Soup',
-    ),
-    Category(
-      id: 5,
-      titleProduct: 'Chicken',
-    ),
-    Category(
-      id: 6,
-      titleProduct: 'Grill',
-    ),
-    Category(
-      id: 7,
-      titleProduct: 'Breakfast',
+      titleCategories: "Desert",
+      id: 3
     ),
   ];
 }

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import '../models/category_filter_model.dart';
 
 class CategoryFilter extends Equatable {
@@ -26,13 +27,13 @@ class CategoryFilter extends Equatable {
 
   @override
   List<Object?> get props => [
-    id,
-    category,
-    value,
-  ];
+        id,
+        category,
+        value,
+      ];
 
   static List<CategoryFilter> filters = Category.categories
       .map((category) =>
-      CategoryFilter(id: category.id, category: category, value: false))
+          CategoryFilter(id: category.id, category: category, value: false))
       .toList();
 }

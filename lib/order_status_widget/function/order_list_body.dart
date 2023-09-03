@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/PROVIDER/dish_provider.dart';
+import 'package:sushi_shop_project/PROVIDER/order_provider.dart';
 import 'package:sushi_shop_project/order_status_widget/tools/order_total_provider.dart';
 import 'package:sushi_shop_project/order_status_widget/util/order_list_card.dart';
 
@@ -28,11 +28,13 @@ class _OrderListBodyState extends State<OrderListBody> {
     final orderMap = orderProvider.orderMap;
     return Column(
       children: orderMap.values.map((order) {
+        print('Dish: ${order.name}. Comment: ${order.comment}');
         return OrderListCard(
           imageOrderList: order.image,
           titleOrderList: order.name,
           quantity: order.quantity,
           priceOrderList: order.price,
+          request: order.comment,
         );
       }).toList(),
     );
@@ -51,8 +53,7 @@ class _OrderListBodyState extends State<OrderListBody> {
     }
 
     final orderItemsTotalProvider =
-    Provider.of<OrderTotalProvider>(context, listen: false);
+        Provider.of<OrderTotalProvider>(context, listen: false);
     orderItemsTotalProvider.updateItemsTotal(itemsTotal);
   }
-
 }

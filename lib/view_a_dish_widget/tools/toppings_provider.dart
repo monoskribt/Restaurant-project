@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ToppingsProvider extends ChangeNotifier {
+  int quantity = 0;
   Map<String, double> selectedToppings = {};
-  int quantity = 1;
 
 
+  void updateQuantity(int newQuantity) {
+    quantity = newQuantity;
+    notifyListeners();
+  }
 
   void addToppings(String name, double price) {
     if (quantity > 0) {
@@ -23,13 +27,18 @@ class ToppingsProvider extends ChangeNotifier {
   }
 
   double getTotalPrice(double basePrice) {
-    if (quantity <= 0 || basePrice <= 0) {
+    if (selectedToppings.isEmpty || basePrice <= 0 || quantity <= 0) {
       return basePrice;
     }
 
-    double toppingsPrice = selectedToppings.values.fold(0, (sum, price) => sum + price);
+    double toppingsPrice = 0;
+    selectedToppings.forEach((name, price) {
+      toppingsPrice += price;
+    });
+
     double totalPrice = basePrice + toppingsPrice;
     return totalPrice;
+
   }
 
 }

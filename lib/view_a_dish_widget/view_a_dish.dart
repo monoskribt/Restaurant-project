@@ -6,7 +6,7 @@ import 'package:sushi_shop_project/view_a_dish_widget/function/recommended_sides
 import 'package:sushi_shop_project/view_a_dish_widget/function/toppings_body.dart';
 import 'package:sushi_shop_project/view_a_dish_widget/tools/toppings_provider.dart';
 import 'package:sushi_shop_project/view_a_dish_widget/util/add_a_request.dart';
-import '../PROVIDER/dish_provider.dart';
+import '../PROVIDER/order_provider.dart';
 import 'util/view_bottom_bar.dart';
 
 class ViewADish extends StatelessWidget {

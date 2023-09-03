@@ -6,13 +6,15 @@ class OrderListCard extends StatelessWidget {
   final String titleOrderList;
   final int quantity;
   final double priceOrderList;
+  final String request;
 
   const OrderListCard({
     Key? key,
     required this.imageOrderList,
     required this.titleOrderList,
     required this.quantity,
-    required this.priceOrderList
+    required this.priceOrderList,
+    required this.request,
   }) : super(key: key);
 
   @override

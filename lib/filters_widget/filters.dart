@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sushi_shop_project/bloc/filter_state.dart';
 import 'package:sushi_shop_project/filters_widget/function/price_range_slider_function.dart';
-import 'package:sushi_shop_project/filters_widget/util/product_type_card.dart';
+import 'package:sushi_shop_project/filters_widget/util/categories_body.dart';
+import 'package:sushi_shop_project/filters_widget/util/product_type_body.dart';
 import '../bloc/filter_bloc.dart';
-import 'function/categories_function.dart';
 
 class Filters extends StatefulWidget {
   const Filters({Key? key}) : super(key: key);
@@ -69,8 +69,8 @@ class _FiltersState extends State<Filters> {
               ),
             ),
             const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0),
+             Padding(
+              padding: EdgeInsets.only(left: 24.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -96,8 +96,8 @@ class _FiltersState extends State<Filters> {
               ),
             ),
             const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0),
+             Padding(
+              padding: EdgeInsets.only(left: 24.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -146,7 +146,18 @@ class _FiltersState extends State<Filters> {
                             Expanded(
                               child: ElevatedButton(
                                 onPressed: () {
-
+                                  var productType = state.filter.productTypeFilters
+                                      .where((filter) => filter.value)
+                                      .map((filter) =>
+                                  filter.productType.titleProduct)
+                                      .toList();
+                                  var categories = state.filter.categoryFilters
+                                      .where((filter) => filter.value)
+                                      .map((filter) =>
+                                  filter.category.titleCategories)
+                                      .toList();
+                                  print(productType);
+                                  print(categories);
                                 },
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(

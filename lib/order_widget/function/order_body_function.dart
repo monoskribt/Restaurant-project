@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_shop_project/order_widget/tools/dismiss.dart';
 import 'package:sushi_shop_project/order_widget/util/order_menu_card.dart';
-import '../../PROVIDER/dish_provider.dart';
+import '../../PROVIDER/order_provider.dart';
 
 class OrderBody extends StatelessWidget {
   OrderBody({Key? key}) : super(key: key);

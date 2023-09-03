@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../tools/toppings_provider.dart';
-import '../../PROVIDER/quantity_provider.dart';
 
 class ToppingsCard extends StatefulWidget {
   final String nameToppings;
@@ -22,15 +21,13 @@ class _ToppingsCardState extends State<ToppingsCard> {
   @override
   Widget build(BuildContext context) {
     final toppingsProvider = Provider.of<ToppingsProvider>(context, listen: false);
-    final quantityProvider = Provider.of<QuantityProvider>(context, listen: false);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 15.0),
       child: InkWell(
         onTap: () {
-          final currentQuantity = quantityProvider.quantity;
 
-          if (currentQuantity > 0) {
+          if (toppingsProvider.quantity > 0) {
             setState(() {
               final isSelected = toppingsProvider.isSelected(widget.nameToppings);
 

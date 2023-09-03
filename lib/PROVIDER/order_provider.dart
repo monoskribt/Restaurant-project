@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../order_widget/tools/order_model.dart';
 
 class OrderProvider extends ChangeNotifier {
+  final double _totalPrice = 0.0;
+  double get totalPrice => _totalPrice;
+
+
   final Map<String, OrderModel> _orderMap = {};
 
   Map<String, OrderModel> get orderMap => _orderMap;
@@ -22,13 +26,5 @@ class OrderProvider extends ChangeNotifier {
       _orderMap[name]!.quantity = newQuantity;
       notifyListeners();
     }
-  }
-
-  int getQuantity() {
-    return _orderMap.values.fold(0, (sum, order) => sum + order.quantity);
-  }
-
-  int getQuantityForDish(String name) {
-    return _orderMap.containsKey(name) ? _orderMap[name]!.quantity : 0;
   }
 }

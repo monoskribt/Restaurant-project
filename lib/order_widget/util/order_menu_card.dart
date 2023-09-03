@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/PROVIDER/dish_provider.dart';
+import 'package:sushi_shop_project/PROVIDER/order_provider.dart';
 import 'package:sushi_shop_project/order_widget/tools/cart_counter_order.dart';
 
 class OrderCard extends StatelessWidget {

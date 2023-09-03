@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class CartCounter extends StatefulWidget {
-  const CartCounter({Key? key}) : super(key: key);
+  final ValueChanged<int> onAdd;
+  final ValueChanged<int> onRemove;
+  final String dishName;
+
+  const CartCounter({
+    Key? key,
+    required this.onAdd,
+    required this.onRemove,
+    required this.dishName,
+  }) : super(key: key);
 
   @override
   State<CartCounter> createState() => _CartCounterState();
@@ -9,6 +18,30 @@ class CartCounter extends StatefulWidget {
 
 class _CartCounterState extends State<CartCounter> {
   int numOfItems = 0;
+
+  void _showSnackBar(BuildContext context, int quantity) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    String orderText = numOfItems > 0 ? 'added to order' : 'removed from order';
+    final snackBar = SnackBar(
+      content: Text(
+        numOfItems > 0
+            ? '"${widget.dishName}" $orderText: $quantity'
+            : '"${widget.dishName}" $orderText',
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          fontFamily: "Mulish-Regular",
+          color: Color(0xFF666687),
+        ),
+      ),
+      backgroundColor: Colors.grey[300],
+      duration: const Duration(seconds: 3),
+      shape: const StadiumBorder(),
+      behavior: SnackBarBehavior.floating,
+      elevation: 0,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +56,8 @@ class _CartCounterState extends State<CartCounter> {
               setState(() {
                 numOfItems--;
               });
+              widget.onRemove(numOfItems);
+              _showSnackBar(context, numOfItems);
             }
           },
           iconColor: const Color(0xFF8E8EA9),
@@ -42,13 +77,14 @@ class _CartCounterState extends State<CartCounter> {
             setState(() {
               numOfItems++;
             });
+            widget.onAdd(numOfItems);
+            _showSnackBar(context, numOfItems);
           },
           iconColor: const Color(0xFFFF7B2C),
         ),
       ],
     );
   }
-
   SizedBox buildButton({
     required IconData icon,
     required VoidCallback press,
@@ -64,7 +100,7 @@ class _CartCounterState extends State<CartCounter> {
             shape: const CircleBorder(),
             backgroundColor: backgroundColor,
             padding: EdgeInsets.zero,
-            elevation: 0,
+            elevation: 1,
           ),
           onPressed: press,
           child: Icon(

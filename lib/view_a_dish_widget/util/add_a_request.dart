@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/view_a_dish_widget/tools/request_provider.dart';
 
 class RequestInput extends StatefulWidget {
   const RequestInput({Key? key}) : super(key: key);
@@ -18,14 +20,15 @@ class _RequestInputState extends State<RequestInput> {
     super.dispose();
   }
 
-  void updateCurrentLength() {
+  void updateCurrentLength(String text) {
     setState(() {
-      length = _textEditingController.text.length;
+      length = text.length;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final requestProvider = Provider.of<RequestProvider>(context, listen: false);
     return Container(
       height: 82,
       decoration: BoxDecoration(
@@ -40,7 +43,14 @@ class _RequestInputState extends State<RequestInput> {
         controller: _textEditingController,
         maxLength: maxLength,
         maxLines: null,
-        onChanged: (_) => updateCurrentLength(),
+        onChanged: (text) {
+          updateCurrentLength(text);
+          requestProvider.updateRequest(text);
+        },
+        textInputAction: TextInputAction.next,
+        onEditingComplete: () {
+          FocusScope.of(context).unfocus();
+        },
         decoration: InputDecoration(
           hintText: 'Ex: Don’t add onion',
           hintStyle: const TextStyle(
@@ -68,7 +78,7 @@ class _RequestInputState extends State<RequestInput> {
             color: Color(0xFFC0C0CF),
             fontFamily: "Mulish-Regular",
             fontWeight: FontWeight.w400,
-          )
+          ),
         ),
       ),
     );

@@ -8,13 +8,8 @@ import 'package:sushi_shop_project/order_status_widget/util/order_status_first.d
 import 'package:sushi_shop_project/order_widget/order_menu.dart';
 
 class OrderStatus extends StatefulWidget {
-
-
-
   const OrderStatus({
     Key? key,
-
-
   }) : super(key: key);
 
   @override
@@ -27,7 +22,6 @@ class _OrderStatusState extends State<OrderStatus> {
   @override
   Widget build(BuildContext context) {
     final orderTimeProvider = Provider.of<OrderTimeProvider>(context);
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -76,13 +70,15 @@ class _OrderStatusState extends State<OrderStatus> {
                               ],
                             ),
                             child: IconButton(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 12),
                               icon: const Icon(Icons.arrow_back, size: 22),
                               color: const Color(0xFF666687),
                               onPressed: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => OrderMenu()),
+                                  MaterialPageRoute(
+                                      builder: (context) => OrderMenu()),
                                 );
                               },
                             ),
@@ -146,7 +142,9 @@ class _OrderStatusState extends State<OrderStatus> {
         ),
       ),
       // Будет только при выполнении 3 условия, то есть когда заказ выполнен
-      bottomNavigationBar: orderTimeProvider.isShowBottomBar ? const OrderStatusBottomBar() : null,
+      bottomNavigationBar: orderTimeProvider.isShowBottomBar
+          ? const OrderStatusBottomBar()
+          : null,
     );
   }
 }
