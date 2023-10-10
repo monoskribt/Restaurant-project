@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/order_status_widget/tools/order_time_provider.dart';
-import 'package:sushi_shop_project/order_status_widget/tools/order_total_provider.dart';
-import 'package:sushi_shop_project/view_a_dish_widget/tools/request_provider.dart';
-import 'package:sushi_shop_project/view_a_dish_widget/tools/toppings_provider.dart';
-import 'PROVIDER/order_provider.dart';
-import 'bloc/filter_bloc.dart';
-import 'cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
-import 'full_menu_widget/full_menu.dart';
-import 'payment_widget/tools/card_details_provider.dart';
+import 'package:sushi_shop_project/features/bloc/filter_bloc.dart';
+import 'package:sushi_shop_project/features/cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
+import 'package:sushi_shop_project/features/provider/card_details_provider.dart';
+import 'package:sushi_shop_project/features/provider/order_provider.dart';
+import 'package:sushi_shop_project/features/provider/order_time_provider.dart';
+import 'package:sushi_shop_project/features/provider/order_total_provider.dart';
+import 'package:sushi_shop_project/features/provider/request_provider.dart';
+import 'package:sushi_shop_project/features/provider/toppings_provider.dart';
+import 'package:sushi_shop_project/screens/full_menu/full_menu.dart';
+
+
 
 void main() => runApp(const MyApp());
 
