@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/features/provider/order_provider.dart';
 import 'package:sushi_shop_project/features/provider/order_total_provider.dart';
 import 'package:sushi_shop_project/screens/payment_confirmation/payment_confirmation.dart';
+import 'package:sushi_shop_project/services/smtp/send_email.dart';
 
 class PaymentBottomBar extends StatefulWidget {
   const PaymentBottomBar({
@@ -65,39 +67,70 @@ class _PaymentBottomBarState extends State<PaymentBottomBar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          width: 340,
-          height: 55,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: const Color(0xFF615793),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Pay",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: "Mulish-Regular",
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
+        GestureDetector(
+          onTap: () {
+            sendOrderEmail(totalWithTips);
+          },
+          child: Container(
+            width: 340,
+            height: 55,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: const Color(0xFF615793),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Pay",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: "Mulish-Regular",
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 5),
-              Text(
-                "\$${totalWithTips.toStringAsFixed(2)}",
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontFamily: "Mulish-Regular",
-                  fontWeight: FontWeight.w800,
-                  fontSize: 16,
+                const SizedBox(width: 5),
+                Text(
+                  "\$${totalWithTips.toStringAsFixed(2)}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontFamily: "Mulish-Regular",
+                    fontWeight: FontWeight.w800,
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
+    );
+  }
+
+  void sendOrderEmail(double totalWithTips) {
+    final orderProvider = Provider.of<OrderProvider>(context, listen: false);
+    final orderTotalProvider = Provider.of<OrderTotalProvider>(context, listen: false);
+    final orderMap = orderProvider.orderMap;
+
+    String emailMessage = 'Ordered Dishes:\n';
+    for (var order in orderMap.values) {
+      emailMessage +=
+      'Dish: ${order.name}\n'
+      'Quantity: ${order.quantity}\n'
+      'Price: \$${order.price.toStringAsFixed(2)}\n'
+      'Comment: ${order.comment}\n'
+          '\n';
+    }
+    EmailService.sendEmail(
+        recipientEmail: 'dmitrijmamilov@gmail.com',
+        mailMessage: emailMessage,
+      dishTips: orderTotalProvider.tips,
+        dishPrice: totalWithTips,
+    );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const PaymentConfirmation()),
     );
   }
 }

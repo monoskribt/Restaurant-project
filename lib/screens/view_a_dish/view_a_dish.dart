@@ -8,7 +8,7 @@ import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_function/ingr
 import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_function/recommended_list_component.dart';
 import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_function/toppings_list_component.dart';
 
-class ViewADish extends StatelessWidget {
+class ViewADish extends StatefulWidget {
   final String imageDishView;
   final String nameDishView;
   final double priceView;
@@ -22,6 +22,11 @@ class ViewADish extends StatelessWidget {
     required this.descriptionView,
   }) : super(key: key);
 
+  @override
+  State<ViewADish> createState() => _ViewADishState();
+}
+
+class _ViewADishState extends State<ViewADish> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -84,7 +89,7 @@ class ViewADish extends StatelessWidget {
         const SizedBox(height: 30),
         buildSectionTitle("Add a request"),
         const SizedBox(height: 15),
-        RequestInput(nameDishView: nameDishView, priceView: priceView),
+        RequestInput(nameDishView: widget.nameDishView, priceView: widget.priceView),
         const SizedBox(height: 25),
       ],
     );
@@ -96,7 +101,7 @@ class ViewADish extends StatelessWidget {
       height: 200,
       child: Center(
         child: Image.asset(
-          imageDishView,
+          widget.imageDishView,
           width: 200,
           height: 200,
           fit: BoxFit.cover,
@@ -113,7 +118,7 @@ class ViewADish extends StatelessWidget {
         SizedBox(
           width: 260.0,
           child: Text(
-            nameDishView,
+            widget.nameDishView,
             style: const TextStyle(
               fontSize: 21.0,
               fontWeight: FontWeight.w700,
@@ -137,7 +142,7 @@ class ViewADish extends StatelessWidget {
               ),
             ),
             Text(
-              priceView.toStringAsFixed(2),
+              widget.priceView.toStringAsFixed(2),
               style: const TextStyle(
                 fontSize: 24,
                 fontFamily: "Mulish-Regular",
@@ -156,7 +161,7 @@ class ViewADish extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            descriptionView,
+            widget.descriptionView,
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -188,10 +193,10 @@ class ViewADish extends StatelessWidget {
   Widget buildBottomNavigationBar() {
     return Consumer<ToppingsProvider>(
       builder: (context, toppingsProvider, _) {
-        double totalPrice = toppingsProvider.getTotalPrice(priceView);
+        double totalPrice = toppingsProvider.getTotalPrice(widget.priceView);
         return ViewBottomBar(
-          imageDishView: imageDishView,
-          nameDishView: nameDishView,
+          imageDishView: widget.imageDishView,
+          nameDishView: widget.nameDishView,
           priceView: totalPrice,
         );
       },

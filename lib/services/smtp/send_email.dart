@@ -6,9 +6,10 @@ class EmailService {
   static Future<void> sendEmail({
     required String recipientEmail,
     required String mailMessage,
-    required String dishName,
-    required double dishPrice,
-    required int quantity,
+    String? dishName,
+    double? dishPrice,
+    double? dishTips,
+    int? quantity,
   }) async {
     String username = 'dmitrijmamilov@gmail.com';
     String password = 'uiybbjfcxyjrpirj';
@@ -17,7 +18,10 @@ class EmailService {
       ..from = Address(username, 'Mail Service')
       ..recipients.add(recipientEmail)
       ..subject = 'Mail '
-      ..text = 'Блюдо: $dishName\nКоличество: $quantity\nЦена: \$${dishPrice.toStringAsFixed(2)}\nСообщение: $mailMessage';
+      ..text =
+          'Title: $mailMessage\n'
+          'Tips: \$${dishTips?.toStringAsFixed(2) ?? 'Отсутствует значение'}\n'
+          'Total price: \$${dishPrice?.toStringAsFixed(2) ?? 'Не указано'}';
 
     try {
       await send(message, smtpServer);

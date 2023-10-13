@@ -188,6 +188,7 @@ class PaymentConfirmation extends StatelessWidget {
       onTap: () {
         orderTotalProvider.clear();
         orderProvider.orderMap.clear();
+        print("All clear");
       },
       child: Container(
         width: 340,

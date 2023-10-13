@@ -5,7 +5,6 @@ import 'package:sushi_shop_project/features/provider/order_provider.dart';
 import 'package:sushi_shop_project/features/provider/request_provider.dart';
 import 'package:sushi_shop_project/features/provider/toppings_provider.dart';
 import 'package:sushi_shop_project/models/order_model.dart';
-import 'package:sushi_shop_project/services/smtp/send_email.dart';
 
 class ViewBottomBar extends StatefulWidget {
   final double priceView;
@@ -120,15 +119,6 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
             comment: requestProvider.request,
           );
           orderProvider.addToOrder(orderModel);
-          if(requestProvider.request.isNotEmpty) {
-            EmailService.sendEmail(
-              recipientEmail: 'dmitrijmamilov@gmail.com',
-              mailMessage: requestProvider.request,
-              dishName: widget.nameDishView,
-              dishPrice: widget.priceView * quantityProvider.quantity,
-              quantity: quantityProvider.quantity,
-            );
-          }
           quantityProvider.updateQuantity(0);
           requestProvider.updateRequest('');
           Navigator.pop(context);

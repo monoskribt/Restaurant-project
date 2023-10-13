@@ -20,6 +20,7 @@ dependencies:
   equatable: ^2.0.5
   mailer: ^6.0.1
   http: ^1.1.0
+  xml: ^6.3.0
 
 
 dev_dependencies:
@@ -31,6 +32,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/data_xml/data.xml
   fonts:
     - family: DMSans-Regular
       fonts:

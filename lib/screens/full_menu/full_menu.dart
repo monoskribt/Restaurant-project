@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sushi_shop_project/data/parsing_for_search_dish/dish_data_for_search.dart';
 import 'package:sushi_shop_project/features/cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
 import 'package:sushi_shop_project/screens/full_menu/full_menu_components/search_widget.dart';
 import 'package:sushi_shop_project/screens/full_menu/full_menu_function/daily_specials_menu.dart';
@@ -26,6 +27,7 @@ class _FullMenuState extends State<FullMenu> {
 
   @override
   Widget build(BuildContext context) {
+    DishDataForSearch.loadMenuFromXml();
     return MaterialApp(
       home: Scaffold(
         key: scaffoldKey,
@@ -67,7 +69,7 @@ class _FullMenuState extends State<FullMenu> {
                     const SizedBox(height: 20),
                     const SearchWidget(),
                     const SizedBox(height: 20),
-                    const DailySpecials(),
+                    DailySpecials(),
                     const SizedBox(height: 20),
                     const SortingCategoryList(),
                     BlocBuilder<SortingDishesCubit, SortingDishesState>(
@@ -129,7 +131,7 @@ class _FullMenuState extends State<FullMenu> {
             const CategoryText(text: "Most Popular"),
             MostPopularMenu(),
             const CategoryText(text: "Salad"),
-            SaladMenu(),
+            const SaladMenu(),
             const CategoryText(text: "Pasta"),
             PastaMenu(),
           ],
@@ -143,10 +145,10 @@ class _FullMenuState extends State<FullMenu> {
           ],
         );
       case SortingDishesState.salad:
-        return Column(
+        return const Column(
           children: [
-            const SizedBox(height: 15),
-            const CategoryText(text: "Salad"),
+            SizedBox(height: 15),
+            CategoryText(text: "Salad"),
             SaladMenu(),
           ],
         );

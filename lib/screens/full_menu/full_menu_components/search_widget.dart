@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sushi_shop_project/data/dish_data.dart';
+import 'package:sushi_shop_project/data/parsing_for_search_dish/dish_data_for_search.dart';
 import 'package:sushi_shop_project/models/dish_model_for_search.dart';
-import 'package:sushi_shop_project/screens/full_menu/helpers/filter_screen_helper.dart';
 import 'package:sushi_shop_project/screens/full_menu/helpers/view_a_dish_helper.dart';
 
 class SearchWidget extends StatefulWidget {
@@ -28,13 +27,14 @@ class _SearchWidgetState extends State<SearchWidget> {
     } else {
       setState(() {
         isSearchOpen = true;
-        displayList = DishData.mainDishList
+        displayList = DishDataForSearch.mainDishList
             .where((element) =>
             element.dishTitle!.toLowerCase().contains(value.toLowerCase()))
             .toList();
       });
     }
   }
+
 
   void _closeSearch() {
     setState(() {
@@ -97,16 +97,16 @@ class _SearchWidgetState extends State<SearchWidget> {
                   ),
                 ),
                 // Filters Screen
-                IconButton(
-                  onPressed: () {
-                    FilterScreenHelper.showFilterScreen(context);
-                  },
-                  icon: SvgPicture.asset(
-                    "assets/images/filter.svg",
-                    height: 25,
-                    width: 25,
-                  ),
-                ),
+                // IconButton(
+                //   onPressed: () {
+                //     FilterScreenHelper.showFilterScreen(context);
+                //   },
+                //   icon: SvgPicture.asset(
+                //     "assets/images/filter.svg",
+                //     height: 25,
+                //     width: 25,
+                //   ),
+                // ),
               ],
             ),
           ),

@@ -4,10 +4,10 @@ class DishSearchModel {
   String? dishImage;
   String? description;
 
-  DishSearchModel(
-    this.dishTitle,
-    this.dishPrice,
-    this.dishImage,
-    this.description,
-  );
+  DishSearchModel({
+    required this.dishTitle,
+    required this.dishPrice,
+    required this.dishImage,
+    required this.description,
+  });
 }

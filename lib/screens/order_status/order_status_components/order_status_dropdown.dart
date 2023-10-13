@@ -61,6 +61,11 @@ class _OrderDropdownState extends State<OrderDropdown> {
               ],
             ),
             child: ExpansionTile(
+              onExpansionChanged: (expanded) {
+                setState(() {
+                  isExpanded = expanded;
+                });
+              },
               title: const Text(
                 "Order list and prices",
                 style: TextStyle(

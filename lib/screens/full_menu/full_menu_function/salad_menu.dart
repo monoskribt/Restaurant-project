@@ -1,47 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:sushi_shop_project/data/parsing_dish_card/menu_parse.dart';
 import 'package:sushi_shop_project/screens/full_menu/full_menu_components/salad_card.dart';
 
 class SaladMenu extends StatelessWidget {
-  SaladMenu({Key? key}) : super(key: key);
+  const SaladMenu({Key? key}) : super(key: key);
+  Future<List<Map<String, dynamic>>> fetchSaladMenu() async {
+    MenuParse menuParser = MenuParse(categories: []);
+    MenuParse menu = await menuParser.parseXmlFile();
 
-  final List saladCardList = [
-    {
-      "name": "Салат улюблений з дитинства Олів'є",
-      "price": 59.00,
-      "image": "assets/images/salad_1.png",
-      "description": "З куркою або з ковбасою. Заправляється домашнім майонезом.",
-    },
-    {
-      "name": "Салат із запеченим гарбузом",
-      "price": 72.00,
-      "image": "assets/images/salad_1.png",
-      "description": "Руккола,коріандр, помідори чері з запеченим гарбузом, заправляється ягідним соусом.",
-    },
-    {
-      "name": "Салат Оселедець під шубою",
-      "price": 13.30,
-      "image": "assets/images/salad_1.png",
-      "description": "Традиційний салат з оселедця, з запеченими овочами та майонезом.",
-    },
-  ];
+    return menu.categories
+        .firstWhere((category) => category.id == "2")
+        .dishes
+        .map((dish) => {
+              "name": dish.title,
+              "price": dish.price,
+              "image": dish.image,
+              "description": dish.description,
+            })
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: 220,
-        child: ListView.builder(
-          itemCount: saladCardList.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            var dish = saladCardList[index];
-            return SaladCard(
-              nameDish: dish["name"],
-              price: dish["price"],
-              imageSaladCard: dish["image"],
-              description: dish["description"],
-            );
-          },
-        )
+    return FutureBuilder<List<Map<String, dynamic>>>(
+      future: fetchSaladMenu(),
+      builder: (context, snapshot) {
+        if(snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
+        else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+        else {
+          return SizedBox(
+            height: 230,
+            child: ListView.builder(
+              itemCount: snapshot.data?.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                var dish = snapshot.data?[index];
+                return SaladCard(
+                  nameDish: dish?["name"],
+                  price: dish?["price"],
+                  imageSaladCard: dish?["image"],
+                  description: dish?["description"],
+                );
+              },
+            ),
+          );
+        }
+      },
     );
   }
 }
