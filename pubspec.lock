@@ -61,10 +61,10 @@ packages:
     dependency: "direct main"
     description:
       name: cupertino_icons
-      sha256: e35129dc44c9118cee2a5603506d823bab99c68393879edb440e0090d07586be
+      sha256: d57953e10f9f8327ce64a508a355f0b1ec902193f66288e8cb5070e7c47eeb2d
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.6"
   equatable:
     dependency: "direct main"
     description:
@@ -106,10 +106,10 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_lints
-      sha256: "2118df84ef0c3ca93f96123a616ae8540879991b8b57af2f81b76a7ada49b2a4"
+      sha256: a25a15ebbdfc33ab1cd26c63a6ee519df92338a9c10f122adda92938253bef04
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   flutter_staggered_grid_view:
     dependency: "direct main"
     description:
@@ -292,18 +292,18 @@ packages:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_core
-      sha256: e2b49a16805a54714ba0712d62e9f3c6311081ec2bec835529b778cc5349430a
+      sha256: "9f0a4593f7642b2f106e329734d0e5fc746baf8d0a59495eec586cd0d9ba7d02"
       url: "https://pub.dev"
     source: hosted
-    version: "22.1.37"
+    version: "22.2.12"
   syncfusion_flutter_sliders:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_sliders
-      sha256: bca13f542ce4a5914dc9697db038ed2beb959f78efcebcc8391b1c3619180146
+      sha256: "826e2a6ab71c87ecc33f6c19e4064ed9910980b5ad171a3e2888fe782a324a6c"
       url: "https://pub.dev"
     source: hosted
-    version: "22.1.37"
+    version: "22.2.12"
   term_glyph:
     dependency: transitive
     description:
@@ -332,26 +332,26 @@ packages:
     dependency: transitive
     description:
       name: vector_graphics
-      sha256: "670f6e07aca990b4a2bcdc08a784193c4ccdd1932620244c3a86bb72a0eac67f"
+      sha256: b16dadf7eb610e20da044c141b4a0199a5e8082ca21daba68322756f953ce714
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.7"
+    version: "1.1.9"
   vector_graphics_codec:
     dependency: transitive
     description:
       name: vector_graphics_codec
-      sha256: "7451721781d967db9933b63f5733b1c4533022c0ba373a01bdd79d1a5457f69f"
+      sha256: a4b01403d5c613db115e30e71eca33f7e9e09f2d3c52c3fb84e16333ecddc539
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.7"
+    version: "1.1.9"
   vector_graphics_compiler:
     dependency: transitive
     description:
       name: vector_graphics_compiler
-      sha256: "80a13c613c8bde758b1464a1755a7b3a8f2b6cec61fbf0f5a53c94c30f03ba2e"
+      sha256: d26c0e2f237476426523eb25512e4c09fa27c6d33ed659a0e69d79e20b5dc47f
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.7"
+    version: "1.1.9"
   vector_math:
     dependency: transitive
     description:

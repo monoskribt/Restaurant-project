@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sushi_shop_project/features/provider/order_provider.dart';
 import 'package:sushi_shop_project/features/provider/order_total_provider.dart';
+import 'package:sushi_shop_project/features/provider/user_contact_details_provider.dart';
 import 'package:sushi_shop_project/screens/payment_confirmation/payment_confirmation.dart';
 import 'package:sushi_shop_project/services/smtp/send_email.dart';
 
@@ -111,23 +112,36 @@ class _PaymentBottomBarState extends State<PaymentBottomBar> {
   void sendOrderEmail(double totalWithTips) {
     final orderProvider = Provider.of<OrderProvider>(context, listen: false);
     final orderTotalProvider = Provider.of<OrderTotalProvider>(context, listen: false);
+    final userContactProvider = Provider.of<UserContactDetailsProvider>(context, listen: false);
+
     final orderMap = orderProvider.orderMap;
+
+    final contactDetails = userContactProvider.userContactDetails;
 
     String emailMessage = 'Ordered Dishes:\n';
     for (var order in orderMap.values) {
       emailMessage +=
       'Dish: ${order.name}\n'
-      'Quantity: ${order.quantity}\n'
-      'Price: \$${order.price.toStringAsFixed(2)}\n'
-      'Comment: ${order.comment}\n'
+          'Quantity: ${order.quantity}\n'
+          'Price: \$${order.price.toStringAsFixed(2)}\n'
+          'Comment: ${order.comment}\n'
           '\n';
     }
+
+    String contactInfo = 'Contact Details:\n'
+        'Name: ${contactDetails.name}\n'
+        'Number: ${contactDetails.number}\n'
+        'Address: ${contactDetails.address}\n\n';
+
+    emailMessage = contactInfo + emailMessage;
+
     EmailService.sendEmail(
-        recipientEmail: 'dmitrijmamilov@gmail.com',
-        mailMessage: emailMessage,
+      recipientEmail: 'kozub.dima3@gmail.com',
+      mailMessage: emailMessage,
       dishTips: orderTotalProvider.tips,
-        dishPrice: totalWithTips,
+      dishPrice: totalWithTips,
     );
+
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const PaymentConfirmation()),

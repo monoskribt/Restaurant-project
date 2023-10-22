@@ -32,7 +32,14 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - assets/data_xml/data.xml
+    - assets/data_xml/toppings.xml
+    - assets/data_xml/ingredients.xml
+    - assets/data_xml/bju.xml
+    - assets/data_xml/gram_bistro.xml
+    - assets/data_xml/gram_bistro_1.xml
+    - assets/data_xml/gram_bistro_2.xml
+    - assets/data_xml/restaurant_name.xml
+    - assets/data_xml/contacts.xml
   fonts:
     - family: DMSans-Regular
       fonts:

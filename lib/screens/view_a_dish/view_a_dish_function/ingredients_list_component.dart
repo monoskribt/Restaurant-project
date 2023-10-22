@@ -1,45 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:sushi_shop_project/data_parsing/models/ingredients_model.dart';
+import 'package:sushi_shop_project/data_parsing/parsing/parsing_for_ingredients/ingredients_parse.dart';
 import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_components/ingredients_card.dart';
 
-
 class IngredientsListComponent extends StatelessWidget {
-  IngredientsListComponent({Key? key}) : super(key: key);
+  const IngredientsListComponent({Key? key}) : super(key: key);
 
-  final List ingredientsList = [
-    {
-      "title": "Egg",
-      "image": "assets/images/ingredient_egg.png",
-    },
-    {
-      "title": "Avocado",
-      "image": "assets/images/ingredient_avocado.png",
-    },
-    {
-      "title": "Spinach",
-      "image": "assets/images/ingredient_spinach.png",
-    },
-    {
-      "title": "Bread",
-      "image": "assets/images/ingredient_spinach.png",
-    },
-
-  ];
+  Future<List<IngredientsModel>> fetchIngredientsList() async {
+    IngredientsParse ingredientsParser = IngredientsParse();
+    List<IngredientsModel> ingredientsList = await ingredientsParser.parseXmlFile();
+    return ingredientsList;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 75,
-      child: ListView.builder(
-        itemCount: ingredientsList.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          var ingredient = ingredientsList[index];
-          return IngredientsCard(
-              title: ingredient["title"],
-              imageIngredients: ingredient["image"],
-          );
-        },
-      ),
+    return FutureBuilder<List<IngredientsModel>>(
+        future: fetchIngredientsList(),
+        builder: (context, snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          }
+          else if(snapshot.hasError) {
+            return Text('Error ${snapshot.error}');
+          }
+          else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No toppings available.'));
+          }
+          else{
+            return SizedBox(
+              height: 75,
+              child: ListView.builder(
+                itemCount: snapshot.data?.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  var ingredient = snapshot.data?[index];
+                  return IngredientsCard(
+                    title: ingredient!.title,
+                    imageIngredients: ingredient.image
+                  );
+                },
+              ),
+            );
+          }
+        }
     );
   }
 }

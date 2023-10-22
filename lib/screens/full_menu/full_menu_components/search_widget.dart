@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sushi_shop_project/data/parsing_for_search_dish/dish_data_for_search.dart';
+import 'package:sushi_shop_project/data_parsing/parsing/parsing_for_search_dish/dish_data_for_search_parse.dart';
 import 'package:sushi_shop_project/models/dish_model_for_search.dart';
 import 'package:sushi_shop_project/screens/full_menu/helpers/view_a_dish_helper.dart';
 
@@ -18,22 +18,23 @@ class _SearchWidgetState extends State<SearchWidget> {
   bool isSearchOpen = false;
   List<DishSearchModel> displayList = [];
 
+  String? selectedCategory;
+
   void updateList(String value) {
-    if (value.isEmpty) {
-      setState(() {
-        isSearchOpen = false;
-        displayList.clear();
-      });
-    } else {
-      setState(() {
-        isSearchOpen = true;
-        displayList = DishDataForSearch.mainDishList
-            .where((element) =>
-            element.dishTitle!.toLowerCase().contains(value.toLowerCase()))
-            .toList();
-      });
-    }
+    setState(() {
+      isSearchOpen = true;
+      displayList = DishDataForSearchParse.mainDishList
+          .where((element) =>
+          element.dishTitle!
+              .toLowerCase()
+              .contains(value.toLowerCase()))
+          .toList();
+    });
+    print("Displaying ${displayList.length} items from displayList.");
   }
+
+
+
 
 
   void _closeSearch() {
@@ -107,6 +108,14 @@ class _SearchWidgetState extends State<SearchWidget> {
                 //     width: 25,
                 //   ),
                 // ),
+                if (isSearchOpen)
+                  IconButton(
+                    onPressed: _closeSearch,
+                    icon: const Icon(
+                      Icons.close,
+                      color: Colors.grey,
+                    ),
+                  ),
               ],
             ),
           ),

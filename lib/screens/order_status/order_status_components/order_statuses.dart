@@ -79,9 +79,9 @@ class _OrderStatusFirstState extends State<OrderStatusFirst> {
     return Column(
       children: [
         buildOrderStatusText(
-            "Your dishes are ready.", FontWeight.w600, const Color(0xFF8E8EA9)),
+            "Your order is accepted", FontWeight.w600, const Color(0xFF8E8EA9)),
         buildOrderStatusText(
-            "Enjoy!", FontWeight.w800, const Color(0xFFFFB01D)),
+            "We will contact you!", FontWeight.w800, const Color(0xFFFFB01D)),
         const SizedBox(height: 40),
         buildOrderImage(orderTimeProvider),
       ],

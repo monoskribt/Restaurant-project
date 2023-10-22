@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <toppings>
+        <title>Extra eggs</title>
+        <price>4.20</price>
+    </toppings>
+    <toppings>
+        <title>Extra spinach</title>
+        <price>2.80</price>
+    </toppings>
+    <toppings>
+        <title>Extra bread</title>
+        <price>1.80</price>
+    </toppings>
+    <toppings>
+        <title>Extra tomato</title>
+        <price>2.10</price>
+    </toppings>
+    <toppings>
+        <title>Extra cucumber</title>
+        <price>1.60</price>
+    </toppings>
+    <toppings>
+        <title>Extra olives</title>
+        <price>3.50</price>
+    </toppings>
+    <toppings>
+        <title>Extra pepper</title>
+        <price>1.50</price>
+    </toppings>
+    <toppings>
+        <title>Extra avocado</title>
+        <price>5.40</price>
+    </toppings>
+</menu>

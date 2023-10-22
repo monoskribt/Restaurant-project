@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
 import 'package:sushi_shop_project/features/provider/card_details_provider.dart';
 import 'package:sushi_shop_project/screens/drawer_widget/main_drawer.dart';
 import 'package:sushi_shop_project/screens/order_status/order_status.dart';
@@ -98,27 +100,31 @@ class Payment extends StatelessWidget {
                   ),
                 ),
               ),
-              const Column(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(bottom: 2.0),
-                        child: Text(
-                          "Gram Bistro",
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF8E8EA9),
-                            fontFamily: "Mulish-Regular",
-                          ),
+                        padding: const EdgeInsets.only(bottom: 2.0),
+                        child: BlocBuilder<RestaurantCubit, String>(
+                          builder: (context, selectedRestaurant) {
+                            return Text(
+                              selectedRestaurant,
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF8E8EA9),
+                                fontFamily: "Mulish-Regular",
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ],
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         "Checkout",

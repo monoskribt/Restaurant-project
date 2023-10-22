@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <bju>
+        <title>kcal</title>
+        <value>400</value>
+    </bju>
+    <bju>
+        <title>grams</title>
+        <value>510</value>
+    </bju>
+    <bju>
+        <title>proteins</title>
+        <value>30</value>
+    </bju>
+    <bju>
+        <title>carbs</title>
+        <value>56</value>
+    </bju>
+    <bju>
+        <title>fats</title>
+        <value>24</value>
+    </bju>
+</menu>

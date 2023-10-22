@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <ingredients>
+        <title>Egg</title>
+        <image>assets/images/ingredient_egg.png</image>
+    </ingredients>
+    <ingredients>
+        <title>Avocado</title>
+        <image>assets/images/ingredient_avocado.png</image>
+    </ingredients>
+    <ingredients>
+        <title>Spinach</title>
+        <image>assets/images/ingredient_spinach.png</image>
+    </ingredients>
+    <ingredients>
+        <title>Bread</title>
+        <image>assets/images/ingredient_spinach.png</image>
+    </ingredients>
+</menu>

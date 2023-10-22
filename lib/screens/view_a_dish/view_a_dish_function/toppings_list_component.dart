@@ -1,60 +1,46 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:sushi_shop_project/data_parsing/models/toppings_model.dart';
+import 'package:sushi_shop_project/data_parsing/parsing/parsing_for_toppings/toppings_parse.dart';
 import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_components/toppings_card.dart';
 
-
 class ToppingsListComponent extends StatelessWidget {
-  ToppingsListComponent({Key? key}) : super(key: key);
+  const ToppingsListComponent({Key? key}) : super(key: key);
 
-  final List toppingsList = [
-    {
-      "name": "Extra eggs",
-      "price": 4.20,
-    },
-    {
-      "name": "Extra spinach",
-      "price": 2.80,
-    },
-    {
-      "name": "Extra bread",
-      "price": 1.80,
-    },
-    {
-      "name": "Extra tomato",
-      "price": 2.10,
-    },
-    {
-      "name": "Extra cucumber",
-      "price": 1.60,
-    },
-    {
-      "name": "Extra olives",
-      "price": 3.50,
-    },
-    {
-      "name": "Extra pepper",
-      "price": 1.50,
-    },
-    {
-      "name": "Extra avocado",
-      "price": 5.40,
-    },
-  ];
+  Future<List<ToppingsModel>> fetchToppingsList() async {
+    ToppingsParse toppingsParser = ToppingsParse();
+    List<ToppingsModel> toppingsList = await toppingsParser.parseXmlFile();
+    return toppingsList;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: toppingsList.length,
-        itemBuilder: (context, index) {
-          var toppings = toppingsList[index];
-          return ToppingsCard(
-            nameToppings: toppings["name"],
-            priceToppings: toppings["price"],
+    return FutureBuilder<List<ToppingsModel>>(
+      future: fetchToppingsList(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
+        else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+        else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return const Center(child: Text('No toppings available.'));
+        }
+        else {
+          return ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: snapshot.data?.length,
+            itemBuilder: (context, index) {
+              var toppings = snapshot.data?[index];
+              return ToppingsCard(
+                nameToppings: toppings!.title,
+                priceToppings: toppings!.price,
+              );
+            },
           );
-        },
-      ),
+        }
+      },
     );
   }
 }

@@ -1,10 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sushi_shop_project/data_parsing/parsing/parsing_contacts/contacts_parse.dart';
+import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
 import 'package:sushi_shop_project/screens/drawer_widget/main_drawer.dart';
 import 'package:sushi_shop_project/screens/full_menu/full_menu.dart';
 
-class Contacts extends StatelessWidget {
+class Contacts extends StatefulWidget {
   const Contacts({Key? key}) : super(key: key);
+
+  @override
+  State<Contacts> createState() => _ContactsState();
+
+}
+
+
+
+class _ContactsState extends State<Contacts> {
+
+  String contactNumber = "";
+  String contactEmail = "";
+  String contactAddress = "";
+
+  @override
+  void initState() {
+    super.initState();
+    loadContactInfo();
+  }
+
+  Future<void> loadContactInfo() async {
+    final restaurantCubit = context.read<RestaurantCubit>();
+    final selectedRestaurant = restaurantCubit.state;
+    final contactInfo = await ContactInfoParse.loadContactInfo(selectedRestaurant);
+
+    setState(() {
+      contactNumber = contactInfo["number"]!;
+      contactEmail = contactInfo["email"]!;
+      contactAddress = contactInfo["address"]!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,27 +116,31 @@ class Contacts extends StatelessWidget {
                   ),
                 ),
               ),
-              const Column(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(bottom: 2.0),
-                        child: Text(
-                          "Gram Bistro",
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF8E8EA9),
-                            fontFamily: "Mulish-Regular",
-                          ),
+                        padding: const EdgeInsets.only(bottom: 2.0),
+                        child: BlocBuilder<RestaurantCubit, String>(
+                          builder: (context, selectedRestaurant) {
+                            return Text(
+                              selectedRestaurant,
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF8E8EA9),
+                                fontFamily: "Mulish-Regular",
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ],
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         "Contacts",
@@ -185,15 +223,13 @@ class Contacts extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        buildContactRow("Phone:", "+40 726 301 995"),
+        buildContactRow("Phone:", contactNumber),
         const SizedBox(height: 15),
-        buildContactRow("Email:", "office@grambisto.com"),
-        const SizedBox(height: 15),
-        buildContactRow("Hours:", "Man - Fri: 08:30-00:00\nSut - Sun: 10:00-00:00"),
+        buildContactRow("Email:", contactEmail),
         const SizedBox(height: 15),
         buildContactRow(
           "Address:",
-          "Nicolae Titulescu 6-8\nAmerica House\nBucharest",
+          contactAddress,
         ),
       ],
     );

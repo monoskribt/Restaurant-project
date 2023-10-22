@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sushi_shop_project/features/provider/order_provider.dart';
+import 'package:sushi_shop_project/features/provider/user_contact_details_provider.dart';
+import 'package:sushi_shop_project/screens/order/helpers/bottom_sheet_helper.dart';
+import 'package:sushi_shop_project/screens/order/order_components/snack_bar.dart';
 import 'package:sushi_shop_project/screens/order_status/order_status.dart';
 
 class OrderBottomBar extends StatelessWidget {
@@ -33,10 +38,23 @@ class OrderBottomBar extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const OrderStatus()),
-          );
+          final orderProvider =
+              Provider.of<OrderProvider>(context, listen: false);
+          final orderMap = orderProvider.orderMap;
+          final userContactProvider =
+              Provider.of<UserContactDetailsProvider>(context, listen: false);
+          if (orderMap.isNotEmpty) {
+            if (userContactProvider.isContactInfoFinish) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const OrderStatus()),
+              );
+            } else {
+              BottomSheetHelper.showViewAContact(context);
+            }
+          } else {
+            SnackBarBasket.showSnackBar(context);
+          }
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
