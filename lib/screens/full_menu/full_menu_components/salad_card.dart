@@ -17,6 +17,8 @@ class SaladCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         ViewADishHelper.showViewADish(
@@ -28,64 +30,68 @@ class SaladCard extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 16, right: 20, bottom: 16),
+        padding: EdgeInsets.only(
+            top: 0.02 * screenHeight,
+            right: 0.03 * screenHeight,
+            bottom: 0.02 * screenHeight
+        ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Container(
-            width: 142,
+            width: 0.35 * screenWidth,
             color: Colors.white,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(
-                  height: 110,
-                  width: 110,
-                  child: Center(
-                    child: Image.asset(
-                      imageSaladCard,
-                      width: 110,
-                      height: 110,
-                    ),
+                Center(
+                  child: Image.asset(
+                    imageSaladCard,
+                    height: 0.25 * screenHeight / 2,
+                    width: 0.25 * screenWidth,
                   ),
                 ),
                 Text(
                   nameDish,
-                  style: const TextStyle(
-                    fontSize: 14,
+                  style: TextStyle(
+                    fontSize: 0.018 * screenHeight,
                     fontWeight: FontWeight.w600,
-                    fontFamily: "Mulish",
-                    color: Color(0xFF32324D),
+                    fontFamily: "Mulish-Regular",
+                    color: const Color(0xFF32324D),
                   ),
                   textAlign: TextAlign.center,
                   softWrap: true,
                 ),
-
+                SizedBox(height: 0.001 * screenHeight),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 3.0),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          bottom: 0.008 * screenHeight
+                      ),
                       child: Text(
                         "\$",
                         style: TextStyle(
-                          fontSize: 8,
+                          fontSize: 0.012 * screenHeight,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFFFFB080),
+                          fontFamily: "Mulish-Regular",
+                          color: const Color(0xFFFFB080),
                         ),
                       ),
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(width: 0.005 * screenWidth),
                     Text(
                       price.toStringAsFixed(2),
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: TextStyle(
+                        fontSize: 0.018 * screenHeight,
                         fontWeight: FontWeight.w700,
-                        fontFamily: "Mulish",
-                        color: Color(0xFFFF7B2C),
+                        fontFamily: "Mulish-Regular",
+                        color: const Color(0xFFFF7B2C),
                       ),
                     ),
                   ],
                 ),
+                SizedBox(height: 0.008 * screenHeight),
               ],
             ),
           ),

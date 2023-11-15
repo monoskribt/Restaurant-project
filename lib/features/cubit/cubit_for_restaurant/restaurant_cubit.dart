@@ -4,7 +4,11 @@ import 'package:sushi_shop_project/data_parsing/parsing/parsing_for_search_dish/
 import 'package:xml/xml.dart' as xml;
 
 class RestaurantCubit extends Cubit<String> {
-  RestaurantCubit() : super("Gram Bistro");
+  RestaurantCubit() : super("Gram Bistro") {
+    if (state == null) {
+      selectRestaurant("Gram Bistro");
+    }
+  }
 
   void selectRestaurant(String restaurantName) {
     emit(restaurantName);
@@ -63,5 +67,4 @@ class RestaurantCubit extends Cubit<String> {
       return null;
     }
   }
-
 }

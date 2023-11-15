@@ -43,6 +43,7 @@ class DailySpecials extends StatelessWidget {
                 height: 0.19 * MediaQuery.of(context).size.height,
                 width: 0.95 * MediaQuery.of(context).size.width,
                 child: PageView.builder(
+                  physics: const BouncingScrollPhysics(),
                   itemCount: snapshot.data?.length ?? 0,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {

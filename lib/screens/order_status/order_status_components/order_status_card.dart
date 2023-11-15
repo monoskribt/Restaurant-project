@@ -18,16 +18,21 @@ class OrderStatusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _buildProductInfo(),
-          _buildPriceInfo(),
-        ],
-      ),
-    );
+          padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0),
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildProductInfo(context),
+                SizedBox(width: 0.025 * screenWidth),
+                _buildPriceInfo(),
+              ],
+            ),
+          ),
+        );
   }
 
   Widget _buildPriceInfo() {
@@ -72,28 +77,33 @@ class OrderStatusCard extends StatelessWidget {
     );
   }
 
-  Widget _buildProductInfo() {
+  Widget _buildProductInfo(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-            SizedBox(
-              width: 65,
-              height: 65,
-              child: Image.asset(imageOrderList),
+            Image.asset(
+                imageOrderList,
+               width: 0.15 * screenWidth,
+              height: 0.15 * screenHeight / 2,
             ),
             const SizedBox(width: 10),
             SizedBox(
-              width: 150,
+              width: 0.4 * screenWidth,
               child: Text(
                 titleOrderList,
-                style: const TextStyle(
-                  fontSize: 14,
+                style: TextStyle(
+                  fontSize: 0.018 * screenHeight,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xFF32324D),
+                  color: const Color(0xFF32324D),
                   fontFamily: "Mulish-Regular",
                 ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
               ),
             ),
           ],

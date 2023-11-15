@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sushi_shop_project/features/provider/order_provider.dart';
 import 'package:sushi_shop_project/models/order_model.dart';
 import 'package:sushi_shop_project/screens/full_menu/helpers/view_a_dish_helper.dart';
-import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_components/snackbar_cart_counter.dart';
+import 'package:sushi_shop_project/screens/view_a_dish/snackbar/snackbar_cart_counter.dart';
 
 
 class RecommendedSidesCard extends StatelessWidget {
@@ -21,6 +21,8 @@ class RecommendedSidesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     final orderProvider = Provider.of<OrderProvider>(context, listen: false);
 
     return GestureDetector(
@@ -43,42 +45,38 @@ class RecommendedSidesCard extends StatelessWidget {
             color: Colors.white,
             child: Row(
               children: [
-                SizedBox(
-                  width: 120,
-                  height: 140,
-                  child: Image.asset(
-                    imageRecommended,
-                    width: 140,
-                    height: 140,
-                  ),
+                Image.asset(
+                  imageRecommended,
+                  width: 0.25 * screenWidth,
+                  height: 0.25 * screenHeight,
                 ),
-                Expanded(
+                SizedBox(width: 0.02 * screenWidth),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 1.0, bottom: 10.0, top: 10.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  nameRecommended,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: "Mulish-Regular",
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xFF32324D),
-                                  ),
-                                  softWrap: true,
-                                ),
-                              ],
+                          SizedBox(
+                            width: 0.45 * screenWidth,
+                            child: Text(
+                              nameRecommended,
+                              style: TextStyle(
+                                fontSize: 0.02 * screenHeight,
+                                fontFamily: "Mulish-Regular",
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF32324D),
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: true,
                             ),
                           ),
                         ],
                       ),
+                      SizedBox(height: 0.02 * screenHeight),
                       Row(
                         children: [
                           const Padding(
@@ -108,6 +106,7 @@ class RecommendedSidesCard extends StatelessWidget {
                     ],
                   ),
                 ),
+                const Spacer(),
                 SnackbarCartCounter(
                   onAdd: (newQuantity) {
                     OrderModel orderModel = OrderModel(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ToppingsProvider extends ChangeNotifier {
-  int quantity = 0;
+  int quantity = 1;
   Map<String, double> selectedToppings = {};
 
 

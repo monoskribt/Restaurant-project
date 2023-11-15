@@ -13,9 +13,12 @@ class OrderListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final orderMap = Provider.of<OrderProvider>(context).orderMap;
+    if (orderMap.isEmpty) {
+
+      return Container();
+    }
 
     return SizedBox(
-      width: 360,
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
@@ -32,8 +35,6 @@ class OrderListView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 25, left: 0),
       child: SizedBox(
-        height: 120,
-        width: 360,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Dismissible(
@@ -58,11 +59,13 @@ class OrderListView extends StatelessWidget {
                   colors: [Color(0xFFFFB01D), Colors.transparent],
                 ),
               ),
-              child: OrderCard(
-                imageOrder: order.image,
-                nameOrder: order.name,
-                priceOrder: order.price,
-                quantityOrder: order.quantity,
+              child: SizedBox(
+                child: OrderCard(
+                  imageOrder: order.image,
+                  nameOrder: order.name,
+                  priceOrder: order.price,
+                  quantityOrder: order.quantity,
+                ),
               ),
             ),
           ),

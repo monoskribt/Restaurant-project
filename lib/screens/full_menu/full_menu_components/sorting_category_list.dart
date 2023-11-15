@@ -7,20 +7,24 @@ class SortingCategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: 45,
+      height: 0.06 * screenHeight,
       child: BlocBuilder<SortingDishesCubit, SortingDishesState>(
         builder: (context, selectedCategory) {
           return ListView.separated(
+            physics: const BouncingScrollPhysics(),
             itemCount: SortingDishesState.values.length,
             scrollDirection: Axis.horizontal,
-            separatorBuilder: (context, index) => const SizedBox(width: 8.0),
+            separatorBuilder: (context, index) => SizedBox(width: 0.02 * screenWidth),
             itemBuilder: (context, index) {
               final category = SortingDishesState.values[index];
               final isSelected = category == selectedCategory;
               String categoryName = _getCategoryName(category);
 
               return _buildCategoryButton(
+                context: context,
                 categoryName: categoryName,
                 isSelected: isSelected,
                 onTap: () {
@@ -35,6 +39,7 @@ class SortingCategoryList extends StatelessWidget {
   }
 
   Widget _buildCategoryButton({
+    required BuildContext context,
     required String categoryName,
     required bool isSelected,
     required VoidCallback onTap,
@@ -44,9 +49,9 @@ class SortingCategoryList extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 14,
-            vertical: 12,
+          padding: EdgeInsets.symmetric(
+            horizontal: 0.04 * MediaQuery.of(context).size.width,
+            vertical: 0.01 * MediaQuery.of(context).size.height,
           ),
           decoration: isSelected
               ? const BoxDecoration(
@@ -70,7 +75,7 @@ class SortingCategoryList extends StatelessWidget {
             child: Text(
               categoryName,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 0.021 * MediaQuery.of(context).size.height,
                 fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                 fontFamily: "Mulish-Regular",
                 color: isSelected ? Colors.white : const Color(0xFF8E8EA9),

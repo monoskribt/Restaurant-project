@@ -1,36 +1,37 @@
 <menu>
     <category id='1' name='Most Popular'>
         <dish id='101'>
-            <title>Most-Popular-1</title>
-            <price>10.00</price>
+            <title>Вареники з картоплею та гусячою печінкою</title>
+            <price>54.00</price>
             <images>assets/images/most_popular_1.png</images>
-            <description>most popular</description>
+            <description>Заварне тісто і нотки цибулевого мармеладу в начинці.</description>
         </dish>
         <dish id='102'>
-            <title>Most-Popular-2</title>
-            <price>20.00</price>
+            <title>Картопля смажена з білими грибами та цибулею</title>
+            <price>37.40</price>
             <images>assets/images/most_popular_2.png</images>
-            <description>most popular</description>
+            <description>Улюблена домашня страва, зрозуміла для всіх. Смакує до стейка.</description>
         </dish>
         <dish id='103'>
-            <title>Most-Popular-3</title>
-            <price>30.00</price>
+            <title>Шмат індички з товченою картоплею</title>
+            <price>75.20</price>
             <images>assets/images/most_popular_2.png</images>
-            <description>most popular</description>
+            <description>Завдяки технології «су вид» м’ясо індички виходить дуже ніжним, а соус «качине песто» надає йому особливого смаку.</description>
         </dish>
     </category>
+
     <category id = '2' name = 'Salad'>
         <dish id = '201'>
-            <title>Salad-1</title>
-            <price>40.00</price>
+            <title>Салат з копченою куркою та листям салату</title>
+            <price>54.80</price>
             <images>assets/images/salad_1.png</images>
-            <description>salad</description>
+            <description>Курка власного копчення, листя руколи, шпинату й салату айсберг, чорні та білі грінки, яйце «су вид» і незвичайний соус із тюльки. </description>
         </dish>
         <dish id = '202'>
-            <title>Salad-2</title>
-            <price>50.00</price>
+            <title>Салат з різнокольорових томатів з сичужним сиром</title>
+            <price>120.00</price>
             <images>assets/images/salad_1.png</images>
-            <description>salad</description>
+            <description>Червоні, рожеві та чорні помідори, молодий сир і делікарний соус.</description>
         </dish>
         <dish id = '203'>
             <title>Salad-3</title>
@@ -39,46 +40,49 @@
             <description>salad</description>
         </dish>
     </category>
+
     <category id = '3' name = 'Pasta'>
         <dish id = '301'>
-            <title>Pasta-1</title>
-            <price>70.20</price>
+            <title>Паста з зеленню</title>
+            <price>25.20</price>
             <images>assets/images/pasta_1.png</images>
-            <description>Pasta</description>
+            <description>Паста з зеленню - соус з пряними травами: руколою, базиліком, петрушкою, з добавкою часнику і оливкової олії.</description>
         </dish>
         <dish id = '302'>
-            <title>Pasta-2</title>
-            <price>80.00</price>
+            <title>Макарони з часником та оливковою олією</title>
+            <price>82.00</price>
             <images>assets/images/pasta_1.png</images>
-            <description>'Фірмове сало від 'Корчми' з гірчицею копчене'- це справжня гастрономічна палітра смаків і ароматів. Ця страва представляє собою найкраще домашнє сало, виготовлене з найвідібраніших шматочків свинини та неперевершене поєднання копченої гірчиці. Копчене сало надає унікальний аромат та ніжний смак, підкреслюючи вишуканий смак свіжої гірчиці. Цей делікатес відображає золотий стандарт ресторану 'Корчма' і запрошує вас на незабутню гастрономічну подорож, де кожен шматочок є відомим і відчутним акордом на шляху до задоволення від їжі. 'Фірмове сало від 'Корчми' з гірчицею копчене' - це втілення смакового розкоші та гастрономічної різноманітності, яке залишить незабутні враження на вашому піднебінні.</description>
+            <description>Pasta aglio e olio - це напевно одна з найпростіших страв італійської кухні, але зроблені правильно, ці спагетті з часником та оливковою олією приносять неймовірне смакове задоволення.</description>
         </dish>
         <dish id = '303'>
-            <title>Pasta-3</title>
+            <title>Паста пенне Араб’ята</title>
             <price>90.00</price>
             <images>assets/images/pasta_1.png</images>
-            <description>'Оселедець домашнього посолу Тараса Бульби' - це насичений відтінками смаку та аромату делікатес, який переносить вас у вир цікавих та смачних традицій. Цей оселедець - продукт власного посолу Тараса Бульби, виготовлений з найсвіжіших оселедців та ніжно підготовлений з додаванням традиційних спецій та інгредієнтів. Завдяки майстерності і досвіду, оселедець набуває яскравого смаку та аромату, які виразно виражають домашність та автентичність. Цей делікатес стає не лише джерелом смакового задоволення, але й можливістю зануритися в кулінарні традиції і культуру української кухні через очі Тараса Бульби.</description>
+            <description>Паста пенне Араб’ята — популярна італійська страва, її назва в перекладі означає «розлючений». Не дивно що характеристика пасти перенесена на її назву, бо соус дуже гострий — через велику кількість томатів і перцю. Та, якщо вам не до душі така гострота — корегуйте кількість перцю.</description>
         </dish>
     </category>
+
     <category id = '4' name = 'ProductOfTheDay'>
         <dish id = '401'>
-            <title>ProductOfTheDay-1</title>
-            <price>100.00</price>
+            <title>Паштет з гусячої печінки</title>
+            <price>170.10</price>
             <images>assets/images/dish_of_day_1.png</images>
-            <description>Подається зі сметаною.</description>
+            <description>Особливо смакує з малиновим та вишневим варенням.</description>
         </dish>
         <dish id = '402'>
-            <title>ProductOfTheDay-2</title>
-            <price>110.00</price>
+            <title>Ципа з медом</title>
+            <price>140.20</price>
             <images>assets/images/dish_of_day_1.png</images>
-            <description>Запечена до рум'яної скоринки з цибулею, під вершковим соусом та сиром.</description>
+            <description>Ніжне курча, мариноване в аджиці з медом і запечене до золотистої скоринки й запаморочливого аромату.</description>
         </dish>
         <dish id = '403'>
-            <title>ProductOfTheDay-3</title>
-            <price>120.00</price>
+            <title>Галушки з грибами та кролячими язичками</title>
+            <price>80.00</price>
             <images>assets/images/dish_of_day_1.png</images>
-            <description>Шматочки яловичого язика, обсмажені на вершковому маслі та доведені до смаку у соусі з вершків, глив та шпинату.</description>
+            <description>Неординарна компанія для традиційних галушок. Ніжно і ситно.</description>
         </dish>
     </category>
+
     <category id = '5' name = 'Recommended'>
         <dish id = '501'>
             <title>Mac and Cheese</title>

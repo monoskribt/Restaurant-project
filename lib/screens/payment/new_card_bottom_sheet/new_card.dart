@@ -6,7 +6,7 @@ import 'package:sushi_shop_project/models/card_details_model.dart';
 import 'package:sushi_shop_project/screens/payment/tools/input_formatters.dart';
 
 class NewCard extends StatefulWidget {
-  NewCard({Key? key}) : super(key: key);
+  const NewCard({Key? key}) : super(key: key);
 
   @override
   State<NewCard> createState() => _NewCardState();
@@ -36,94 +36,99 @@ class _NewCardState extends State<NewCard> {
             cardDetails.cvv.isNotEmpty;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Add a new card",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontFamily: "Mulish-Regular",
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF32324D),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: SingleChildScrollView(
+          child: Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                children: [
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Add a new card",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: "Mulish-Regular",
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF32324D),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  buildInputField(
+                    _cardNumberController,
+                    'Card number',
+                    TextInputType.number,
+                    [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(16),
+                      CartNumberInputFormat(),
+                    ],
+                    cardDetailsProvider,
+                    TextInputAction.next,
+                  ),
+                  const SizedBox(height: 16),
+                  buildInputField(
+                    _cardholderNameController,
+                    'Cardholder name',
+                    TextInputType.text,
+                    [],
+                    cardDetailsProvider,
+                    TextInputAction.next,
+                  ),
+                  const SizedBox(height: 16),
+                  buildDateAndCVVFields(cardDetailsProvider),
+
+                  const SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                    if (isCardInfoFinish) {
+                      CardDetails newCard = CardDetails();
+                      newCard.cardNumber = _cardNumberController.text;
+                      newCard.cardholderName = _cardholderNameController.text;
+                      newCard.expireDate = _expireDateController.text;
+                      newCard.cvv = _cvvController.text;
+
+                      cardDetailsProvider.addCard(newCard);
+
+                      _cardNumberController.clear();
+                      _cardholderNameController.clear();
+                      _expireDateController.clear();
+                      _cvvController.clear();
+
+                      Navigator.pop(context);
+                    }
+                    isCardInfoFinish ? cardDetailsProvider.setShowCardBanking(true) : null;
+                  },
+                  child: Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF615793),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Add card",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: "Mulish-Regular",
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                buildInputField(
-                  _cardNumberController,
-                  'Card number',
-                  TextInputType.number,
-                  [
-                    FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(16),
-                    CartNumberInputFormat(),
-                  ],
-                  cardDetailsProvider,
-                  TextInputAction.next,
-                ),
-                const SizedBox(height: 16),
-                buildInputField(
-                  _cardholderNameController,
-                  'Cardholder name',
-                  TextInputType.text,
-                  [],
-                  cardDetailsProvider,
-                  TextInputAction.next,
-                ),
-                const SizedBox(height: 16),
-                buildDateAndCVVFields(cardDetailsProvider),
-
-                const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  if (isCardInfoFinish) {
-                    CardDetails newCard = CardDetails();
-                    newCard.cardNumber = _cardNumberController.text;
-                    newCard.cardholderName = _cardholderNameController.text;
-                    newCard.expireDate = _expireDateController.text;
-                    newCard.cvv = _cvvController.text;
-
-                    cardDetailsProvider.addCard(newCard);
-
-                    _cardNumberController.clear();
-                    _cardholderNameController.clear();
-                    _expireDateController.clear();
-                    _cvvController.clear();
-
-                    Navigator.pop(context);
-                  }
-                  isCardInfoFinish ? cardDetailsProvider.setShowCardBanking(true) : null;
-                },
-                child: Container(
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF615793),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Add card",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: "Mulish-Regular",
-                        color: Colors.white,
-                      ),
-                    ),
                   ),
                 ),
+                  const SizedBox(height: 10),
+                ],
               ),
-                const SizedBox(height: 10),
-              ],
             ),
           ),
         ),
@@ -242,7 +247,7 @@ class _NewCardState extends State<NewCard> {
     showModalBottomSheet<void>(
         context: context,
         builder: (BuildContext context) {
-          return NewCard();
+          return const NewCard();
         }
     );
   }

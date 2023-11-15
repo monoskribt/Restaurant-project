@@ -30,6 +30,7 @@ class IngredientsListComponent extends StatelessWidget {
             return SizedBox(
               height: 75,
               child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 itemCount: snapshot.data?.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {

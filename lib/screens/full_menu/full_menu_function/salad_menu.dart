@@ -41,6 +41,7 @@ class SaladMenu extends StatelessWidget {
               return SizedBox(
                 height: 0.3 * MediaQuery.of(context).size.height,
                 child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   itemCount: snapshot.data?.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {

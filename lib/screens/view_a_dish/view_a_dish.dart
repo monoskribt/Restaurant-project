@@ -32,13 +32,17 @@ class _ViewADishState extends State<ViewADish> {
     return ChangeNotifierProvider(
         create: (context) => ToppingsProvider(),
       child: Scaffold(
-        body: buildBody(),
+        body: GestureDetector(onTap: () {
+          FocusScope.of(context).unfocus();
+        }, child: buildBody()),
         bottomNavigationBar: buildBottomNavigationBar(),
       ),
     );
   }
 
   Widget buildBody() {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -55,7 +59,11 @@ class _ViewADishState extends State<ViewADish> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+        padding: EdgeInsets.only(
+          top: 0.025 * screenHeight,
+          left: 0.055 * screenWidth,
+          right: 0.055 * screenWidth,
+        ),
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: buildColumnContent(),
@@ -65,108 +73,117 @@ class _ViewADishState extends State<ViewADish> {
   }
 
   Column buildColumnContent() {
+    final screenHeight = MediaQuery.of(context).size.height;
     return Column(
       children: [
         buildImage(),
-        const SizedBox(height: 30.0),
+        SizedBox(height: 0.04 * screenHeight),
         buildDishDetails(),
-        const SizedBox(height: 15),
+        SizedBox(height: 0.02 * screenHeight),
         buildDescription(),
-        const SizedBox(height: 35),
-        BJUListComponent(),
-        const SizedBox(height: 35),
+        SizedBox(height: 0.045 * screenHeight),
+        const BJUListComponent(),
+        SizedBox(height: 0.045 * screenHeight),
         buildSectionTitle("Ingredients"),
-        const SizedBox(height: 15),
-        IngredientsListComponent(),
-        const SizedBox(height: 35),
+        SizedBox(height: 0.02 * screenHeight),
+        const IngredientsListComponent(),
+        SizedBox(height: 0.045 * screenHeight),
         buildSectionTitle("Add toppings"),
-        const SizedBox(height: 15),
+        SizedBox(height: 0.02 * screenHeight),
         const ToppingsListComponent(),
-        const SizedBox(height: 30),
+        SizedBox(height: 0.04 * screenHeight),
         buildSectionTitle("Recommended sides"),
-        const SizedBox(height: 15),
+        SizedBox(height: 0.02 * screenHeight),
         const RecommendedListComponent(),
-        const SizedBox(height: 30),
+        SizedBox(height: 0.04 * screenHeight),
         buildSectionTitle("Add a request"),
-        const SizedBox(height: 15),
+        SizedBox(height: 0.02 * screenHeight),
         RequestInput(nameDishView: widget.nameDishView, priceView: widget.priceView),
-        const SizedBox(height: 25),
+        SizedBox(height: 0.035 * screenHeight),
       ],
     );
   }
 
   Widget buildImage() {
-    return SizedBox(
-      width: 400,
-      height: 200,
-      child: Center(
-        child: Image.asset(
-          widget.imageDishView,
-          width: 200,
-          height: 200,
-          fit: BoxFit.cover,
-        ),
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Center(
+      child: Image.asset(
+        widget.imageDishView,
+        width: 0.5 * screenWidth,
+        height: 0.3 * screenHeight,
+        fit: BoxFit.contain,
       ),
     );
   }
 
   Widget buildDishDetails() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      textBaseline: TextBaseline.alphabetic,
-      children: [
-        SizedBox(
-          width: 260.0,
-          child: Text(
-            widget.nameDishView,
-            style: const TextStyle(
-              fontSize: 21.0,
-              fontWeight: FontWeight.w700,
-              fontFamily: "Mulish-Regular",
-              color: Color(0xFF32324D),
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        textBaseline: TextBaseline.alphabetic,
+        children: [
+          SizedBox(
+            width: 1 * screenWidth,
+            child: Text(
+              widget.nameDishView,
+              style: TextStyle(
+                fontSize: 0.03 * screenHeight,
+                fontWeight: FontWeight.w700,
+                fontFamily: "Mulish-Regular",
+                color: const Color(0xFF32324D),
+              ),
             ),
           ),
-        ),
-        Row(
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(bottom: 7.0, right: 3.0),
-              child: Text(
-                "\$",
-                style: TextStyle(
-                  fontSize: 13,
-                  fontFamily: "Mulish-Regular",
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xFFFFB080),
+          SizedBox(width: 0.07 * screenWidth),
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    bottom: 0.01 * screenHeight,
+                    right: 0.004 * screenHeight
+                ),
+                child: Text(
+                  "\$",
+                  style: TextStyle(
+                    fontSize: 0.016 *screenHeight,
+                    fontFamily: "Mulish-Regular",
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFFFFB080),
+                  ),
                 ),
               ),
-            ),
-            Text(
-              widget.priceView.toStringAsFixed(2),
-              style: const TextStyle(
-                fontSize: 24,
-                fontFamily: "Mulish-Regular",
-                fontWeight: FontWeight.w800,
-                color: Color(0xFFFF7B2C),
+              Text(
+                widget.priceView.toStringAsFixed(2),
+                style: TextStyle(
+                  fontSize: 0.031 * screenHeight,
+                  fontFamily: "Mulish-Regular",
+                  fontWeight: FontWeight.w800,
+                  color: const Color(0xFFFF7B2C),
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 
   Widget buildDescription() {
+    final screenHeight = MediaQuery.of(context).size.height;
     return Row(
       children: [
         Expanded(
           child: Text(
             widget.descriptionView,
-            style: const TextStyle(
-              fontSize: 14,
+            style: TextStyle(
+              fontSize: 0.018 * screenHeight,
               fontWeight: FontWeight.w500,
               fontFamily: "Mulish-Regular",
-              color: Color(0xFF8E8EA9),
+              color: const Color(0xFF8E8EA9),
             ),
           ),
         ),
@@ -175,15 +192,16 @@ class _ViewADishState extends State<ViewADish> {
   }
 
   Widget buildSectionTitle(String title) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return Row(
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 16,
+          style: TextStyle(
+            fontSize: 0.021 * screenHeight,
             fontWeight: FontWeight.w600,
             fontFamily: "Mulish-Regular",
-            color: Color(0xFF666687),
+            color: const Color(0xFF666687),
           ),
         ),
       ],

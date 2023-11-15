@@ -6,6 +6,8 @@ import 'package:sushi_shop_project/features/provider/request_provider.dart';
 import 'package:sushi_shop_project/features/provider/toppings_provider.dart';
 import 'package:sushi_shop_project/models/order_model.dart';
 
+import '../snackbar/snackbar_added_to_order.dart';
+
 class ViewBottomBar extends StatefulWidget {
   final double priceView;
   final String imageDishView;
@@ -56,25 +58,41 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
   }
 
   Widget buildBottomBar(double basePrice) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        buildQuantitySelector(),
-        buildAddToOrderButton(basePrice),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double buttonWidth = constraints.maxWidth * 0.4;
+        double buttonHeight = constraints.maxHeight * 0.08;
+
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            buildQuantitySelector(buttonWidth, buttonHeight),
+            buildAddToOrderButton(basePrice, buttonWidth, buttonHeight),
+          ],
+        );
+      },
     );
   }
 
-  Widget buildQuantitySelector() {
+  Widget buildQuantitySelector(double buttonWidth, double buttonHeight) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: 55,
-      padding: const EdgeInsets.only(top: 17, bottom: 17, left: 15, right: 15),
+      width: buttonWidth / 1.2,
+      height: buttonHeight,
+      padding: EdgeInsets.only(
+          top: 0.01 * screenHeight / 2,
+          bottom: 0.01 * screenHeight / 2,
+          left: 0.03 * screenWidth,
+          right: 0.03 * screenWidth),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: const Color(0xFFF6F6F9),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           GestureDetector(
             onTap: () {
@@ -87,12 +105,11 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
               color: Color(0xFFDCDCE4),
             ),
           ),
-          const SizedBox(width: 20),
           Text(
             quantityProvider.quantity.toString(),
-            style: const TextStyle(color: Color(0xFFA5A5BA), fontSize: 17),
+            style: TextStyle(
+                color: const Color(0xFFA5A5BA), fontSize: 0.025 * screenHeight),
           ),
-          const SizedBox(width: 20),
           GestureDetector(
             onTap: () {
               quantityProvider.updateQuantity(quantityProvider.quantity + 1);
@@ -107,7 +124,10 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
     );
   }
 
-  Widget buildAddToOrderButton(double basePrice) {
+  Widget buildAddToOrderButton(
+      double basePrice, double buttonWidth, double buttonHeight) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         if (quantityProvider.quantity > 0) {
@@ -118,17 +138,27 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
             quantity: quantityProvider.quantity,
             comment: requestProvider.request,
           );
-          orderProvider.addToOrder(orderModel);
-          quantityProvider.updateQuantity(0);
+          if (!orderProvider.orderMap.containsKey(widget.nameDishView)) {
+            orderProvider.addToOrder(orderModel);
+            showInfoAboutSelectedDish(context);
+          } else {
+            SnackBarAddToOrder.showSnackBar(
+                context,
+                'Dishes are already in order',
+                quantityProvider.quantity,
+                false);
+          }
           requestProvider.updateRequest('');
-          Navigator.pop(context);
         }
       },
       child: Container(
-        width: 200,
-        height: 60,
-        padding:
-            const EdgeInsets.only(top: 16, bottom: 16, left: 24, right: 24),
+        width: buttonWidth * 1.2,
+        height: buttonHeight * 1.1,
+        padding: EdgeInsets.only(
+            top: 0.01 * screenHeight,
+            bottom: 0.01 * screenHeight,
+            left: 0.04 * screenWidth,
+            right: 0.04 * screenWidth),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: const Color(0xFF615793),
@@ -165,5 +195,77 @@ class _ViewBottomBarState extends State<ViewBottomBar> {
         ),
       ),
     );
+  }
+
+  void showInfoAboutSelectedDish(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            title: Icon(
+              Icons.check_circle,
+              color: Colors.green,
+              size: 0.05 * screenHeight,
+            ),
+            content: Text(
+              '"${widget.nameDishView}" added to order in quantities: ${quantityProvider.quantity}',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 0.02 * screenHeight,
+                fontFamily: "Mulish-Regular",
+
+              ),
+            ),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(bottom: 0.02 * screenHeight),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      children: [
+                        TextButton(
+                          child: Text(
+                            'Continue',
+                            style: TextStyle(
+                              fontSize: 0.02 * screenHeight,
+                              fontFamily: "Mulish-Regular",
+                              fontWeight: FontWeight.w800,
+                              color: const Color(0xFFFF7B2C),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        TextButton(
+                          child: Text(
+                            'Order',
+                            style: TextStyle(
+                              fontSize: 0.02 * screenHeight,
+                              fontFamily: "Mulish-Regular",
+                              fontWeight: FontWeight.w800,
+                              color: const Color(0xFFFF7B2C),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pushReplacementNamed('/order_menu');
+                          },
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          );
+        });
   }
 }

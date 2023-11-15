@@ -30,7 +30,6 @@ class _SearchWidgetState extends State<SearchWidget> {
               .contains(value.toLowerCase()))
           .toList();
     });
-    print("Displaying ${displayList.length} items from displayList.");
   }
 
 
@@ -56,13 +55,15 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
+      padding: EdgeInsets.symmetric(horizontal: 0.008 * screenWidth),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            height: 60,
+            height: 0.075 * screenHeight,
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(width: 1, color: Colors.grey[200]!),
@@ -71,11 +72,10 @@ class _SearchWidgetState extends State<SearchWidget> {
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  padding: EdgeInsets.symmetric(horizontal: 0.030 * screenWidth),
                   child: SvgPicture.asset(
                     "assets/images/search.svg",
-                    height: 20,
-                    width: 20,
+                    fit: BoxFit.cover,
                     color: const Color(0xFFC0C0CF),
                   ),
                 ),
@@ -86,13 +86,13 @@ class _SearchWidgetState extends State<SearchWidget> {
                     },
                     onChanged: (value) => updateList(value),
                     controller: _searchController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "Search",
                       hintStyle: TextStyle(
-                        color: Color(0xFF8E8EA9),
+                        color: const Color(0xFF8E8EA9),
                         fontFamily: "Mulish-Regular",
-                        fontSize: 16,
+                        fontSize: 0.022 * screenHeight,
                       ),
                     ),
                   ),
@@ -120,7 +120,7 @@ class _SearchWidgetState extends State<SearchWidget> {
             ),
           ),
           if (isSearchOpen) ...[
-            const SizedBox(height: 20),
+            SizedBox(height: 0.005 * screenHeight),
             GestureDetector(
               onTap: _closeSearch,
               child: SizedBox(
@@ -143,61 +143,62 @@ class _SearchWidgetState extends State<SearchWidget> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(40.0),
                       child: Container(
-                        padding: const EdgeInsets.all(8.0),
-                        margin: const EdgeInsets.symmetric(vertical: 8.0),
+                        padding: EdgeInsets.all(0.01 * screenHeight),
+                        margin: EdgeInsets.symmetric(vertical: 0.02 * screenWidth),
                         decoration: const BoxDecoration(
                           color: Colors.white,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: 80,
-                              height: 80,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(width: 1, color: Colors.grey[200]!),
-                              ),
-                              child: Image.asset(
-                                displayList[index].dishImage!,
-                                fit: BoxFit.cover,
-                              ),
+                            Image.asset(
+                              displayList[index].dishImage!,
+                              width: 70,
+                              height: 70,
                             ),
                             const SizedBox(width: 20),
                             Expanded(
                               child: Text(
                                 displayList[index].dishTitle!,
-                                style: const TextStyle(
-                                  fontSize: 16,
+                                style: TextStyle(
+                                  fontSize: 0.018 * screenHeight,
                                   fontWeight: FontWeight.w600,
                                   fontFamily: "Mulish-Regular",
-                                  color: Color(0xFF666687),
+                                  color: const Color(0xFF666687),
                                 ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                softWrap: true,
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 25.0),
+                              padding: EdgeInsets.only(
+                                  left: 0.1 * screenWidth
+                              ),
                               child: Row(
                                 children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(bottom: 3.0),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        bottom: 0.01 * screenHeight
+                                    ),
                                     child: Text(
                                       "\$",
                                       style: TextStyle(
-                                        fontSize: 10,
+                                        fontSize: 0.014 * screenHeight,
                                         fontWeight: FontWeight.w700,
-                                        color: Color(0xFFFFB080),
+                                        fontFamily: "Mulish-Regular",
+                                        color: const Color(0xFFFFB080),
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 4),
+                                  SizedBox(width: 0.005 * screenWidth),
                                   Text(
                                     displayList[index].dishPrice!.toStringAsFixed(2),
-                                    style: const TextStyle(
-                                      fontSize: 16,
+                                    style: TextStyle(
+                                      fontSize: 0.021 * screenHeight,
                                       fontWeight: FontWeight.w700,
-                                      fontFamily: "Mulish",
-                                      color: Color(0xFFFF7B2C),
+                                      fontFamily: "Mulish-Regular",
+                                      color: const Color(0xFFFF7B2C),
                                     ),
                                   ),
                                 ],

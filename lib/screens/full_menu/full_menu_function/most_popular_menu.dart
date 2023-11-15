@@ -41,6 +41,7 @@ class MostPopularMenu extends StatelessWidget {
               return SizedBox(
                 height: 0.3 * MediaQuery.of(context).size.height,
                 child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   itemCount: snapshot.data?.length ?? 0,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {

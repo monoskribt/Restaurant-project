@@ -1,42 +1,42 @@
 <menu>
     <category id='1' name='Most Popular'>
         <dish id='101'>
-            <title>Суп-локшина на наваристому курячому бульоні</title>
-            <price>50.00</price>
+            <title>Вареники з м'ясом у горщику</title>
+            <price>72.00</price>
             <images>assets/images/most_popular_1.png</images>
-            <description>Подається з куркою, домашньою локшиною, та сухариками.</description>
+            <description>Подається з хлібом та зеленню</description>
         </dish>
         <dish id='102'>
-            <title>Ніжка кролика тушкована у вершковому соусі</title>
-            <price>254.00</price>
+            <title>Кольорові млинці з куркою і грибами</title>
+            <price>195.00</price>
             <images>assets/images/most_popular_2.png</images>
-            <description>Подається з диким рисом.</description>
+            <description>Colored pancakes with chicken and mushrooms</description>
         </dish>
         <dish id='103'>
-            <title>Фірмове сало від 'Корчми' - сало домашнє</title>
+            <title>Смажені пельмені з сирним соусом</title>
             <price>49.00</price>
             <images>assets/images/most_popular_2.png</images>
-            <description>'Фірмове сало від 'Корчми' - це ніжне домашнє сало, яке стало візитною карткою ресторану 'Корчма'. Воно приготовлено з найкращих шматочків свинини, вручну підготовлених та нарізаних експертами свого ремесла. Це сало відображає найкращі традиції гастрономічної майстерності і дух гостинності, який завжди присутній у ресторані 'Корчма'. Додайте аутентичний смак до свого столу з цим вишуканим домашнім салом, який надає вам можливість насолоджуватися смачними моментами в стилі 'Корчма' у затишному домашньому оточенні.</description>
+            <description>Fried dumplings with cheese sauce</description>
         </dish>
     </category>
     <category id = '2' name = 'Salad'>
         <dish id = '201'>
-            <title>Салат улюблений з дитинства Олів'є</title>
-            <price>59.00</price>
+            <title>Теплий салат з куркою та горіховим соусом</title>
+            <price>195.00</price>
             <images>assets/images/salad_1.png</images>
-            <description>З куркою або з ковбасою. Заправляється домашнім майонезом.</description>
+            <description>Warm salad with chicken and peanut sauce</description>
         </dish>
         <dish id = '202'>
-            <title>Салат із запеченим гарбузом</title>
-            <price>72.00</price>
+            <title>Салат з лососем, крем-сиром та авокадо</title>
+            <price>355.00</price>
             <images>assets/images/salad_1.png</images>
-            <description>Руккола,коріандр, помідори чері з запеченим гарбузом, заправляється ягідним соусом.</description>
+            <description>Salmon salad with cream cheese and avocado</description>
         </dish>
         <dish id = '203'>
-            <title>Салат Оселедець під шубою</title>
-            <price>13.30</price>
+            <title>Салат з креветками і пікантним соусом Чилі</title>
+            <price>355.30</price>
             <images>assets/images/salad_1.png</images>
-            <description>Традиційний салат з оселедця, з запеченими овочами та майонезом.</description>
+            <description>Salad with shrimp and spicy chili sauce</description>
         </dish>
     </category>
     <category id = '3' name = 'Pasta'>
@@ -61,42 +61,42 @@
     </category>
     <category id = '4' name = 'ProductOfTheDay'>
         <dish id = '401'>
-            <title>Борщ пісний з копченою грушею</title>
-            <price>55.00</price>
+            <title>Оладки з цукіні та кав’яром щуки</title>
+            <price>295.00</price>
             <images>assets/images/dish_of_day_1.png</images>
-            <description>Подається зі сметаною.</description>
+            <description>Fritters with zucchini and pike caviar</description>
         </dish>
         <dish id = '402'>
-            <title>Фірмова свинина 'Корчма'</title>
-            <price>166.00</price>
+            <title>Оладки з цукіні та лососем</title>
+            <price>285.00</price>
             <images>assets/images/dish_of_day_1.png</images>
-            <description>Запечена до рум'яної скоринки з цибулею, під вершковим соусом та сиром.</description>
+            <description>Pancakes with zucchini and salmon</description>
         </dish>
         <dish id = '403'>
-            <title>Язик у вершковому соусі</title>
-            <price>153.00</price>
+            <title>Оладки з цукіні та піною зі сметани</title>
+            <price>195.00</price>
             <images>assets/images/dish_of_day_1.png</images>
-            <description>Шматочки яловичого язика, обсмажені на вершковому маслі та доведені до смаку у соусі з вершків, глив та шпинату.</description>
+            <description>Pancakes with zucchini and sour cream foam</description>
         </dish>
     </category>
     <category id = '5' name = 'Recommended'>
         <dish id = '501'>
-            <title>Mac and Cheese</title>
-            <price>10.40</price>
+            <title>Форшмак з грінками</title>
+            <price>195.00</price>
             <images>assets/images/pasta_1.png</images>
-            <description>Mac and Cheese</description>
+            <description> Forshmak with croutons</description>
         </dish>
         <dish id = '502'>
-            <title>Curry Salmon</title>
-            <price>23.80</price>
+            <title>Помазуха із сала</title>
+            <price>165.00</price>
             <images>assets/images/recommended_sides_1.png</images>
-            <description>Curry Salmon</description>
+            <description> Lard spread</description>
         </dish>
         <dish id = '503'>
-            <title>Yogurt and Fruits</title>
-            <price>10.65</price>
+            <title>Оселедець з картоплею</title>
+            <price>155.65</price>
             <images>assets/images/recommended_sides_2.png</images>
-            <description>Yogurt and Fruits</description>
+            <description>Herring with potatoes</description>
         </dish>
     </category>
 </menu>

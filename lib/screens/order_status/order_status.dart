@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
 import 'package:sushi_shop_project/features/provider/order_time_provider.dart';
 import 'package:sushi_shop_project/screens/drawer_widget/main_drawer.dart';
-import 'package:sushi_shop_project/screens/order/order_menu.dart';
 import 'package:sushi_shop_project/screens/order_status/order_status_components/order_status_bottom_bar.dart';
 import 'package:sushi_shop_project/screens/order_status/order_status_components/order_status_dropdown.dart';
 import 'package:sushi_shop_project/screens/order_status/order_status_components/order_statuses.dart';
@@ -18,41 +17,50 @@ class OrderStatus extends StatefulWidget {
 }
 
 class _OrderStatusState extends State<OrderStatus> {
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> orderStatusScaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
+      key: orderStatusScaffoldKey,
       endDrawer: const MainDrawer(),
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [
-                Color(0xFFFCFCFC),
-                Color(0xFFF7F7F7),
-                Color(0xFFF7F7F7),
-                Color(0xFFF7F7F7),
-                Color(0xFFFCFCFC),
-              ],
-              stops: [0, 0.1004, 0.5156, 0.8958, 1],
-            ),
-          ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 50.0, right: 24, left: 24),
-                child: buildTopBar(context),
-              ),
-              const SizedBox(height: 15),
-              //Здесь можно менять значения и будут разные статусы
-              const OrderStatusFirst(orderTime: 15),
-              const SizedBox(height: 15),
-              const OrderDropdown(),
+      body: Container(
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color(0xFFFCFCFC),
+              Color(0xFFF7F7F7),
+              Color(0xFFF7F7F7),
+              Color(0xFFF7F7F7),
+              Color(0xFFFCFCFC),
             ],
+            stops: [0, 0.1004, 0.5156, 0.8958, 1],
+          ),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 0.03 * screenHeight,
+                left: 0.06 * screenWidth,
+                right: 0.06 * screenWidth,
+              ),
+              child: Column(
+                children: [
+                  buildTopBar(context),
+                  const SizedBox(height: 15),
+                  //Здесь можно менять значения и будут разные статусы
+                  const OrderStatusFirst(orderTime: 15),
+                  const SizedBox(height: 15),
+                  const OrderDropdown(),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -88,16 +96,12 @@ class _OrderStatusState extends State<OrderStatus> {
                   ],
                 ),
                 child: IconButton(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                   icon: const Icon(Icons.arrow_back, size: 22),
                   color: const Color(0xFF666687),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => OrderMenu()),
-                    );
+                    Navigator.of(context).pushNamed('/order_menu');
                   },
                 ),
               ),
@@ -150,7 +154,7 @@ class _OrderStatusState extends State<OrderStatus> {
             width: 24,
           ),
           onPressed: () {
-            scaffoldKey.currentState?.openEndDrawer();
+            orderStatusScaffoldKey.currentState?.openEndDrawer();
           },
         )
       ],

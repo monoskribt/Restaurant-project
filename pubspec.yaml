@@ -21,6 +21,8 @@ dependencies:
   mailer: ^6.0.1
   http: ^1.1.0
   xml: ^6.3.0
+  flutter_screenutil: ^5.9.0
+  crypto: ^3.0.3
 
 
 dev_dependencies:

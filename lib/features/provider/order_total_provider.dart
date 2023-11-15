@@ -2,33 +2,27 @@ import 'package:flutter/cupertino.dart';
 
 class OrderTotalProvider extends ChangeNotifier {
   double _total = 0.0;
-  double _tax = 0.0;
   double _itemsTotal = 0.0;
   double _tips = 0.0;
   double _subTotal = 0.0;
 
   double get total => _total;
-
-  double get tax => _tax;
-
   double get itemsTotal => _itemsTotal;
-
   double get tips => _tips;
-
   double get subTotal => _subTotal;
+
+  double get tax => itemsTotal * 0.1;
 
   double get totalWithTips => itemsTotal + tax + tips;
 
-  void updateTotal() {
+  double updateTotal() {
     _total = itemsTotal + tax;
-
-  }
-  void updateTax(double newTax) {
-    _tax = newTax;
+    return _total;
   }
 
   void updateItemsTotal(double newItemsTotal) {
     _itemsTotal = newItemsTotal;
+    updateTotal();
   }
 
   void updateTips(double newTips) {
@@ -46,7 +40,6 @@ class OrderTotalProvider extends ChangeNotifier {
 
   void clear() {
     _total = 0.0;
-    _tax = 0.0;
     _itemsTotal = 0.0;
     _tips = 0.0;
     _subTotal = 0.0;

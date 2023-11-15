@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sushi_shop_project/models/order_model.dart';
 
 class OrderProvider extends ChangeNotifier {
-  final double _totalPrice = 0.0;
-  double get totalPrice => _totalPrice;
-
 
   final Map<String, OrderModel> _orderMap = {};
 
@@ -25,5 +22,14 @@ class OrderProvider extends ChangeNotifier {
       _orderMap[name]!.quantity = newQuantity;
       notifyListeners();
     }
+  }
+
+  bool isDishNameInOrder(String dishName) {
+    for (String key in _orderMap.keys) {
+      if (_orderMap[key]!.name == dishName) {
+        return true;
+      }
+    }
+    return false;
   }
 }

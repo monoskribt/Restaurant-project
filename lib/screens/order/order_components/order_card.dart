@@ -19,8 +19,9 @@ class OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      width: 360,
+      height: 120,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -39,37 +40,36 @@ class OrderCard extends StatelessWidget {
           ),
         ],
       ),
-      child: SizedBox(
-        width: 360,
-        child: Row(
-          children: [
-            buildImage(),
-            buildOrderDetails(),
-            CartCounterOrder(
-              quantity: quantityOrder,
-              onChanged: (newQuantity) {
-                final orderProvider = Provider.of<OrderProvider>(context, listen: false);
-                orderProvider.updateQuantity(nameOrder, newQuantity);
-              },
-            ),
-          ],
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          buildImage(context),
+          SizedBox(width: 0.03 * screenWidth),
+          buildOrderDetails(context),
+          CartCounterOrder(
+            quantity: quantityOrder,
+            onChanged: (newQuantity) {
+              final orderProvider = Provider.of<OrderProvider>(context, listen: false);
+              orderProvider.updateQuantity(nameOrder, newQuantity);
+            },
+          ),
+        ],
       ),
     );
   }
 
-  Widget buildImage() {
-    return SizedBox(
-      width: 120,
-      child: Image.asset(
-        imageOrder,
-        width: 140,
-        height: 140,
-      ),
+  Widget buildImage(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Image.asset(
+      imageOrder,
+      width: 0.3 * screenWidth,
+      height: 0.3 * screenHeight,
     );
   }
 
-  Widget buildOrderDetails() {
+  Widget buildOrderDetails(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -79,12 +79,14 @@ class OrderCard extends StatelessWidget {
             children: [
               Text(
                 nameOrder,
-                style: const TextStyle(
-                  fontSize: 14,
+                style: TextStyle(
+                  fontSize: 0.02 * screenHeight,
                   fontFamily: "Mulish-Regular",
                   fontWeight: FontWeight.w600,
-                  color: Color(0xFF32324D),
+                  color: const Color(0xFF32324D),
                 ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 softWrap: true,
               ),
             ],

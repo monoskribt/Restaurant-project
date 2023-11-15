@@ -8,7 +8,7 @@ class DishDataForSearchParse {
   static Future<void> loadMenuFromXml([String? selectedRestaurant]) async {
     String xmlFilePath;
 
-    if (selectedRestaurant == 'Gram Bistro') {
+    if (selectedRestaurant == null || selectedRestaurant == 'Gram Bistro') {
       xmlFilePath = 'assets/data_xml/gram_bistro.xml';
     } else if (selectedRestaurant == 'Gram Bistro-1') {
       xmlFilePath = 'assets/data_xml/gram_bistro_1.xml';

@@ -36,7 +36,6 @@ class _OrderStatusFirstState extends State<OrderStatusFirst> {
 
   Widget buildOrderStatusContainer(OrderTimeProvider orderTimeProvider) {
     return Container(
-      width: 357,
       height: 430,
       decoration: BoxDecoration(
         color: Colors.white,

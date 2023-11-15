@@ -8,7 +8,6 @@ class AddNewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 357,
       height: 300,
       decoration: BoxDecoration(
         color: Colors.white,

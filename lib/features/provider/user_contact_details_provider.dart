@@ -33,4 +33,13 @@ class UserContactDetailsProvider with ChangeNotifier {
     _userContactDetailsList.add(userContactDetails);
     notifyListeners();
   }
+
+  void clear() {
+    _userContactDetails.name = '';
+    _userContactDetails.number = '';
+    _userContactDetails.address = '';
+    _userContactDetailsList.clear();
+    notifyListeners();
+  }
+
 }

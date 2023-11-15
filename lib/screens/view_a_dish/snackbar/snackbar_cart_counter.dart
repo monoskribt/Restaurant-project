@@ -21,30 +21,33 @@ class _SnackbarCartCounterState extends State<SnackbarCartCounter> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _buildButton(
-          icon: Icons.remove,
-          backgroundColor: const Color(0xFFEAEAEF),
-          onPressed: _decrement,
-          iconColor: const Color(0xFF8E8EA9),
-        ),
-        Text(
-          numOfItems.toString(),
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF666687),
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildButton(
+            icon: Icons.remove,
+            backgroundColor: const Color(0xFFEAEAEF),
+            onPressed: _decrement,
+            iconColor: const Color(0xFF8E8EA9),
           ),
-        ),
-        _buildButton(
-          icon: Icons.add,
-          backgroundColor: const Color(0xFFFFF2EA),
-          onPressed: _increment,
-          iconColor: const Color(0xFFFF7B2C),
-        ),
-      ],
+          Text(
+            numOfItems.toString(),
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF666687),
+            ),
+          ),
+          _buildButton(
+            icon: Icons.add,
+            backgroundColor: const Color(0xFFFFF2EA),
+            onPressed: _increment,
+            iconColor: const Color(0xFFFF7B2C),
+          ),
+        ],
+      ),
     );
   }
 
@@ -98,15 +101,20 @@ class _SnackbarCartCounterState extends State<SnackbarCartCounter> {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     String orderText = numOfItems > 0 ? 'added to order' : 'removed from order';
     final snackBar = SnackBar(
-      content: Text(
-        numOfItems > 0
-            ? '"${widget.dishName}" $orderText: $quantity'
-            : '"${widget.dishName}" $orderText',
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-          fontFamily: "Mulish-Regular",
-          color: Color(0xFF666687),
+      content: Center(
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: Text(
+            numOfItems > 0
+                ? '"${widget.dishName}" $orderText: $quantity'
+                : '"${widget.dishName}" $orderText',
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              fontFamily: "Mulish-Regular",
+              color: Color(0xFF666687),
+            ),
+          ),
         ),
       ),
       backgroundColor: Colors.grey[300],

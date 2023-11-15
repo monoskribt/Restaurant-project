@@ -14,34 +14,25 @@ class OrderDropdown extends StatefulWidget {
 }
 
 class _OrderDropdownState extends State<OrderDropdown> {
+  bool isExpanded = true;
+  double itemsTotal = 0.0;
   double tax = 0.0;
-  bool isExpanded = false;
-
-  void calculateTax() {
-    final orderTotalProvider =
-        Provider.of<OrderTotalProvider>(context, listen: false);
-    final itemsTotal = orderTotalProvider.itemsTotal;
-    final tax = itemsTotal * 0.1;
-    orderTotalProvider.updateTax(tax);
-    orderTotalProvider.updateTotal();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    calculateTax();
-  }
-
+  double total = 0.0;
 
   @override
   Widget build(BuildContext context) {
     return Consumer<OrderTotalProvider>(
       builder: (context, orderTotalProvider, _) {
-        calculateTax();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          setState(() {
+            total = orderTotalProvider.total;
+            itemsTotal = orderTotalProvider.itemsTotal;
+            tax = orderTotalProvider.tax;
+          });
+        });
         return Padding(
           padding: const EdgeInsets.only(bottom: 25.0),
           child: Container(
-            width: 355,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
@@ -61,6 +52,7 @@ class _OrderDropdownState extends State<OrderDropdown> {
               ],
             ),
             child: ExpansionTile(
+              initiallyExpanded: isExpanded,
               onExpansionChanged: (expanded) {
                 setState(() {
                   isExpanded = expanded;
@@ -83,9 +75,30 @@ class _OrderDropdownState extends State<OrderDropdown> {
                 const SizedBox(height: 20),
                 buildAddMoreFoodButton(context),
                 const SizedBox(height: 30),
-                Container(width: 320, height: 2, color: const Color(0xFFEAEAEF)),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                  child: Container(
+                      width: 320, height: 2, color: const Color(0xFFEAEAEF)),
+                ),
                 const SizedBox(height: 20),
-                buildTotalSection(orderTotalProvider),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                  child: Column(
+                    children: [
+                      buildTotalRow("Items Total", itemsTotal),
+                      const SizedBox(height: 15),
+                      buildTotalRow("Tax", tax),
+                      const SizedBox(height: 20),
+                      Container(
+                          width: 320,
+                          height: 2,
+                          color: const Color(0xFFEAEAEF)),
+                      const SizedBox(height: 20),
+                      buildTotalRow("Total price", total, isTotal: true),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
@@ -93,31 +106,6 @@ class _OrderDropdownState extends State<OrderDropdown> {
       },
     );
   }
-
-
-
-  Widget buildTotalSection(OrderTotalProvider orderTotalProvider) {
-    double itemsTotal = orderTotalProvider.itemsTotal;
-    double tax = orderTotalProvider.tax;
-    double total = orderTotalProvider.total;
-
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-      child: Column(
-        children: [
-          buildTotalRow("Items Total", itemsTotal),
-          const SizedBox(height: 15),
-          buildTotalRow("Tax", tax),
-          const SizedBox(height: 20),
-          Container(width: 320, height: 2, color: const Color(0xFFEAEAEF)),
-          const SizedBox(height: 20),
-          buildTotalRow("Total price", total, isTotal: true),
-          const SizedBox(height: 20),
-        ],
-      ),
-    );
-  }
-
 
   Widget buildTotalRow(String title, double value, {bool isTotal = false}) {
     return Row(
@@ -142,7 +130,9 @@ class _OrderDropdownState extends State<OrderDropdown> {
                   fontSize: isTotal ? 10 : 8,
                   fontWeight: isTotal ? FontWeight.w800 : FontWeight.w700,
                   fontFamily: "Mulish-Regular",
-                  color: isTotal ? const Color(0xFFFF7B2C) : const Color(0xFF4A4A6A),
+                  color: isTotal
+                      ? const Color(0xFFFF7B2C)
+                      : const Color(0xFF4A4A6A),
                 ),
               ),
             ),
@@ -152,7 +142,8 @@ class _OrderDropdownState extends State<OrderDropdown> {
                 fontSize: isTotal ? 16 : 14,
                 fontWeight: isTotal ? FontWeight.w800 : FontWeight.w700,
                 fontFamily: "Mulish-Regular",
-                color: isTotal ? const Color(0xFFFF7B2C) : const Color(0xFF4A4A6A),
+                color:
+                    isTotal ? const Color(0xFFFF7B2C) : const Color(0xFF4A4A6A),
               ),
             ),
           ],
@@ -164,10 +155,7 @@ class _OrderDropdownState extends State<OrderDropdown> {
   Widget buildAddMoreFoodButton(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const FullMenu()),
-        );
+        Navigator.of(context).pushNamed('/');
       },
       child: const Center(
         child: Row(

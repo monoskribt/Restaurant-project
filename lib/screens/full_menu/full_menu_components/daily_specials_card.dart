@@ -15,23 +15,18 @@ class DailySpecialsCard extends StatelessWidget {
     required this.descriptionDishOfDay,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return GestureDetector(
       onTap: () {
-        ViewADishHelper.showViewADish(
-            context,
-            imageDishOfDay,
-            nameDishOfDay,
-            priceDishOfDay,
-            descriptionDishOfDay
-        );
+        ViewADishHelper.showViewADish(context, imageDishOfDay, nameDishOfDay,
+            priceDishOfDay, descriptionDishOfDay);
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        padding: EdgeInsets.symmetric(horizontal: 0.02 * screenWidth),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Container(
@@ -40,57 +35,75 @@ class DailySpecialsCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 25.0, left: 20),
+                  padding: EdgeInsets.only(
+                      top: 0.030 * screenHeight, left: 0.045 * screenWidth),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(bottom: 10.0),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 0.015 * screenHeight),
                         child: Text(
                           "Product of the day",
                           style: TextStyle(
-                            fontSize: 12,
-                            color: Color(0xFFA5A5BA),
+                            fontSize: 0.016 * screenHeight,
+                            color: const Color(0xFFA5A5BA),
                             fontWeight: FontWeight.w400,
                             fontFamily: "Mulish-Regular",
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 150,
-                        child: Text(
-                          nameDishOfDay,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "Mulish-Regular",
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 0.45 * screenWidth,
+                                child: Text(
+                                  nameDishOfDay,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 0.018 * screenHeight,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: "Mulish-Regular",
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: true,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
+                        ],
                       ),
+                      SizedBox(width: 0.02 * screenWidth),
                       Padding(
-                        padding: const EdgeInsets.only(top: 12.0),
+                        padding: EdgeInsets.only(top: 0.015 * screenHeight),
                         child: Row(
                           children: [
-                            const Padding(
-                              padding: EdgeInsets.only(bottom: 4.0),
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(bottom: 0.01 * screenHeight),
                               child: Text(
                                 '\$',
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 0.014 * screenHeight,
                                   fontWeight: FontWeight.w700,
-                                  color: Color(0xFFFF7B2C),
-                                  fontFamily: "Mulish-Regular",                            ),
+                                  color: const Color(0xFFFF7B2C),
+                                  fontFamily: "Mulish-Regular",
+                                ),
                               ),
                             ),
-                            const SizedBox(width: 4.0),
+                            SizedBox(width: 0.01 * screenWidth),
                             Text(
                               priceDishOfDay.toStringAsFixed(2),
-                              style: const TextStyle(
-                                fontSize: 16,
+                              style: TextStyle(
+                                fontSize: 0.021 * screenHeight,
                                 fontWeight: FontWeight.w800,
-                                color: Color(0xFFFF7B2C),
-                                fontFamily: "Mulish-Regular",                          ),
+                                color: const Color(0xFFFF7B2C),
+                                fontFamily: "Mulish-Regular",
+                              ),
                             ),
                           ],
                         ),
@@ -98,17 +111,10 @@ class DailySpecialsCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: 141,
-                      height: 145,
-                      child: Image.asset(
-                        imageDishOfDay,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ],
+                Image.asset(
+                  imageDishOfDay,
+                  height: 0.32 * screenHeight,
+                  width: 0.32 * screenWidth,
                 ),
               ],
             ),

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:mailer/mailer.dart';
-import 'package:mailer/smtp_server/gmail.dart';
+import 'package:mailer/smtp_server.dart';
 
 class EmailService {
   static Future<void> sendEmail({
@@ -11,13 +11,21 @@ class EmailService {
     double? dishTips,
     int? quantity,
   }) async {
-    String username = 'dmitrijmamilov@gmail.com';
-    String password = 'uiybbjfcxyjrpirj';
-    final smtpServer = gmail(username, password);
+    String username = 'info@wbtest.marat.ua';
+    String password = 'vH8i7qsKhJ';
+
+    final smtpServer = SmtpServer(
+      'wbtest.marat.ua',
+      username: username,
+      password: password,
+      port: 465,
+      ssl: true,
+    );
+
     final message = Message()
       ..from = Address(username, 'Mail Service')
       ..recipients.add(recipientEmail)
-      ..subject = 'Mail '
+      ..subject = 'Mail'
       ..text =
           'Title: $mailMessage\n'
           'Tips: \$${dishTips?.toStringAsFixed(2) ?? 'Отсутствует значение'}\n'

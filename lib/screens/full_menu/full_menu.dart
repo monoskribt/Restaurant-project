@@ -13,8 +13,11 @@ import 'package:sushi_shop_project/screens/full_menu/full_menu_function/salad_me
 import 'package:sushi_shop_project/screens/full_menu/full_menu_components/sorting_category_list.dart';
 import 'package:sushi_shop_project/screens/full_menu/full_menu_components/category_text.dart';
 import '../drawer_widget/main_drawer.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   BlocProvider(
     create: (context) => RestaurantCubit(),
     child: const FullMenu(),
@@ -29,7 +32,7 @@ class FullMenu extends StatefulWidget {
 }
 
 class _FullMenuState extends State<FullMenu> {
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> fullManuScaffoldKey = GlobalKey<ScaffoldState>();
   String selectedCategory = "All Dishes";
   String selectedRestaurant = "Gram Bistro";
 
@@ -41,89 +44,112 @@ class _FullMenuState extends State<FullMenu> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    DishDataForSearchParse.loadMenuFromXml(selectedRestaurant);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        key: scaffoldKey,
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Scaffold(
+        key: fullManuScaffoldKey,
         endDrawer: const MainDrawer(),
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [
-                Color(0xFFFCFCFC),
-                Color(0xFFF7F7F7),
-                Color(0xFFF7F7F7),
-                Color(0xFFF7F7F7),
-                Color(0xFFFCFCFC),
-              ],
-              stops: [0, 0.1004, 0.5156, 0.8958, 1],
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: Container(
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Color(0xFFFCFCFC),
+                  Color(0xFFF7F7F7),
+                  Color(0xFFF7F7F7),
+                  Color(0xFFF7F7F7),
+                  Color(0xFFFCFCFC),
+                ],
+                stops: [0, 0.1004, 0.5156, 0.8958, 1],
+              ),
             ),
-          ),
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 24, left: 25, right: 25, bottom: 0),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    buildTopBar(context),
-                    const SizedBox(height: 17),
-                    const Text(
-                      "Choose the best dish for you",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: "DMSans-Regular",
-                        color: Color(0xFF32324D),
+            child: SafeArea(
+              child: Padding(
+                padding:  EdgeInsets.only(
+                    top: 0.03 * screenHeight,
+                    left: 0.06 * screenWidth,
+                    right: 0.06 * screenWidth,
+                    bottom: 0
+                ),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      buildTopBar(context),
+                      SizedBox(height: 0.022 * screenHeight),
+                      FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          "Choose the best dish for you",
+                          style: TextStyle(
+                            fontSize: 0.028 * screenHeight,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: "DMSans-Regular",
+                            color: const Color(0xFF32324D),
+                          ),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    const SearchWidget(),
-                    const SizedBox(height: 20),
-                    const DailySpecials(),
-                    const SizedBox(height: 20),
-                    const SortingCategoryList(),
-                    BlocBuilder<SortingDishesCubit, SortingDishesState>(
-                        builder: (context, state) {
-                      return buildSortingContent(state);
-                    })
-                  ],
+                      SizedBox(height: 0.02 * screenHeight),
+                      const SearchWidget(),
+                      SizedBox(height: 0.0265 * screenHeight),
+                      const DailySpecials(),
+                      SizedBox(height: 0.0265 * screenHeight),
+                      const SortingCategoryList(),
+                      BlocBuilder<SortingDishesCubit, SortingDishesState>(
+                          builder: (context, state) {
+                        return buildSortingContent(state);
+                      })
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget buildTopBar(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Row(
       children: [
         Padding(
-          padding: const EdgeInsets.only(right: 8.0),
+          padding: EdgeInsets.only(right: 0.02 * screenWidth),
           child: SvgPicture.asset(
             "assets/images/navigator.svg",
-            height: 20,
-            width: 20,
+            height: 0.0265 * screenHeight,
+            width: 0.0265 * screenWidth,
             color: const Color(0xFFDCDCE4),
           ),
         ),
         GestureDetector(
           onTap: () {
             showRestaurant(context);
+
           },
             child: BlocBuilder<RestaurantCubit, String>(
               builder: (context, state) {
                 return Text(
                   state,
-                  style: const TextStyle(
-                    fontSize: 18.0,
+                  style: TextStyle(
+                    fontSize: 0.024 * screenHeight,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF8E8EA9),
+                    color: const Color(0xFF8E8EA9),
                     fontFamily: "Mulish-Regular",
                   ),
                 );
@@ -134,11 +160,12 @@ class _FullMenuState extends State<FullMenu> {
         IconButton(
           icon: SvgPicture.asset(
             "assets/images/menu.svg",
-            height: 24,
-            width: 24,
+            height: 0.032 * screenHeight,
+            width: 0.032 * screenWidth,
           ),
           onPressed: () {
-            scaffoldKey.currentState?.openEndDrawer();
+            fullManuScaffoldKey.currentState?.openEndDrawer();
+
           },
         )
       ],
@@ -146,11 +173,12 @@ class _FullMenuState extends State<FullMenu> {
   }
 
   Widget buildSortingContent(SortingDishesState state) {
+    final screenHeight = MediaQuery.of(context).size.height;
     switch (state) {
       case SortingDishesState.allDishes:
         return Column(
           children: [
-            const SizedBox(height: 15),
+            SizedBox(height: 0.024 * screenHeight),
             const CategoryText(text: "Most Popular"),
             MostPopularMenu(),
             const CategoryText(text: "Salad"),
@@ -162,23 +190,23 @@ class _FullMenuState extends State<FullMenu> {
       case SortingDishesState.mostPopular:
         return Column(
           children: [
-            const SizedBox(height: 15),
+            SizedBox(height: 0.024 * screenHeight),
             const CategoryText(text: "Most Popular"),
             MostPopularMenu(),
           ],
         );
       case SortingDishesState.salad:
-        return const Column(
+        return Column(
           children: [
-            SizedBox(height: 15),
-            CategoryText(text: "Salad"),
-            SaladMenu(),
+            SizedBox(height: 0.024 * screenHeight),
+            const CategoryText(text: "Salad"),
+            const SaladMenu(),
           ],
         );
       case SortingDishesState.pasta:
         return Column(
           children: [
-            const SizedBox(height: 15),
+            SizedBox(height: 0.024 * screenHeight),
             const CategoryText(text: "Pasta"),
             PastaMenu(),
           ],
@@ -189,6 +217,7 @@ class _FullMenuState extends State<FullMenu> {
   }
 
   void showRestaurant(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -219,13 +248,13 @@ class _FullMenuState extends State<FullMenu> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                title: const Text("Select a restaurant",
+                title: Text("Select a restaurant",
                     textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 0.026 * screenHeight,
                     fontWeight: FontWeight.w600,
                     fontFamily: "DMSans-Regular",
-                    color: Color(0xFF32324D),
+                    color: const Color(0xFF32324D),
                   ),
                 ),
                 content: Column(
@@ -235,8 +264,8 @@ class _FullMenuState extends State<FullMenu> {
                       title: Text(
                         restaurantName,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 18.0,
+                        style: TextStyle(
+                          fontSize: 0.023 * screenHeight,
                           fontWeight: FontWeight.w400,
                           color: Colors.black,
                           fontFamily: "Mulish-Regular",
