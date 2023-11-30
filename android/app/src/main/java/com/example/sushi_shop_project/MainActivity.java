@@ -1,4 +1,4 @@
-package com.example.sushi_shop_project;
+package com.example.Foodbox;
 
 import io.flutter.embedding.android.FlutterActivity;
 

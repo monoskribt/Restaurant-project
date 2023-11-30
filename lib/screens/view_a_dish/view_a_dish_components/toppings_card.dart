@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/toppings_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/toppings_provider.dart';
 
 class ToppingsCard extends StatefulWidget {
   final String nameToppings;

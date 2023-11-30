@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sushi_shop_project/data_parsing/parsing/parsing_for_search_dish/dish_data_for_search_parse.dart';
+import 'package:Foodbox/data_parsing/parsing/parsing_for_search_dish/dish_data_for_search_parse.dart';
 import 'package:xml/xml.dart' as xml;
 
 class RestaurantCubit extends Cubit<String> {
-  RestaurantCubit() : super("Gram Bistro") {
+  RestaurantCubit() : super("Foodbox") {
     if (state == null) {
-      selectRestaurant("Gram Bistro");
+      selectRestaurant("Foodbox");
     }
   }
 
@@ -16,9 +16,9 @@ class RestaurantCubit extends Cubit<String> {
   }
 
   Map<String, String> restaurantXmlPaths = {
-    "Gram Bistro": 'assets/data_xml/gram_bistro.xml',
-    "Gram Bistro-1": 'assets/data_xml/gram_bistro_1.xml',
-    "Gram Bistro-2": 'assets/data_xml/gram_bistro_2.xml',
+    "Foodbox": 'assets/data_xml/restaurant_dish.xml',
+    "Foodbox-1": 'assets/data_xml/restaurant_dish-1.xml',
+    "Foodbox-2": 'assets/data_xml/restaurant_dish-2.xml',
   };
 
   Future<List<Map<String, dynamic>>?> loadMenuForSelectedRestaurant() async {

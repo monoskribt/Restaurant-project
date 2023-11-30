@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sushi_shop_project/data_parsing/parsing/parsing_for_search_dish/dish_data_for_search_parse.dart';
-import 'package:sushi_shop_project/models/dish_model_for_search.dart';
-import 'package:sushi_shop_project/screens/full_menu/helpers/view_a_dish_helper.dart';
+import 'package:Foodbox/data_parsing/parsing/parsing_for_search_dish/dish_data_for_search_parse.dart';
+import 'package:Foodbox/models/dish_model_for_search.dart';
+import 'package:Foodbox/screens/full_menu/helpers/view_a_dish_helper.dart';
+
 
 class SearchWidget extends StatefulWidget {
   const SearchWidget({

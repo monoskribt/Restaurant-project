@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/order_total_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/order_total_provider.dart';
+
 
 class OrderStatusBottomBar extends StatefulWidget {
   const OrderStatusBottomBar({
@@ -68,7 +69,7 @@ class _OrderStatusBottomBarState extends State<OrderStatusBottomBar> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            "Pay",
+                            "Order",
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: "Mulish-Regular",

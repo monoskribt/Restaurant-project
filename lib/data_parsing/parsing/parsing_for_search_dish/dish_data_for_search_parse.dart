@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:sushi_shop_project/models/dish_model_for_search.dart';
+import 'package:Foodbox/models/dish_model_for_search.dart';
 import 'package:xml/xml.dart' as xml;
 
 class DishDataForSearchParse {
@@ -8,12 +8,12 @@ class DishDataForSearchParse {
   static Future<void> loadMenuFromXml([String? selectedRestaurant]) async {
     String xmlFilePath;
 
-    if (selectedRestaurant == null || selectedRestaurant == 'Gram Bistro') {
-      xmlFilePath = 'assets/data_xml/gram_bistro.xml';
-    } else if (selectedRestaurant == 'Gram Bistro-1') {
-      xmlFilePath = 'assets/data_xml/gram_bistro_1.xml';
+    if (selectedRestaurant == null || selectedRestaurant == 'Foodbox') {
+      xmlFilePath = 'assets/data_xml/restaurant_dish.xml';
+    } else if (selectedRestaurant == 'Foodbox-1') {
+      xmlFilePath = 'assets/data_xml/restaurant_dish-1.xml';
     } else {
-      xmlFilePath = 'assets/data_xml/gram_bistro_2.xml';
+      xmlFilePath = 'assets/data_xml/restaurant_dish-2.xml';
     }
 
     final xmlString = await rootBundle.loadString(xmlFilePath);

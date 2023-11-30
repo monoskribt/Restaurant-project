@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/toppings_provider.dart';
+import 'package:Foodbox/screens/view_a_dish/view_a_dish_components/add_a_request.dart';
+import 'package:Foodbox/screens/view_a_dish/view_a_dish_components/view_bottom_bar.dart';
+import 'package:Foodbox/screens/view_a_dish/view_a_dish_function/bju_list_component.dart';
+import 'package:Foodbox/screens/view_a_dish/view_a_dish_function/ingredients_list_component.dart';
+import 'package:Foodbox/screens/view_a_dish/view_a_dish_function/recommended_list_component.dart';
+import 'package:Foodbox/screens/view_a_dish/view_a_dish_function/toppings_list_component.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/toppings_provider.dart';
-import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_components/add_a_request.dart';
-import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_components/view_bottom_bar.dart';
-import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_function/bju_list_component.dart';
-import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_function/ingredients_list_component.dart';
-import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_function/recommended_list_component.dart';
-import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_function/toppings_list_component.dart';
 
 class ViewADish extends StatefulWidget {
   final String imageDishView;

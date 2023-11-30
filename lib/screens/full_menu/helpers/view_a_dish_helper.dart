@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish.dart';
+import 'package:Foodbox/screens/view_a_dish/view_a_dish.dart';
 
 //При клике на блюдо появляется данный экран
 class ViewADishHelper {

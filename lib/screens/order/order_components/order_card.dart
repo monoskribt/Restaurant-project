@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/order_provider.dart';
+import 'package:Foodbox/screens/order/order_components/cart_counter_order.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/order_provider.dart';
-import 'package:sushi_shop_project/screens/order/order_components/cart_counter_order.dart';
+
 
 class OrderCard extends StatelessWidget {
   final String imageOrder;

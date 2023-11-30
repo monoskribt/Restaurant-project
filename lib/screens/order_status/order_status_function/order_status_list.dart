@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/order_provider.dart';
+import 'package:Foodbox/features/provider/order_total_provider.dart';
+import 'package:Foodbox/screens/order_status/order_status_components/order_status_card.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/order_provider.dart';
-import 'package:sushi_shop_project/features/provider/order_total_provider.dart';
-import 'package:sushi_shop_project/screens/order_status/order_status_components/order_status_card.dart';
+
 
 class OrderStatusList extends StatefulWidget {
   const OrderStatusList({

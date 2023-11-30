@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:sushi_shop_project/models/filter_model.dart';
+import 'package:Foodbox/models/filter_model.dart';
 
 abstract class FiltersCategoryState extends Equatable {
   const FiltersCategoryState();

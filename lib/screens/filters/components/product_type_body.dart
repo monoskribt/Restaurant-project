@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sushi_shop_project/features/bloc/filter_bloc.dart';
-import 'package:sushi_shop_project/features/bloc/filter_state.dart';
-import 'package:sushi_shop_project/screens/filters/tools/product_type_filter.dart';
+import 'package:Foodbox/features/bloc/filter_bloc.dart';
+import 'package:Foodbox/features/bloc/filter_state.dart';
+import 'package:Foodbox/screens/filters/tools/product_type_filter.dart';
+
 
 class ProductTypeBody extends StatefulWidget {
   const ProductTypeBody({

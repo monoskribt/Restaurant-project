@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu_components/daily_specials_card.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
+import 'package:Foodbox/screens/full_menu/full_menu_components/daily_specials_card.dart';
+
 
 class DailySpecials extends StatelessWidget {
   const DailySpecials({Key? key}) : super(key: key);

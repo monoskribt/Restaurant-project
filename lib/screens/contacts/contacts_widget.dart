@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:sushi_shop_project/data_parsing/parsing/parsing_contacts/contacts_parse.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
-import 'package:sushi_shop_project/screens/drawer_widget/main_drawer.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu.dart';
+import 'package:Foodbox/data_parsing/parsing/parsing_contacts/contacts_parse.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
+import 'package:Foodbox/screens/drawer_widget/main_drawer.dart';
 
 class Contacts extends StatefulWidget {
   const Contacts({Key? key}) : super(key: key);
@@ -183,19 +182,11 @@ class _ContactsState extends State<Contacts> {
   Widget buildCircularImage() {
     return Container(
       height: 150,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         shape: BoxShape.circle,
-        image: const DecorationImage(
-          image: AssetImage("assets/images/logo.jpg"),
+        image: DecorationImage(
+          image: AssetImage("assets/images/foodbox.png"),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            offset: const Offset(0, 4),
-            blurRadius: 20,
-            spreadRadius: 10,
-          ),
-        ],
       ),
     );
   }
@@ -206,18 +197,12 @@ class _ContactsState extends State<Contacts> {
       child: FittedBox(
         fit: BoxFit.scaleDown,
         child: Container(
+          width: 300,
           height: 350,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                offset: const Offset(0, 4),
-                blurRadius: 20,
-                spreadRadius: 5,
-              ),
-            ],
+
           ),
           child: buildContactDetails(),
         ),
@@ -229,11 +214,10 @@ class _ContactsState extends State<Contacts> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        buildContactRow("Phone:", contactNumber),
-
-        buildContactRow("Email:", contactEmail),
+        buildContactRow("Phone: ", contactNumber),
+        buildContactRow("Email: ", contactEmail),
         buildContactRow(
-          "Address:",
+          "Address: ",
           contactAddress,
         ),
       ],
@@ -242,7 +226,7 @@ class _ContactsState extends State<Contacts> {
 
   Widget buildContactRow(String title, String value) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         buildContactText(title),
         buildContactText(value),

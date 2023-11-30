@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sushi_shop_project/data_parsing/parsing/parsing_dish_card/menu_parse.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu_components/pasta_card.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
+import 'package:Foodbox/screens/full_menu/full_menu_components/pasta_card.dart';
+
 
 class PastaMenu extends StatelessWidget {
   PastaMenu({Key? key}) : super(key: key);

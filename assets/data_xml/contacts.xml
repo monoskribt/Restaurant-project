@@ -1,17 +1,17 @@
 <contacts>
     <contact id = '1'>
         <number>+40-000-000</number>
-        <email>gram-bistro@gmail.com</email>
-        <address>GramBistroStreet</address>
+        <email>Foodbox@gmail.com</email>
+        <address>Basic Street</address>
     </contact>
     <contact id = '2'>
         <number>+40-111-111</number>
-        <email>gram-bistro-1@gmail.com</email>
-        <address>GramBistroStreet-1</address>
+        <email>Foodbox-1@gmail.com</email>
+        <address>Basic Street-1</address>
     </contact>
     <contact id = '3'>
         <number>+40-222-222</number>
-        <email>gram-bistro-2@gmail.com</email>
-        <address>GramBistroStreet-2</address>
+        <email>Foodbox-2@gmail.com</email>
+        <address>Basic Street-2</address>
     </contact>
 </contacts>

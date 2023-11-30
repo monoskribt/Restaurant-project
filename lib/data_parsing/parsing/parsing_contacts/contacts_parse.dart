@@ -6,9 +6,9 @@ class ContactInfoParse {
     const xmlFilePath = 'assets/data_xml/contacts.xml';
     final xmlString = await rootBundle.loadString(xmlFilePath);
     final document = xml.XmlDocument.parse(xmlString);
-    final contactId = selectedRestaurant == 'Gram Bistro'
+    final contactId = selectedRestaurant == 'Foodbox'
         ? '1'
-        : selectedRestaurant == 'Gram Bistro-1'
+        : selectedRestaurant == 'Foodbox-1'
         ? '2'
         : '3';
 

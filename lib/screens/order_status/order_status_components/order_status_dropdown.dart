@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/order_total_provider.dart';
+import 'package:Foodbox/screens/order_status/order_status_function/order_status_list.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/order_total_provider.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu.dart';
-import 'package:sushi_shop_project/screens/order_status/order_status_function/order_status_list.dart';
+
 
 class OrderDropdown extends StatefulWidget {
   const OrderDropdown({
@@ -51,39 +51,27 @@ class _OrderDropdownState extends State<OrderDropdown> {
                 ),
               ],
             ),
-            child: ExpansionTile(
-              initiallyExpanded: isExpanded,
-              onExpansionChanged: (expanded) {
-                setState(() {
-                  isExpanded = expanded;
-                });
-              },
-              title: const Text(
-                "Order list and prices",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontFamily: "Mulish-Regular",
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF8E8EA9),
-                ),
-              ),
-              trailing: isExpanded
-                  ? const Icon(Icons.expand_less, color: Color(0xFFFFB01D))
-                  : const Icon(Icons.expand_more, color: Color(0xFFFFB01D)),
-              children: [
-                const OrderStatusList(),
-                const SizedBox(height: 20),
-                buildAddMoreFoodButton(context),
-                const SizedBox(height: 30),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                  child: Container(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+              child: Column(
+                children: [
+                  const Text(
+                      "Order list and prices",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontFamily: "Mulish-Regular",
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF8E8EA9),
+                      ),
+                    ),
+                  const OrderStatusList(),
+                  const SizedBox(height: 20),
+                  buildAddMoreFoodButton(context),
+                  const SizedBox(height: 30),
+                  Container(
                       width: 320, height: 2, color: const Color(0xFFEAEAEF)),
-                ),
-                const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                  child: Column(
+                  const SizedBox(height: 20),
+                  Column(
                     children: [
                       buildTotalRow("Items Total", itemsTotal),
                       const SizedBox(height: 15),
@@ -98,9 +86,10 @@ class _OrderDropdownState extends State<OrderDropdown> {
                       const SizedBox(height: 20),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
+
           ),
         );
       },

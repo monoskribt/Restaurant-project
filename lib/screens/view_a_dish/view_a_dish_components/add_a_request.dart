@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/request_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/request_provider.dart';
 
 class RequestInput extends StatefulWidget {
   final String nameDishView;

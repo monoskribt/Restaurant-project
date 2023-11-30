@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:sushi_shop_project/data_parsing/models/ingredients_model.dart';
+import 'package:Foodbox/data_parsing/models/ingredients_model.dart';
 import 'package:xml/xml.dart' as xml;
 
 class IngredientsParse {

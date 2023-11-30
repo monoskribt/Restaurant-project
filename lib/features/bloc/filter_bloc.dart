@@ -2,9 +2,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sushi_shop_project/models/filter_model.dart';
-import 'package:sushi_shop_project/screens/filters/tools/category_filter.dart';
-import 'package:sushi_shop_project/screens/filters/tools/product_type_filter.dart';
+import 'package:Foodbox/models/filter_model.dart';
+import 'package:Foodbox/screens/filters/tools/category_filter.dart';
+import 'package:Foodbox/screens/filters/tools/product_type_filter.dart';
+
 import 'filter_state.dart';
 
 part 'filter_event.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screens/payment/new_card_bottom_sheet/new_card.dart';
+import 'package:Foodbox/screens/payment/new_card_bottom_sheet/new_card.dart';
 
 class BottomSheetHelper {
   static void showViewACard(BuildContext context) {

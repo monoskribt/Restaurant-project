@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sushi_shop_project/features/bloc/filter_bloc.dart';
-import 'package:sushi_shop_project/features/bloc/filter_state.dart';
-import 'package:sushi_shop_project/screens/filters/components/categories_body.dart';
-import 'package:sushi_shop_project/screens/filters/components/product_type_body.dart';
-import 'package:sushi_shop_project/screens/filters/filters_function/price_range_slider.dart';
+import 'package:Foodbox/features/bloc/filter_bloc.dart';
+import 'package:Foodbox/features/bloc/filter_state.dart';
+import 'package:Foodbox/screens/filters/components/categories_body.dart';
+import 'package:Foodbox/screens/filters/components/product_type_body.dart';
+import 'package:Foodbox/screens/filters/filters_function/price_range_slider.dart';
 
 class Filters extends StatefulWidget {
   const Filters({Key? key}) : super(key: key);

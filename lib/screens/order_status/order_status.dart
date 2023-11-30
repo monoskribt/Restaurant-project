@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
-import 'package:sushi_shop_project/features/provider/order_time_provider.dart';
-import 'package:sushi_shop_project/screens/drawer_widget/main_drawer.dart';
-import 'package:sushi_shop_project/screens/order_status/order_status_components/order_status_bottom_bar.dart';
-import 'package:sushi_shop_project/screens/order_status/order_status_components/order_status_dropdown.dart';
-import 'package:sushi_shop_project/screens/order_status/order_status_components/order_statuses.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
+import 'package:Foodbox/screens/drawer_widget/main_drawer.dart';
+import 'package:Foodbox/screens/order_status/order_status_components/order_status_bottom_bar.dart';
+import 'package:Foodbox/screens/order_status/order_status_components/order_status_dropdown.dart';
+
 
 class OrderStatus extends StatefulWidget {
   const OrderStatus({Key? key}) : super(key: key);
@@ -55,7 +53,7 @@ class _OrderStatusState extends State<OrderStatus> {
                   buildTopBar(context),
                   const SizedBox(height: 15),
                   //Здесь можно менять значения и будут разные статусы
-                  const OrderStatusFirst(orderTime: 15),
+                  // const OrderStatusFirst(orderTime: 15),
                   const SizedBox(height: 15),
                   const OrderDropdown(),
                 ],
@@ -162,9 +160,7 @@ class _OrderStatusState extends State<OrderStatus> {
   }
 
   OrderStatusBottomBar? _buildBottomNavigationBar(BuildContext context) {
-    final orderTimeProvider = Provider.of<OrderTimeProvider>(context);
-    return orderTimeProvider.isShowBottomBar
-        ? const OrderStatusBottomBar()
-        : null;
+    // final orderTimeProvider = Provider.of<OrderTimeProvider>(context);
+    return const OrderStatusBottomBar();
   }
 }

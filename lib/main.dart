@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:Foodbox/features/bloc/filter_bloc.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
+import 'package:Foodbox/features/cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
+import 'package:Foodbox/features/provider/card_details_provider.dart';
+import 'package:Foodbox/features/provider/email_controller_provider.dart';
+import 'package:Foodbox/features/provider/order_provider.dart';
+import 'package:Foodbox/features/provider/order_time_provider.dart';
+import 'package:Foodbox/features/provider/order_total_provider.dart';
+import 'package:Foodbox/features/provider/request_provider.dart';
+import 'package:Foodbox/features/provider/toppings_provider.dart';
+import 'package:Foodbox/features/provider/user_contact_details_provider.dart';
+import 'package:Foodbox/screens/contacts/contacts_widget.dart';
+import 'package:Foodbox/screens/drawer_widget/main_drawer.dart';
+import 'package:Foodbox/screens/full_menu/full_menu.dart';
+import 'package:Foodbox/screens/order/order_menu.dart';
+import 'package:Foodbox/screens/order_status/order_status.dart';
+import 'package:Foodbox/screens/payment/payment.dart';
+import 'package:Foodbox/screens/payment_confirmation/payment_confirmation.dart';
+import 'package:Foodbox/screens/user_contact_details/user_contact_details.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/bloc/filter_bloc.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
-import 'package:sushi_shop_project/features/provider/card_details_provider.dart';
-import 'package:sushi_shop_project/features/provider/email_controller_provider.dart';
-import 'package:sushi_shop_project/features/provider/order_provider.dart';
-import 'package:sushi_shop_project/features/provider/order_time_provider.dart';
-import 'package:sushi_shop_project/features/provider/order_total_provider.dart';
-import 'package:sushi_shop_project/features/provider/request_provider.dart';
-import 'package:sushi_shop_project/features/provider/toppings_provider.dart';
-import 'package:sushi_shop_project/features/provider/user_contact_details_provider.dart';
-import 'package:sushi_shop_project/models/user_contact_details.dart';
-import 'package:sushi_shop_project/screens/contacts/contacts_widget.dart';
-import 'package:sushi_shop_project/screens/drawer_widget/main_drawer.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu.dart';
-import 'package:sushi_shop_project/screens/order/order_menu.dart';
-import 'package:sushi_shop_project/screens/order_status/order_status.dart';
-import 'package:sushi_shop_project/screens/payment/payment.dart';
-import 'package:sushi_shop_project/screens/payment_confirmation/payment_confirmation.dart';
-import 'package:sushi_shop_project/screens/user_contact_details/user_contact_details.dart';
+
 
 
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
+import 'package:Foodbox/features/provider/order_provider.dart';
+import 'package:Foodbox/features/provider/order_total_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
-import 'package:sushi_shop_project/features/provider/order_provider.dart';
-import 'package:sushi_shop_project/features/provider/order_total_provider.dart';
 
 import '../drawer_widget/main_drawer.dart';
 

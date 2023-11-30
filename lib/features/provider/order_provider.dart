@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/models/order_model.dart';
+import 'package:Foodbox/models/order_model.dart';
 
 class OrderProvider extends ChangeNotifier {
 

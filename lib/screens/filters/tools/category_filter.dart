@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:sushi_shop_project/models/category_filter_model.dart';
+import 'package:Foodbox/models/category_filter_model.dart';
 
 class CategoryFilter extends Equatable {
   final int id;

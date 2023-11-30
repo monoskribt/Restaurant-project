@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/card_details_provider.dart';
+import 'package:Foodbox/features/provider/email_controller_provider.dart';
+import 'package:Foodbox/features/provider/order_total_provider.dart';
+import 'package:Foodbox/screens/user_contact_details/tools/validator.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/card_details_provider.dart';
-import 'package:sushi_shop_project/features/provider/email_controller_provider.dart';
-import 'package:sushi_shop_project/features/provider/order_total_provider.dart';
-import 'package:sushi_shop_project/screens/user_contact_details/tools/validator.dart';
+
 
 class InfoAboutOrder extends StatefulWidget {
   @override

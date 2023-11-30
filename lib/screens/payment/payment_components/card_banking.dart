@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/models/card_details_model.dart';
+import 'package:Foodbox/models/card_details_model.dart';
 
 import '../tools/format_card_number.dart';
 

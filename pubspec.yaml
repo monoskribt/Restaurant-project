@@ -1,4 +1,4 @@
-name: sushi_shop_project
+name: Foodbox
 description: A new Flutter project.
 publish_to: 'none'
 version: 1.0.0+1
@@ -37,9 +37,9 @@ flutter:
     - assets/data_xml/toppings.xml
     - assets/data_xml/ingredients.xml
     - assets/data_xml/bju.xml
-    - assets/data_xml/gram_bistro.xml
-    - assets/data_xml/gram_bistro_1.xml
-    - assets/data_xml/gram_bistro_2.xml
+    - assets/data_xml/restaurant_dish.xml
+    - assets/data_xml/restaurant_dish-1.xml
+    - assets/data_xml/restaurant_dish-2.xml
     - assets/data_xml/restaurant_name.xml
     - assets/data_xml/contacts.xml
   fonts:

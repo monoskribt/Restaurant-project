@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/order_provider.dart';
+import 'package:Foodbox/features/provider/request_provider.dart';
+import 'package:Foodbox/features/provider/toppings_provider.dart';
+import 'package:Foodbox/models/order_model.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/order_provider.dart';
-import 'package:sushi_shop_project/features/provider/request_provider.dart';
-import 'package:sushi_shop_project/features/provider/toppings_provider.dart';
-import 'package:sushi_shop_project/models/order_model.dart';
+
 
 import '../snackbar/snackbar_added_to_order.dart';
 

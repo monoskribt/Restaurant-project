@@ -1,4 +1,4 @@
-# sushi_shop_project
+# Foodbox
 
 A new Flutter project.
 

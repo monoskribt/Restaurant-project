@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:Foodbox/features/provider/card_details_provider.dart';
+import 'package:Foodbox/models/card_details_model.dart';
+import 'package:Foodbox/screens/payment/tools/input_formatters.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/card_details_provider.dart';
-import 'package:sushi_shop_project/models/card_details_model.dart';
-import 'package:sushi_shop_project/screens/payment/tools/input_formatters.dart';
+
 
 class NewCard extends StatefulWidget {
   const NewCard({Key? key}) : super(key: key);

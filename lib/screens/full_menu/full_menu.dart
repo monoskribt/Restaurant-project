@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sushi_shop_project/data_parsing/parsing/parsing_for_search_dish/dish_data_for_search_parse.dart';
-import 'package:sushi_shop_project/data_parsing/parsing/parsing_restaurant_name/restaurant_name_parse.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu_components/search_widget.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu_function/daily_specials_menu.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu_function/most_popular_menu.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu_function/pasta_menu.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu_function/salad_menu.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu_components/sorting_category_list.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu_components/category_text.dart';
+import 'package:Foodbox/data_parsing/parsing/parsing_for_search_dish/dish_data_for_search_parse.dart';
+import 'package:Foodbox/data_parsing/parsing/parsing_restaurant_name/restaurant_name_parse.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
+import 'package:Foodbox/features/cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
+import 'package:Foodbox/screens/full_menu/full_menu_components/category_text.dart';
+import 'package:Foodbox/screens/full_menu/full_menu_components/search_widget.dart';
+import 'package:Foodbox/screens/full_menu/full_menu_components/sorting_category_list.dart';
+import 'package:Foodbox/screens/full_menu/full_menu_function/daily_specials_menu.dart';
+import 'package:Foodbox/screens/full_menu/full_menu_function/most_popular_menu.dart';
+import 'package:Foodbox/screens/full_menu/full_menu_function/pasta_menu.dart';
+import 'package:Foodbox/screens/full_menu/full_menu_function/salad_menu.dart';
 import '../drawer_widget/main_drawer.dart';
 import 'package:flutter/services.dart';
 
@@ -34,7 +34,7 @@ class FullMenu extends StatefulWidget {
 class _FullMenuState extends State<FullMenu> {
   final GlobalKey<ScaffoldState> fullManuScaffoldKey = GlobalKey<ScaffoldState>();
   String selectedCategory = "All Dishes";
-  String selectedRestaurant = "Gram Bistro";
+  String selectedRestaurant = "Foodbox";
 
   Future<List<String>> fetchRestaurantList() async {
     RestaurantNameParse restaurantNameParse = RestaurantNameParse();

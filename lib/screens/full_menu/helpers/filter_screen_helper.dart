@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screens/filters/filters.dart';
+import 'package:Foodbox/screens/filters/filters.dart';
+
 
 //При клике на иконку фильтров появляется данный экран
 class FilterScreenHelper {

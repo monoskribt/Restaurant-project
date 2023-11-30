@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/data_parsing/models/ingredients_model.dart';
-import 'package:sushi_shop_project/data_parsing/parsing/parsing_for_ingredients/ingredients_parse.dart';
-import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_components/ingredients_card.dart';
+import 'package:Foodbox/data_parsing/models/ingredients_model.dart';
+import 'package:Foodbox/data_parsing/parsing/parsing_for_ingredients/ingredients_parse.dart';
+import 'package:Foodbox/screens/view_a_dish/view_a_dish_components/ingredients_card.dart';
+
 
 class IngredientsListComponent extends StatelessWidget {
   const IngredientsListComponent({Key? key}) : super(key: key);

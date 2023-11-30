@@ -2,19 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
+import 'package:Foodbox/features/provider/email_controller_provider.dart';
+import 'package:Foodbox/features/provider/order_provider.dart';
+import 'package:Foodbox/features/provider/order_total_provider.dart';
+import 'package:Foodbox/features/provider/user_contact_details_provider.dart';
+import 'package:Foodbox/models/user_contact_details.dart';
+import 'package:Foodbox/screens/drawer_widget/main_drawer.dart';
+import 'package:Foodbox/screens/user_contact_details/tools/input_formatter.dart';
+import 'package:Foodbox/screens/user_contact_details/user_contact_details_component/send_order_email.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
-import 'package:sushi_shop_project/features/provider/email_controller_provider.dart';
-import 'package:sushi_shop_project/features/provider/order_provider.dart';
-import 'package:sushi_shop_project/features/provider/order_total_provider.dart';
-import 'package:sushi_shop_project/features/provider/user_contact_details_provider.dart';
-import 'package:sushi_shop_project/models/user_contact_details.dart';
-import 'package:sushi_shop_project/screens/drawer_widget/main_drawer.dart';
-import 'package:sushi_shop_project/screens/user_contact_details/tools/input_formatter.dart';
-import 'package:sushi_shop_project/screens/user_contact_details/tools/validator.dart';
-import 'package:sushi_shop_project/screens/user_contact_details/snackbar/snackbar_contact.dart';
-import 'package:sushi_shop_project/services/smtp/send_email.dart';
+
+import 'snackbar/snackbar_contact.dart';
+
 
 class UserContact extends StatefulWidget {
   const UserContact({Key? key}) : super(key: key);
@@ -24,6 +24,8 @@ class UserContact extends StatefulWidget {
 }
 
 class _UserContactState extends State<UserContact> {
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _userNumberController = TextEditingController();
   final TextEditingController _userAddressController = TextEditingController();
@@ -42,6 +44,13 @@ class _UserContactState extends State<UserContact> {
   bool isAddressValid = true;
   bool isEmailValid = true;
 
+  void clear() {
+    _userNameController.clear();
+    _userNumberController.clear();
+    _userAddressController.clear();
+    emailController.clear();
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -51,17 +60,19 @@ class _UserContactState extends State<UserContact> {
     _userAddressController.dispose();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    final orderProvider = Provider.of<OrderProvider>(context, listen: false);
     final orderTotalProvider =
         Provider.of<OrderTotalProvider>(context, listen: false);
     final userContactDetailsProvider =
         Provider.of<UserContactDetailsProvider>(context);
     final emailControllerProvider =
         Provider.of<EmailControllerProvider>(context);
+    final orderProvider = Provider.of<OrderProvider>(context, listen: false);
     return LayoutBuilder(
       builder: (builder, constraints) {
         double buttonWidth = constraints.maxWidth;
@@ -101,68 +112,174 @@ class _UserContactState extends State<UserContact> {
                       children: [
                         buildTopBar(context),
                         SizedBox(height: 0.05 * screenHeight),
-                        Column(
-                          children: [
-                            const SizedBox(height: 10),
-                            const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: 230,
-                                  child: Text(
-                                    "Enter your contact",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontFamily: "Mulish-Regular",
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xFF32324D),
+                        Form(
+                          key: formKey,
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 10),
+                              const Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 230,
+                                    child: Text(
+                                      "Enter your contact",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: "Mulish-Regular",
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFF32324D),
+                                      ),
+                                      maxLines: 2,
+                                      softWrap: true,
                                     ),
-                                    maxLines: 2,
-                                    softWrap: true,
+                                  )
+                                ],
+                              ),
+                              const SizedBox(height: 35),
+                              TextFormField(
+                                  controller: _userNameController,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    labelText: "Name",
+                                    labelStyle: TextStyle(
+                                      fontSize: 0.017 * screenHeight,
+                                      fontFamily: "Mulish-Regular",
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.grey,
+                                    ),
+                                    prefixIcon: const Icon(
+                                      Icons.person,
+                                      color: Colors.grey,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey, width: 2.0)),
                                   ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(height: 30),
-                            buildInputField(
-                              controller: _userNameController,
-                              icon: Icons.person,
-                              hintText: "Name",
-                              inputType: TextInputType.name,
-                              provider: userContactDetailsProvider,
-                              textInputAction: TextInputAction.next,
-                            ),
-                            const SizedBox(height: 30),
-                            buildInputField(
-                              controller: _userNumberController,
-                              icon: Icons.phone_android_outlined,
-                              inputFormatters: [PhoneNumberFormatter()],
-                              hintText: "Number",
-                              inputType: TextInputType.phone,
-                              provider: userContactDetailsProvider,
-                              textInputAction: TextInputAction.next,
-                            ),
-                            const SizedBox(height: 30),
-                            buildInputField(
-                              controller: emailController,
-                              icon: Icons.email_rounded,
-                              hintText: "Email",
-                              inputType: TextInputType.emailAddress,
-                              emailControllerProvider: emailControllerProvider,
-                              textInputAction: TextInputAction.next,
-                            ),
-                            const SizedBox(height: 30),
-                            buildInputField(
-                              controller: _userAddressController,
-                              icon: Icons.home,
-                              hintText: "Address",
-                              inputType: TextInputType.multiline,
-                              provider: userContactDetailsProvider,
-                              textInputAction: TextInputAction.done,
-                            ),
-                            const SizedBox(height: 30),
-                          ],
+                                  cursorColor: Colors.grey,
+                                  keyboardType: TextInputType.name,
+                                  textInputAction: TextInputAction.next,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Enter name";
+                                    }
+                                    if (value.length <= 3) {
+                                      return "Enter a valid name";
+                                    }
+                                  }),
+                              const SizedBox(height: 25),
+                              TextFormField(
+                                  controller: _userNumberController,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      labelText: "Number",
+                                      labelStyle: TextStyle(
+                                        fontSize: 0.017 * screenHeight,
+                                        fontFamily: "Mulish-Regular",
+                                        fontWeight: FontWeight.w800,
+                                        color: Colors.grey,
+                                      ),
+                                      prefixIcon: const Icon(
+                                        Icons.phone,
+                                        color: Colors.grey,
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          borderSide: const BorderSide(
+                                              color: Colors.grey, width: 2.0))),
+                                  cursorColor: Colors.grey,
+                                  inputFormatters: [PhoneNumberFormatter()],
+                                  keyboardType: TextInputType.number,
+                                  textInputAction: TextInputAction.next,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Enter number";
+                                    }
+                                    if (value.length <= 7) {
+                                      return "Enter a valid number";
+                                    }
+                                  }),
+                              const SizedBox(height: 25),
+                              TextFormField(
+                                controller: _userAddressController,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    labelText: "Address",
+                                    labelStyle: TextStyle(
+                                      fontSize: 0.017 * screenHeight,
+                                      fontFamily: "Mulish-Regular",
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.grey,
+                                    ),
+                                    prefixIcon: const Icon(
+                                      Icons.home,
+                                      color: Colors.grey,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey, width: 2.0))),
+                                cursorColor: Colors.grey,
+                                keyboardType: TextInputType.multiline,
+                                textInputAction: TextInputAction.next,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Enter address";
+                                  }
+                                },
+                              ),
+                              const SizedBox(height: 25),
+                              TextFormField(
+                                controller: emailController,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    labelText: "Email",
+                                    labelStyle: TextStyle(
+                                      fontSize: 0.017 * screenHeight,
+                                      fontFamily: "Mulish-Regular",
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.grey,
+                                    ),
+                                    prefixIcon: const Icon(
+                                      Icons.email,
+                                      color: Colors.grey,
+                                    ),
+                                    helperText: "Optional",
+                                    helperStyle: TextStyle(
+                                      fontSize: 0.017 * screenHeight,
+                                      fontFamily: "Mulish-Regular",
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.grey,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey, width: 2.0))),
+                                cursorColor: Colors.grey,
+                                keyboardType: TextInputType.emailAddress,
+                                textInputAction: TextInputAction.done,
+                                validator: (value) {
+                                  if(value != null && value.isNotEmpty) {
+                                    if(!emailControllerProvider.validateEmail(value)) {
+                                      return "Enter valid email";
+                                    }
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -170,52 +287,51 @@ class _UserContactState extends State<UserContact> {
                 ),
               ),
             ),
-            bottomNavigationBar: GestureDetector(
-              onTap: () {
-                final totalWithTips = orderTotalProvider.totalWithTips;
-                if (userContactDetailsProvider.isContactInfoFinish &&
-                    emailControllerProvider.email.isNotEmpty &&
-                    emailControllerProvider
-                        .validateEmail(emailControllerProvider.email)) {
-                  final name = _userNameController.text;
-                  final number = _userNumberController.text;
-                  final address = _userAddressController.text;
-
-                  final nameValidationError = Validator.validateFirstName(name);
-                  final numberValidationError =
-                      Validator.validatePhoneNumber(number);
-                  final addressValidationError =
-                      Validator.validateAddress(address);
-
-                  if (nameValidationError == null &&
-                      numberValidationError == null &&
-                      addressValidationError == null) {
+            bottomNavigationBar: Container(
+              height: 100,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(26),
+                  topRight: Radius.circular(26),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xFFDCDCE4),
+                    offset: Offset(0, -10),
+                    blurRadius: 20,
+                    spreadRadius: 0,
+                  ),
+                  BoxShadow(
+                    color: Color(0x0C1A4B05),
+                    offset: Offset(0, 0),
+                    blurRadius: 5,
+                    spreadRadius: 0,
+                  ),
+                ],
+              ),
+              child: GestureDetector(
+                onTap: () {
+                  final totalWithTips = orderTotalProvider.totalWithTips;
+                  if (formKey.currentState!.validate()) {
                     UserContactDetails newContact = UserContactDetails();
-                    newContact.name = name;
-                    newContact.number = number;
-                    newContact.address = address;
+                    newContact.name = _userNameController.text;
+                    newContact.number = _userNumberController.text;
+                    newContact.address = _userAddressController.text;
 
                     userContactDetailsProvider.addContact(newContact);
-                    sendOrderEmail(totalWithTips);
+
+                    SendOrderEmail.sendOrderEmail(totalWithTips, context, emailController.text);
+                    Navigator.of(context).pushNamedAndRemoveUntil('/payment_confirmation', (route) => false);
+                    clear();
                     orderTotalProvider.clear();
                     orderProvider.orderMap.clear();
                     userContactDetailsProvider.clear();
                     emailControllerProvider.setEmail('');
-
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        '/payment_confirmation', (route) => false);
+                  } else {
+                    SnackBarContact.showSnackBar(context, "All fields must be completed");
                   }
-                } else if (!emailControllerProvider
-                    .validateEmail(emailControllerProvider.email)) {
-                  SnackBarContact.showSnackBar(
-                      context, "Enter a correct email");
-                } else {
-                  SnackBarContact.showSnackBar(
-                      context, "All fields must be completed");
-                }
-              },
-              child: Padding(
-                padding: EdgeInsets.only(bottom: 0.02 * screenHeight),
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -228,7 +344,7 @@ class _UserContactState extends State<UserContact> {
                       ),
                       child: const Center(
                         child: Text(
-                          "Add contact",
+                          "Complete order",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -249,6 +365,8 @@ class _UserContactState extends State<UserContact> {
   }
 
   Widget buildTopBar(BuildContext context) {
+    final userContactDetailsProvider =
+    Provider.of<UserContactDetailsProvider>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -283,7 +401,10 @@ class _UserContactState extends State<UserContact> {
                   icon: const Icon(Icons.arrow_back, size: 22),
                   color: const Color(0xFF666687),
                   onPressed: () {
-                    arrowBackInfo(context);
+                    Navigator.pushNamedAndRemoveUntil(context, '/order_status', (route) => false);
+                    userContactDetailsProvider.clear();
+                    clear();
+                    // BackArrowInfo.arrowBackInfo(context);
                   },
                 ),
               ),
@@ -338,225 +459,66 @@ class _UserContactState extends State<UserContact> {
     IconData? icon,
     String? prefixIconAsset,
     List<TextInputFormatter>? inputFormatters,
-    required String hintText,
+    required String labelText,
     required TextInputType inputType,
     UserContactDetailsProvider? provider,
     EmailControllerProvider? emailControllerProvider,
     required TextInputAction textInputAction,
   }) {
-    return Container(
-      height: 60,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: Colors.white,
-        border: Border.all(
-          color: (hintText.toLowerCase().contains("name") && !isNameValid) ||
-                  (hintText.toLowerCase().contains("number") &&
-                      !isNumberValid) ||
-                  (hintText.toLowerCase().contains("email") && !isEmailValid) ||
-                  (hintText.toLowerCase().contains("address") &&
-                      !isAddressValid)
-              ? Colors.red
-              : const Color(0xFFEAEAEF),
-          width: 1,
-        ),
-      ),
+    return Form(
+      key: formKey,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Flexible(
-            child: TextField(
-              onChanged: (value) {
-                if (hintText.toLowerCase().contains("name")) {
-                  provider?.updateUserContactName(value);
-                  setState(() {
-                    isNameValid = Validator.validateFirstName(value) == null;
-                  });
-                } else if (hintText.toLowerCase().contains("number")) {
-                  provider?.updateUserContactNumber(value);
-                  setState(() {
-                    isNumberValid =
-                        Validator.validatePhoneNumber(value) == null;
-                  });
-                } else if (hintText.toLowerCase().contains("email")) {
-                  emailControllerProvider?.setEmail(value);
-                  setState(() {
-                    isEmailValid = Validator.validateEmail(value) == null;
-                  });
-                } else if (hintText.toLowerCase().contains("address")) {
-                  provider?.updateUserContactAddress(value);
-                  setState(() {
-                    isAddressValid = Validator.validateAddress(value) == null;
-                  });
-                }
-              },
-              keyboardType: inputType,
-              inputFormatters: inputFormatters,
-              controller: controller,
-              decoration: InputDecoration(
-                  hintText: hintText,
-                  hintStyle: const TextStyle(
-                    fontSize: 14,
-                    fontFamily: "Mulish-Regular",
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF8E8EA9),
-                  ),
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                  counterStyle: const TextStyle(
-                    fontSize: 13,
-                    color: Color(0xFFC0C0CF),
-                    fontFamily: "Mulish-Regular",
-                    fontWeight: FontWeight.w400,
-                  ),
-                  prefixIcon: Icon(
-                    icon,
-                    color: Colors.grey,
-                  )),
-              textInputAction: textInputAction,
-              onSubmitted: (value) {
-                if (hintText.toLowerCase().contains("name")) {
-                  final validationError = Validator.validateFirstName(value);
-                  if (value.isEmpty) {
-                    SnackBarContact.showSnackBar(context, validationError!);
-                  }
-                } else if (hintText.toLowerCase().contains("number")) {
-                  final validationError = Validator.validatePhoneNumber(value);
-                  if (value.isEmpty) {
-                    SnackBarContact.showSnackBar(context, validationError!);
-                  }
-                } else if (hintText.toLowerCase().contains("email")) {
-                  final validationError = Validator.validateEmail(value);
-                  if (value.isEmpty) {
-                    SnackBarContact.showSnackBar(context, validationError!);
-                  }
-                } else if (hintText.toLowerCase().contains("address")) {
-                  final validationError = Validator.validateAddress(value);
-                  if (value.isEmpty) {
-                    SnackBarContact.showSnackBar(context, validationError!);
-                  }
-                }
-              },
+          TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              labelText: labelText,
+              prefixIcon: Icon(
+                icon,
+                color: Colors.grey,
+              ),
             ),
+            textInputAction: textInputAction,
+            inputFormatters: inputFormatters,
+            keyboardType: inputType,
+            validator: (value) {
+              if (labelText.toLowerCase().contains("name")) {
+                provider?.updateUserContactName(value!);
+                if (value!.isEmpty) {
+                  return "Enter name";
+                }
+                if (value.length! <= 3) {
+                  return "Enter a valid name";
+                }
+              } else if (labelText.toLowerCase().contains("number")) {
+                provider?.updateUserContactNumber(value!);
+                if (value!.isEmpty) {
+                  return "Enter number";
+                }
+                if (value.length! <= 7) {
+                  return "Enter a valid number";
+                }
+              } else if (labelText.toLowerCase().contains("email")) {
+                emailControllerProvider?.setEmail(value!);
+                if (value!.isEmpty) {
+                  return "Enter email";
+                }
+                if (!emailControllerProvider!.validateEmail(value)) {
+                  return "Enter valid email";
+                }
+              } else if (labelText.toLowerCase().contains("address")) {
+                provider?.updateUserContactAddress(value!);
+                if (value!.isEmpty) {
+                  return "Enter address";
+                }
+              }
+            },
           ),
         ],
       ),
-    );
-  }
-
-  void arrowBackInfo(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20)
-            ),
-            title: Icon(CupertinoIcons.exclamationmark_circle,
-                color: Colors.red, size: 0.05 * screenHeight),
-            content: Text(
-              "Are you sure you want to abort your data entry? "
-              "If you agree, the data already entered will not be saved.",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 0.02 * screenHeight,
-                fontFamily: "Mulish-Regular",
-              ),
-            ),
-            actions: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(bottom: 0.02 * screenHeight),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Row(
-                      children: [
-                        TextButton(
-                          child: Text(
-                            'No',
-                            style: TextStyle(
-                              fontSize: 0.02 * screenHeight,
-                              fontFamily: "Mulish-Regular",
-                              fontWeight: FontWeight.w800,
-                              color: const Color(0xFFFF7B2C),
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        TextButton(
-                          child: Text(
-                            'Yes',
-                            style: TextStyle(
-                              fontSize: 0.02 * screenHeight,
-                              fontFamily: "Mulish-Regular",
-                              fontWeight: FontWeight.w800,
-                              color: const Color(0xFFFF7B2C),
-                            ),
-                          ),
-                          onPressed: () {
-                            final userContactDetailsProvider =
-                            Provider.of<UserContactDetailsProvider>(context, listen: false);
-                            final emailControllerProvider =
-                            Provider.of<EmailControllerProvider>(context, listen: false);
-                            userContactDetailsProvider.clear();
-                            emailControllerProvider.setEmail('');
-                            Navigator.of(context)
-                                .pushNamedAndRemoveUntil('/order_status', (route) => false);
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ],
-          );
-        });
-  }
-
-  void sendOrderEmail(double totalWithTips) {
-    final orderProvider = Provider.of<OrderProvider>(context, listen: false);
-    final orderTotalProvider =
-        Provider.of<OrderTotalProvider>(context, listen: false);
-    final userContactProvider =
-        Provider.of<UserContactDetailsProvider>(context, listen: false);
-    String emailController =
-        Provider.of<EmailControllerProvider>(context, listen: false).email;
-
-    final orderMap = orderProvider.orderMap;
-
-    final contactDetails = userContactProvider.userContactDetails;
-
-    String emailMessage = 'Ordered Dishes:\n';
-    for (var order in orderMap.values) {
-      emailMessage += 'Dish: ${order.name}\n'
-          'Quantity: ${order.quantity}\n'
-          'Price: \$${order.price.toStringAsFixed(2)}\n'
-          'Comment: ${order.comment}\n'
-          '\n';
-    }
-
-    String contactInfo = 'Contact Details:\n'
-        'Name: ${contactDetails.name}\n'
-        'Number: ${contactDetails.number}\n'
-        'Address: ${contactDetails.address}\n\n';
-
-    emailMessage = contactInfo + emailMessage;
-
-    EmailService.sendEmail(
-      recipientEmail: emailController,
-      mailMessage: emailMessage,
-      dishTips: orderTotalProvider.tips,
-      dishPrice: totalWithTips,
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:sushi_shop_project/screens/filters/tools/category_filter.dart';
-import 'package:sushi_shop_project/screens/filters/tools/product_type_filter.dart';
+import 'package:Foodbox/screens/filters/tools/category_filter.dart';
+import 'package:Foodbox/screens/filters/tools/product_type_filter.dart';
 
 
 

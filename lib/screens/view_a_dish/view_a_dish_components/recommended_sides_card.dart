@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/order_provider.dart';
+import 'package:Foodbox/models/order_model.dart';
+import 'package:Foodbox/screens/full_menu/helpers/view_a_dish_helper.dart';
+import 'package:Foodbox/screens/view_a_dish/snackbar/snackbar_cart_counter.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/order_provider.dart';
-import 'package:sushi_shop_project/models/order_model.dart';
-import 'package:sushi_shop_project/screens/full_menu/helpers/view_a_dish_helper.dart';
-import 'package:sushi_shop_project/screens/view_a_dish/snackbar/snackbar_cart_counter.dart';
+
 
 
 class RecommendedSidesCard extends StatelessWidget {

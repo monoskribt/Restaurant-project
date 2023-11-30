@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu_components/salad_card.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
+import 'package:Foodbox/screens/full_menu/full_menu_components/salad_card.dart';
+
 
 class SaladMenu extends StatelessWidget {
   const SaladMenu({Key? key}) : super(key: key);

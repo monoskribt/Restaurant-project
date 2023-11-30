@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
+import 'package:Foodbox/features/cubit/cubit_for_sorting_card_full_menu/sorting_dishes_cubit.dart';
 
 class SortingCategoryList extends StatelessWidget {
   const SortingCategoryList({Key? key}) : super(key: key);

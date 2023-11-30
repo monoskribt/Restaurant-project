@@ -1,7 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:Foodbox/data_parsing/parsing/parsing_contacts/contacts_parse.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
 
-class EndDrawerHeader extends StatelessWidget {
+class EndDrawerHeader extends StatefulWidget {
   const EndDrawerHeader({Key? key}) : super(key: key);
+
+  @override
+  State<EndDrawerHeader> createState() => _EndDrawerHeaderState();
+}
+
+class _EndDrawerHeaderState extends State<EndDrawerHeader> {
+
+  String contactEmail = "";
+
+  @override
+  void initState() {
+    super.initState();
+    loadContactInfo();
+  }
+
+  Future<void> loadContactInfo() async {
+    final restaurantCubit = context.read<RestaurantCubit>();
+    final selectedRestaurant = restaurantCubit.state;
+    final contactInfo = await ContactInfoParse.loadContactInfo(selectedRestaurant);
+
+    setState(() {
+      contactEmail = contactInfo["email"]!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +51,24 @@ class EndDrawerHeader extends StatelessWidget {
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage("assets/images/logo.jpg")
+                image: AssetImage("assets/images/foodbox.png")
               )
             ),
           ),
           const SizedBox(height: 15),
-          const Text("Gram Bistro", style: TextStyle(
-              fontSize: 20,
-              fontFamily: "DMSans-Regular",
-              fontWeight: FontWeight.w700,
-              color: Colors.black
-          ),
+          BlocBuilder<RestaurantCubit, String>(
+              builder: (context, selectedRestaurant) {
+              return Text(selectedRestaurant, style: const TextStyle(
+                  fontSize: 20,
+                  fontFamily: "DMSans-Regular",
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black
+              ),
+              );
+            }
           ),
           const SizedBox(height: 5),
-          const Text("@GRAMBISTROBUCHAREST", style: TextStyle(
+          Text(contactEmail, style: const TextStyle(
               fontSize: 14,
               fontFamily: "DMSans-Regular",
               fontWeight: FontWeight.w500,

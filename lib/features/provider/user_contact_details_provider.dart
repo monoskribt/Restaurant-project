@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/models/user_contact_details.dart';
+import 'package:Foodbox/models/user_contact_details.dart';
 
 class UserContactDetailsProvider with ChangeNotifier {
   final UserContactDetails _userContactDetails = UserContactDetails();

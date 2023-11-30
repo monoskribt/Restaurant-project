@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/screens/drawer_widget/drawer_header.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/order_provider.dart';
-import 'package:sushi_shop_project/screens/contacts/contacts_widget.dart';
-import 'package:sushi_shop_project/screens/drawer_widget/drawer_header.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu.dart';
-import 'package:sushi_shop_project/screens/order/order_menu.dart';
-import 'package:sushi_shop_project/screens/user_contact_details/user_contact_details.dart';
+
+import '../../features/provider/order_provider.dart';
+
 
 
 class MainDrawer extends StatefulWidget {

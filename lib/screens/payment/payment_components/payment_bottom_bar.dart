@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/email_controller_provider.dart';
+import 'package:Foodbox/features/provider/order_provider.dart';
+import 'package:Foodbox/features/provider/order_total_provider.dart';
+import 'package:Foodbox/features/provider/user_contact_details_provider.dart';
+import 'package:Foodbox/screens/payment/snackbar/snack_bar_error.dart';
+import 'package:Foodbox/services/smtp/send_email.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/email_controller_provider.dart';
-import 'package:sushi_shop_project/features/provider/order_provider.dart';
-import 'package:sushi_shop_project/features/provider/order_total_provider.dart';
-import 'package:sushi_shop_project/features/provider/user_contact_details_provider.dart';
-import 'package:sushi_shop_project/screens/payment/snackbar/snack_bar_error.dart';
-import 'package:sushi_shop_project/screens/payment_confirmation/payment_confirmation.dart';
-import 'package:sushi_shop_project/services/smtp/send_email.dart';
+
 
 class PaymentBottomBar extends StatefulWidget {
   const PaymentBottomBar({

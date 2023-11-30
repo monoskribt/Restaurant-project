@@ -1,4 +1,4 @@
-import 'package:sushi_shop_project/models/dish_model.dart';
+import 'package:Foodbox/models/dish_model.dart';
 
 class CategoryDishModel {
   final String id;

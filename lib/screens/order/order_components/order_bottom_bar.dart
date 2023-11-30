@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/order_provider.dart';
+import 'package:Foodbox/features/provider/user_contact_details_provider.dart';
+import 'package:Foodbox/screens/order/snackbar/snack_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/order_provider.dart';
-import 'package:sushi_shop_project/features/provider/user_contact_details_provider.dart';
-import 'package:sushi_shop_project/screens/order/snackbar/snack_bar.dart';
 
 
 class OrderBottomBar extends StatelessWidget {
@@ -12,7 +12,6 @@ class OrderBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserContactDetailsProvider userContactDetailsProvider = Provider.of<UserContactDetailsProvider>(context, listen: false);
     return LayoutBuilder(
       builder: (context, constraints) {
         double buttonWidth = constraints.maxWidth;
@@ -77,7 +76,7 @@ class OrderBottomBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Send order",
+          "Checkout",
           style: TextStyle(
             color: Colors.white,
             fontFamily: "Mulish-Regular",

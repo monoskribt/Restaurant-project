@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:sushi_shop_project/models/product_type_filter_model.dart';
+import 'package:Foodbox/models/product_type_filter_model.dart';
 
 class ProductTypeFilter extends Equatable {
   final int id;

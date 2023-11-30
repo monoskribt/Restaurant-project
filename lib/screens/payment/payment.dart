@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
+import 'package:Foodbox/features/provider/card_details_provider.dart';
+import 'package:Foodbox/screens/drawer_widget/main_drawer.dart';
+import 'package:Foodbox/screens/payment/helpers/bottom_sheet_helper.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
-import 'package:sushi_shop_project/features/provider/card_details_provider.dart';
-import 'package:sushi_shop_project/screens/drawer_widget/main_drawer.dart';
-import 'package:sushi_shop_project/screens/order_status/order_status.dart';
-import 'package:sushi_shop_project/screens/payment/helpers/bottom_sheet_helper.dart';
-import 'package:sushi_shop_project/screens/payment/payment_components/add_new_card.dart';
-import 'package:sushi_shop_project/screens/payment/payment_components/card_banking.dart';
-import 'package:sushi_shop_project/screens/payment/payment_components/info_about_order.dart';
-import 'package:sushi_shop_project/screens/payment/payment_components/payment_bottom_bar.dart';
+
+import 'payment_components/add_new_card.dart';
+import 'payment_components/card_banking.dart';
+import 'payment_components/info_about_order.dart';
+import 'payment_components/payment_bottom_bar.dart';
+
 
 class Payment extends StatefulWidget {
   const Payment({Key? key}) : super(key: key);

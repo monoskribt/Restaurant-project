@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:Foodbox/features/provider/order_time_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:sushi_shop_project/features/provider/order_time_provider.dart';
 
 class OrderStatusFirst extends StatefulWidget {
   const OrderStatusFirst({

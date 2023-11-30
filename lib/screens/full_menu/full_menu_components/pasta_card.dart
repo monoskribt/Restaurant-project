@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/screens/full_menu/helpers/view_a_dish_helper.dart';
+import 'package:Foodbox/screens/full_menu/helpers/view_a_dish_helper.dart';
 
 class PastaCard extends StatelessWidget {
   final String nameDish;

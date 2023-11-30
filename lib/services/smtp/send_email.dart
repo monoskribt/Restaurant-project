@@ -11,16 +11,10 @@ class EmailService {
     double? dishTips,
     int? quantity,
   }) async {
-    String username = 'info@wbtest.marat.ua';
-    String password = 'vH8i7qsKhJ';
+    String username = 'dmitrijmamilov@gmail.com';
+    String password = 'hfjcebkliwjohfsc';
 
-    final smtpServer = SmtpServer(
-      'wbtest.marat.ua',
-      username: username,
-      password: password,
-      port: 465,
-      ssl: true,
-    );
+    final smtpServer = gmail(username, password);
 
     final message = Message()
       ..from = Address(username, 'Mail Service')

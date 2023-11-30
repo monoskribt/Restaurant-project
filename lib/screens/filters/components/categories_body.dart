@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sushi_shop_project/features/bloc/filter_bloc.dart';
-import 'package:sushi_shop_project/features/bloc/filter_state.dart';
-import 'package:sushi_shop_project/screens/filters/tools/category_filter.dart';
+import 'package:Foodbox/features/bloc/filter_bloc.dart';
+import 'package:Foodbox/features/bloc/filter_state.dart';
+import 'package:Foodbox/screens/filters/tools/category_filter.dart';
 
 class CategoriesBody extends StatefulWidget {
   const CategoriesBody({Key? key}) : super(key: key);

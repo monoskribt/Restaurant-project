@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sushi_shop_project/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
-import 'package:sushi_shop_project/screens/drawer_widget/main_drawer.dart';
-import 'package:sushi_shop_project/screens/full_menu/full_menu.dart';
-import 'package:sushi_shop_project/screens/order/order_components/order_bottom_bar.dart';
-import 'package:sushi_shop_project/screens/order/order_function/order_list_view.dart';
+import 'package:Foodbox/features/cubit/cubit_for_restaurant/restaurant_cubit.dart';
+import 'package:Foodbox/screens/drawer_widget/main_drawer.dart';
+import 'package:Foodbox/screens/full_menu/full_menu.dart';
+import 'package:Foodbox/screens/order/order_function/order_list_view.dart';
+
+import 'order_components/order_bottom_bar.dart';
+
 
 
 class OrderMenu extends StatefulWidget {

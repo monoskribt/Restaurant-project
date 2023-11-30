@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sushi_shop_project/data_parsing/models/toppings_model.dart';
-import 'package:sushi_shop_project/data_parsing/parsing/parsing_for_toppings/toppings_parse.dart';
-import 'package:sushi_shop_project/screens/view_a_dish/view_a_dish_components/toppings_card.dart';
+import 'package:Foodbox/data_parsing/models/toppings_model.dart';
+import 'package:Foodbox/data_parsing/parsing/parsing_for_toppings/toppings_parse.dart';
+import 'package:Foodbox/screens/view_a_dish/view_a_dish_components/toppings_card.dart';
+
 
 class ToppingsListComponent extends StatelessWidget {
   const ToppingsListComponent({Key? key}) : super(key: key);
