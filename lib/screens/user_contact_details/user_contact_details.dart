@@ -244,7 +244,7 @@ class _UserContactState extends State<UserContact> {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
-                                    labelText: "Email",
+                                    labelText: "Email (optional)",
                                     labelStyle: TextStyle(
                                       fontSize: 0.017 * screenHeight,
                                       fontFamily: "Mulish-Regular",
@@ -253,13 +253,6 @@ class _UserContactState extends State<UserContact> {
                                     ),
                                     prefixIcon: const Icon(
                                       Icons.email,
-                                      color: Colors.grey,
-                                    ),
-                                    helperText: "Optional",
-                                    helperStyle: TextStyle(
-                                      fontSize: 0.017 * screenHeight,
-                                      fontFamily: "Mulish-Regular",
-                                      fontWeight: FontWeight.w800,
                                       color: Colors.grey,
                                     ),
                                     focusedBorder: OutlineInputBorder(
